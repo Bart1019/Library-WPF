@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Library.Data.Models
 {
-    class OurLibrary
+    public class OurLibrary
     {
     }
 }

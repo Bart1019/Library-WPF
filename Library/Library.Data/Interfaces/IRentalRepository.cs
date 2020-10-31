@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.Data.Models
+namespace Library.Data.Interfaces
 {
-    public class User
+    public interface IRentalRepository
     {
     }
 }
