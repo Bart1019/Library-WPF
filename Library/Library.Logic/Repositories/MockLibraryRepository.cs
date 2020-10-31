@@ -30,7 +30,7 @@ namespace Library.Logic.Repositories
             return _books.Where(x => x.IsAvailable.Equals(true)).AsQueryable();
         }
 
-        public IQueryable<Book> GetAllUnAvailableBooks()
+        public IQueryable<Book> GetAllUnavailableBooks()
         {
             return _books.Where(x => x.IsAvailable.Equals(false)).AsQueryable();
         }

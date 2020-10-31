@@ -8,11 +8,11 @@ namespace Library.Data.Interfaces
 {
     public interface IBookRepository
     {
-        IQueryable<Book> GetAll();
-        Book GetById(int id);
-        Book GetByType(BookEnum bookType);
-        void Delete(int id);
-        void Edit(Book book);
-        void Add(Book book);
+        IQueryable<Book> GetAllBooks();
+        Book GetBookById(int id);
+        Book GetBookByType(BookEnum bookType);
+        void DeleteBook(int id);
+        void EditBook(Book book);
+        void AddBook(Book book);
     }
 }

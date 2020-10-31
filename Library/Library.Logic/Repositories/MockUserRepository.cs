@@ -21,17 +21,17 @@ namespace Library.Logic.Repositories
             };
         }
 
-        public IQueryable<User> GetAll()
+        public IQueryable<User> GetAllUsers()
         {
             return _users.AsQueryable();
         }
 
-        public User GetById(int id)
+        public User GetUserById(int id)
         {
             return _users.FirstOrDefault(i => i.Id.Equals(id));
         }
 
-        public void Delete(int id)
+        public void DeleteUser(int id)
         {
             User deletedUser = _users.FirstOrDefault(i => i.Id.Equals(id));
 
@@ -41,7 +41,7 @@ namespace Library.Logic.Repositories
             }
         }
 
-        public void Edit(User user)
+        public void EditUser(User user)
         {
             User editedUser = _users.FirstOrDefault(b => b.Id.Equals(user.Id));
 
@@ -54,7 +54,7 @@ namespace Library.Logic.Repositories
             }
         }
 
-        public void Add(User user)
+        public void AddUser(User user)
         {
             User addedUser = new User
             {

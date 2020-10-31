@@ -8,10 +8,10 @@ namespace Library.Data.Interfaces
 {
     public interface IUserRepository
     {
-        IQueryable<User> GetAll();
-        User GetById(int id);
-        void Delete(int id);
-        void Edit(User user);
-        void Add(User user);
+        IQueryable<User> GetAllUsers();
+        User GetUserById(int id);
+        void DeleteUser(int id);
+        void EditUser(User user);
+        void AddUser(User user);
     }
 }

@@ -22,22 +22,22 @@ namespace Library.Logic.Repositories
             };
         }
 
-        public IQueryable<Book> GetAll()
+        public IQueryable<Book> GetAllBooks()
         {
             return _books.AsQueryable();
         }
 
-        public Book GetById(int id)
+        public Book GetBookById(int id)
         {
             return _books.FirstOrDefault(i => i.Id.Equals(id));
         }
 
-        public Book GetByType(BookEnum bookType)
+        public Book GetBookByType(BookEnum bookType)
         {
             return _books.FirstOrDefault(t => t.BookType.Equals(bookType));
         }
 
-        public void Delete(int id)
+        public void DeleteBook(int id)
         {
             Book deletedBook = _books.FirstOrDefault(i => i.Id.Equals(id));
 
@@ -47,7 +47,7 @@ namespace Library.Logic.Repositories
             }
         }
 
-        public void Edit(Book book)
+        public void EditBook(Book book)
         {
             Book editedBook = _books.FirstOrDefault(b => b.Id.Equals(book.Id));
 
@@ -65,7 +65,7 @@ namespace Library.Logic.Repositories
             }
         }
 
-        public void Add(Book book)
+        public void AddBook(Book book)
         {
             Book addedBook = new Book
             {
