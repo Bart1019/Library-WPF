@@ -9,6 +9,6 @@ namespace Library.Data.Interfaces
     public interface ILibraryRepository
     {
         IQueryable<Book> GetAllAvailableBooks();
-        IQueryable<Book> GetAllUnAvailableBooks();s
+        IQueryable<Book> GetAllUnAvailableBooks();
     }
 }
