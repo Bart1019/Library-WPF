@@ -8,11 +8,11 @@ namespace Library.Logic.Repositories
 {
     public class MockRentalRepository: IRentalRepository
     {
-        private Dictionary<Book, User> _rentalDictionary;
+        private Dictionary<Book, User> rentalDictionary;
 
         public MockRentalRepository()
         {
-            _rentalDictionary = new Dictionary<Book, User>
+            rentalDictionary = new Dictionary<Book, User>
             {
                 [new Book { Id = 1 }] = new User { Id = 1, AmountOfBooksRented = 3 },
                 [new Book { Id = 2 }] = new User { Id = 1 },
@@ -24,7 +24,7 @@ namespace Library.Logic.Repositories
 
         public Dictionary<Book, User> GetAllRentals()
         {
-            return _rentalDictionary;
+            return rentalDictionary;
         }
 
         public Dictionary<Book, User> GetRentalById(int id)

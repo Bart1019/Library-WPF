@@ -9,11 +9,11 @@ namespace Library.Logic.Repositories
 {
     public class MockUserRepository : IUserRepository
     {
-        private List<User> _users;
+        private List<User> users;
 
         public MockUserRepository()
         {
-            _users = new List<User>
+            users = new List<User>
             {
                 new User{Id = 1, Name = "Bartek", Surname = "Runowski", AmountOfBooksRented = 1},
                 new User{Id = 2, Name = "Wojtek", Surname = "Wozniak", AmountOfBooksRented = 4},
@@ -23,27 +23,27 @@ namespace Library.Logic.Repositories
 
         public IQueryable<User> GetAllUsers()
         {
-            return _users.AsQueryable();
+            return users.AsQueryable();
         }
 
         public User GetUserById(int id)
         {
-            return _users.FirstOrDefault(i => i.Id.Equals(id));
+            return users.FirstOrDefault(i => i.Id.Equals(id));
         }
 
         public void DeleteUser(int id)
         {
-            User deletedUser = _users.FirstOrDefault(i => i.Id.Equals(id));
+            User deletedUser = users.FirstOrDefault(i => i.Id.Equals(id));
 
             if (deletedUser != null)
             {
-                _users.Remove(deletedUser);
+                users.Remove(deletedUser);
             }
         }
 
         public void EditUser(User user)
         {
-            User editedUser = _users.FirstOrDefault(b => b.Id.Equals(user.Id));
+            User editedUser = users.FirstOrDefault(b => b.Id.Equals(user.Id));
 
             if (editedUser != null)
             {
@@ -64,7 +64,7 @@ namespace Library.Logic.Repositories
                 AmountOfBooksRented = user.AmountOfBooksRented
             };
 
-            _users.Add(addedUser);
+            users.Add(addedUser);
         }
     }
 }

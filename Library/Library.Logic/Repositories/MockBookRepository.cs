@@ -10,11 +10,11 @@ namespace Library.Logic.Repositories
 {
     public class MockBookRepository : IBookRepository
     {
-        private List<Book> _books;
+        private List<Book> books;
 
         public MockBookRepository()
         {
-            _books = new List<Book>
+            books = new List<Book>
             {
                 new Book {Id = 1, Title = "aaaa", BookType = BookEnum.Adventure, Amount = 3, IsAvailable = true, RentalDate = default},
                 new Book {Id = 2, Title = "bbbb", BookType = BookEnum.Roman, Amount = 1, IsAvailable = true, RentalDate = default},
@@ -24,32 +24,32 @@ namespace Library.Logic.Repositories
 
         public IQueryable<Book> GetAllBooks()
         {
-            return _books.AsQueryable();
+            return books.AsQueryable();
         }
 
         public Book GetBookById(int id)
         {
-            return _books.FirstOrDefault(i => i.Id.Equals(id));
+            return books.FirstOrDefault(i => i.Id.Equals(id));
         }
 
         public Book GetBookByType(BookEnum bookType)
         {
-            return _books.FirstOrDefault(t => t.BookType.Equals(bookType));
+            return books.FirstOrDefault(t => t.BookType.Equals(bookType));
         }
 
         public void DeleteBook(int id)
         {
-            Book deletedBook = _books.FirstOrDefault(i => i.Id.Equals(id));
+            Book deletedBook = books.FirstOrDefault(i => i.Id.Equals(id));
 
             if (deletedBook != null)
             {
-                _books.Remove(deletedBook);
+                books.Remove(deletedBook);
             }
         }
 
         public void EditBook(Book book)
         {
-            Book editedBook = _books.FirstOrDefault(b => b.Id.Equals(book.Id));
+            Book editedBook = books.FirstOrDefault(b => b.Id.Equals(book.Id));
 
             if (editedBook != null)
             {
@@ -77,7 +77,7 @@ namespace Library.Logic.Repositories
                 RentalDate = book.RentalDate
             };
 
-            _books.Add(addedBook);
+            books.Add(addedBook);
         }
     }
 }
