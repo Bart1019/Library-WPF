@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Library.Data
 {
-    public enum Enum
+    public enum BookEnum
     {
         Roman,
         Historic,
