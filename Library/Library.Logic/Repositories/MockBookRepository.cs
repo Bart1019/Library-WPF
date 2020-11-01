@@ -16,9 +16,9 @@ namespace Library.Logic.Repositories
         {
             books = new List<Book>
             {
-                new Book {Id = 1, Title = "aaaa", BookType = BookEnum.Adventure, Amount = 3, IsAvailable = true, RentalDate = default},
-                new Book {Id = 2, Title = "bbbb", BookType = BookEnum.Roman, Amount = 1, IsAvailable = true, RentalDate = default},
-                new Book {Id = 3, Title = "cccc", BookType = BookEnum.Document, Amount = 0, IsAvailable = false, RentalDate = default},
+                new Book {Id = 1, Title = "aaaa", BookType = BookEnum.Adventure, Amount = 3, IsAvailable = true, RentalDate = default, GiveBackDate = default},
+                new Book {Id = 2, Title = "bbbb", BookType = BookEnum.Roman, Amount = 1, IsAvailable = true, RentalDate = default, GiveBackDate = default},
+                new Book {Id = 3, Title = "cccc", BookType = BookEnum.Document, Amount = 0, IsAvailable = false, RentalDate = default, GiveBackDate = default},
             };
         }
 
@@ -53,11 +53,7 @@ namespace Library.Logic.Repositories
 
             if (editedBook != null)
             {
-                if (book.Title != null)
-                {
-                    editedBook.Title = book.Title;
-                }
-
+                editedBook.Title = book.Title;
                 editedBook.BookType = book.BookType;
                 editedBook.Amount = book.Amount;
                 editedBook.IsAvailable = book.IsAvailable;
