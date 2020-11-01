@@ -7,17 +7,17 @@ namespace Library.Data.Models
     public class Rental
     {
         private User user;
-        private Book book;
+        private OurLibrary library;
 
-        public Rental(User user, Book book)
+        public Rental(User user, OurLibrary library)
         {
             this.user = user;
-            this.book = book;
+            this.library = library;
         }
 
         public int Id { get; set; }
-        public DateTime RentalDuration { get; set; }
-        private List<User> UsersRentalHistory { get; set; }
-        public List<Book> BooksRentalHistory { get; set; }
+        public DateTime RentalDate { get; set; }
+        public DateTime GiveBackDate { get; set; }
+        public List<User> UsersRentalHistory { get; set; }
     }
 }
