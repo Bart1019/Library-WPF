@@ -10,7 +10,5 @@ namespace Library.Data.Models
         public string Title { get; set; }
         public BookEnum BookType { get; set; }
         public bool IsAvailable { get; set; }
-        public int Amount { get; set; }
-        
     }
 }
