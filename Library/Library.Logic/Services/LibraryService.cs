@@ -18,12 +18,16 @@ namespace Library.Logic.Services
 
         public List<Book> GetAllAvailableBooks()
         {
-            return libraryRepository.GetAllAvailableBooks().ToList();
+            List<Book> availableBooks = libraryRepository.GetAllAvailableBooks().ToList();
+
+            return availableBooks.Count == 0 ? null : availableBooks;
         }
 
         public List<Book> GetAllUnavailableBooks()
         {
-            return libraryRepository.GetAllUnavailableBooks().ToList();
+            List<Book> unavailableBooks = libraryRepository.GetAllUnavailableBooks().ToList();
+
+            return unavailableBooks.Count == 0 ? null : unavailableBooks;
         }
     }
 }
