@@ -27,12 +27,12 @@ namespace Library.Logic.Repositories
 
         public IQueryable<Book> GetAllAvailableBooks()
         {
-            return books.Where(x => x.IsAvailable.Equals(true)).AsQueryable();
+            return books.Where(x => x.IsAvailable.Equals(AvailabilityEnum.Available)).AsQueryable();
         }
 
         public IQueryable<Book> GetAllUnavailableBooks()
         {
-            return books.Where(x => x.IsAvailable.Equals(false)).AsQueryable();
+            return books.Where(x => x.IsAvailable.Equals(AvailabilityEnum.Unavailable)).AsQueryable();
         }
     }
 }

@@ -22,19 +22,19 @@ namespace Library.Logic.Repositories
             };
         }
 
-        public IQueryable<Book> GetAllBooks()
+        public IQueryable<Book> GetAllBooks(AvailabilityEnum availability)
         {
-            return books.AsQueryable();
+            return books.Where(a=>a.IsAvailable.Equals(availability)).AsQueryable();
         }
 
-        public Book GetBookById(int id)
+        public Book GetBookById(int id, AvailabilityEnum availability)
         {
-            return books.FirstOrDefault(i => i.Id.Equals(id));
+            return books.FirstOrDefault(i => i.Id.Equals(id) && i.IsAvailable.Equals(availability));
         }
 
-        public Book GetBookByType(BookEnum bookType)
+        public Book GetBookByType(BookEnum bookType, AvailabilityEnum availability)
         {
-            return books.FirstOrDefault(t => t.BookType.Equals(bookType));
+            return books.FirstOrDefault(t => t.BookType.Equals(bookType) && t.IsAvailable.Equals(availability));
         }
 
         public void DeleteBook(int id)
