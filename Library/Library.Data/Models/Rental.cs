@@ -10,6 +10,8 @@ namespace Library.Data.Models
         public int Id { get; set; }
         public DateTime RentalDate { get; set; }
         public DateTime GiveBackDate { get; set; }
+        public User RentalUser { get; set; }
+        public Book RentedBook { get; set; }
         public List<User> RentalUsersHistory { get; set; } = new List<User>();
         public List<Book> RentedBooksHistory { get; set; } = new List<Book>();
     }

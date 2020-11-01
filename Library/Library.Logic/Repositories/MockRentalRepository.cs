@@ -15,9 +15,9 @@ namespace Library.Logic.Repositories
         {
             rentals = new List<Rental>
             {
-                new Rental { Id = 1, RentalDate = default, GiveBackDate = default, RentedBooksHistory = default, RentalUsersHistory = default},
-                new Rental { Id = 2, RentalDate = default, GiveBackDate = default, RentedBooksHistory = default, RentalUsersHistory = default},
-                new Rental { Id = 3, RentalDate = default, GiveBackDate = default, RentedBooksHistory = default, RentalUsersHistory = default}
+                new Rental { Id = 1, RentalDate = default, GiveBackDate = default, RentalUser = default, RentedBook = default, RentedBooksHistory = default, RentalUsersHistory = default},
+                new Rental { Id = 2, RentalDate = default, GiveBackDate = default, RentalUser = default, RentedBook = default, RentedBooksHistory = default, RentalUsersHistory = default},
+                new Rental { Id = 3, RentalDate = default, GiveBackDate = default, RentalUser = default, RentedBook = default, RentedBooksHistory = default, RentalUsersHistory = default}
             };
         }
 
@@ -31,18 +31,28 @@ namespace Library.Logic.Repositories
             return rentals.FirstOrDefault(i => i.Id.Equals(id));
         }
 
-        public IQueryable<User> GetAllRentalUsers(int id)
+        public IQueryable<User> GetAllRentalUsers()
         {
-            Rental rental = rentals.FirstOrDefault(i => i.Id.Equals(id));
+            List<User> rentalUsers = new List<User>();
 
-            return rental.RentalUsersHistory.AsQueryable();
+            foreach (User user in rentalUsers)
+            {
+                rentalUsers.Add(user);
+            }
+
+            return rentalUsers.AsQueryable();
         }
 
-        public IQueryable<Book> GetAllRentedBooks(int id)
+        public IQueryable<Book> GetAllRentedBooks()
         {
-            Rental rental = rentals.FirstOrDefault(i => i.Id.Equals(id));
+            List<Book> rentedBooks = new List<Book>();
 
-            return rental.RentedBooksHistory.AsQueryable();
+            foreach (Book book in rentedBooks)
+            {
+                rentedBooks.Add(book);
+            }
+
+            return rentedBooks.AsQueryable();
         }
 
         public void DeleteRental(int id)

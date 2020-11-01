@@ -10,8 +10,8 @@ namespace Library.Data.Interfaces
     {
         IQueryable<Rental> GetAllRentals();
         Rental GetRentalById(int id);
-        IQueryable<User> GetAllRentalUsers(int id);
-        IQueryable<Book> GetAllRentedBooks(int id);
+        IQueryable<User> GetAllRentalUsers();
+        IQueryable<Book> GetAllRentedBooks();
         void DeleteRental(int id);
         void EditRental(Rental rental);
         void AddRental(Rental rental);
