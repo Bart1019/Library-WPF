@@ -9,7 +9,7 @@ namespace Library.Data.Models
         public int Id { get; set; }
         public string Title { get; set; }
         public BookEnum BookType { get; set; }
-        public AvailabilityEnum IsAvailable { get; set; }
+        public bool IsAvailable { get; set; }
         public int Amount { get; set; }
         
     }
