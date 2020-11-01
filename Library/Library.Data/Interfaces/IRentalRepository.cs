@@ -10,7 +10,7 @@ namespace Library.Data.Interfaces
     {
         IQueryable<Rental> GetAllRentals();
         Rental GetRentalById(int id);
-        IQueryable<User> GetAllRentalUsers();
-        IQueryable<Book> GetAllRentedBooks();
+        IQueryable<User> GetAllRentalUsers(int id);
+        IQueryable<Book> GetAllRentedBooks(int id);
     }
 }

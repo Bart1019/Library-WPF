@@ -9,24 +9,40 @@ namespace Library.Logic.Repositories
 {
     public class MockRentalRepository : IRentalRepository
     {
+        private List<Rental> rentals;
+
+        public MockRentalRepository()
+        {
+            rentals = new List<Rental>
+            {
+                new Rental { Id = 1, RentalDate = default, GiveBackDate = default, RentedBooksHistory = default, RentalUsersHistory = default},
+                new Rental { Id = 2, RentalDate = default, GiveBackDate = default, RentedBooksHistory = default, RentalUsersHistory = default},
+                new Rental { Id = 3, RentalDate = default, GiveBackDate = default, RentedBooksHistory = default, RentalUsersHistory = default}
+            };
+        }
+
         public IQueryable<Rental> GetAllRentals()
         {
-            throw new NotImplementedException();
+            return rentals.AsQueryable();
         }
 
         public Rental GetRentalById(int id)
         {
-            throw new NotImplementedException();
+            return rentals.FirstOrDefault(i => i.Id.Equals(id));
         }
 
-        public IQueryable<User> GetAllRentalUsers()
+        public IQueryable<User> GetAllRentalUsers(int id)
         {
-            throw new NotImplementedException();
+            Rental rental = rentals.FirstOrDefault(i => i.Id.Equals(id));
+
+            return rental.RentalUsersHistory.AsQueryable();
         }
 
-        public IQueryable<Book> GetAllRentedBooks()
+        public IQueryable<Book> GetAllRentedBooks(int id)
         {
-            throw new NotImplementedException();
+            Rental rental = rentals.FirstOrDefault(i => i.Id.Equals(id));
+
+            return rental.RentedBooksHistory.AsQueryable();
         }
     }
 }
