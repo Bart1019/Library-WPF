@@ -18,12 +18,21 @@ namespace Library.Logic.Services
 
         public List<User> GetAllUsers()
         {
-            return userRepository.GetAllUsers().ToList();
+            List<User> users =  userRepository.GetAllUsers().ToList();
+
+            return users.Count == 0 ? null : users;
         }
 
         public User GetUser(int id)
         {
-            return userRepository.GetUserById(id);
+            User user = userRepository.GetUserById(id);
+
+            if (user.Equals(null))
+            {
+                return null;
+            }
+
+            return user;
         }
 
         public void DeleteUser(int id)
