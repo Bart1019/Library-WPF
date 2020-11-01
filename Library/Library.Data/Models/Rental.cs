@@ -15,7 +15,9 @@ namespace Library.Data.Models
             this.book = book;
         }
 
-        public Dictionary<Book, User> RentedBooks { get; set; }
-        //Todo rethink how this class should work
+        public int Id { get; set; }
+        public DateTime RentalDuration { get; set; }
+        private List<User> UsersRentalHistory { get; set; }
+        public List<Book> BooksRentalHistory { get; set; }
     }
 }
