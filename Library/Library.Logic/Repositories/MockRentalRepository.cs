@@ -33,26 +33,7 @@ namespace Library.Logic.Repositories
 
         public IQueryable<User> GetAllRentalUsers()
         {
-            List<User> rentalUsers = new List<User>();
-
-            foreach (User user in rentalUsers)
-            {
-                rentalUsers.Add(user);
-            }
-
-            return rentalUsers.AsQueryable();
-        }
-
-        public IQueryable<Book> GetAllRentedBooks()
-        {
-            List<Book> rentedBooks = new List<Book>();
-
-            foreach (Book book in rentedBooks)
-            {
-                rentedBooks.Add(book);
-            }
-
-            return rentedBooks.AsQueryable();
+            throw new NotImplementedException();
         }
 
         public void DeleteRental(int id)
@@ -92,6 +73,13 @@ namespace Library.Logic.Repositories
             };
 
             rentals.Add(addedRental);
+        }
+
+        public void AddUserToRentalHistory(User user)
+        {
+            Rental rental = rentals.FirstOrDefault(u => u.RentalUser.Id.Equals(user.Id));
+
+            rental?.RentalUsersHistory.Add(user);
         }
     }
 }

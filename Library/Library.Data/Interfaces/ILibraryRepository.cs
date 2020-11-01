@@ -10,5 +10,6 @@ namespace Library.Data.Interfaces
     {
         IQueryable<Book> GetAllAvailableBooks();
         IQueryable<Book> GetAllUnavailableBooks();
+        void AddBookWithChangedState(Book book);
     }
 }

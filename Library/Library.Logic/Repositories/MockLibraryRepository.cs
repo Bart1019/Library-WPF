@@ -16,12 +16,12 @@ namespace Library.Logic.Repositories
         {
             books = new List<Book>
             {
-                new Book {Id = 1, Title = "aaaa", BookType = BookEnum.Adventure, Amount = 3, IsAvailable = true},
-                new Book {Id = 2, Title = "bbbb", BookType = BookEnum.Roman, Amount = 1, IsAvailable = false},
-                new Book {Id = 3, Title = "cccc", BookType = BookEnum.Document, Amount = 5, IsAvailable = false},
-                new Book {Id = 4, Title = "dddd", BookType = BookEnum.Historic, Amount = 7, IsAvailable = false},
-                new Book {Id = 5, Title = "eeee", BookType = BookEnum.SciFi, Amount = 1, IsAvailable = false},
-                new Book {Id = 6, Title = "ffff", BookType = BookEnum.Document, Amount = 0, IsAvailable = true}
+                new Book {Id = 1, Title = "aaaa", BookType = BookEnum.Adventure, IsAvailable = true},
+                new Book {Id = 2, Title = "bbbb", BookType = BookEnum.Roman, IsAvailable = false},
+                new Book {Id = 3, Title = "cccc", BookType = BookEnum.Document, IsAvailable = false},
+                new Book {Id = 4, Title = "dddd", BookType = BookEnum.Historic, IsAvailable = false},
+                new Book {Id = 5, Title = "eeee", BookType = BookEnum.SciFi, IsAvailable = false},
+                new Book {Id = 6, Title = "ffff", BookType = BookEnum.Document, IsAvailable = true}
             };
         }
 
@@ -33,6 +33,11 @@ namespace Library.Logic.Repositories
         public IQueryable<Book> GetAllUnavailableBooks()
         {
             return books.Where(x => x.IsAvailable.Equals(false)).AsQueryable();
+        }
+
+        public void AddBookWithChangedState(Book book)
+        {
+            books.Add(book);
         }
     }
 }

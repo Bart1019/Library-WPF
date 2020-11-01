@@ -16,9 +16,9 @@ namespace Library.Logic.Repositories
         {
             books = new List<Book>
             {
-                new Book {Id = 1, Title = "aaaa", BookType = BookEnum.Adventure, Amount = 3, IsAvailable = true},
-                new Book {Id = 2, Title = "bbbb", BookType = BookEnum.Roman, Amount = 1, IsAvailable = false},
-                new Book {Id = 3, Title = "cccc", BookType = BookEnum.Document, Amount = 0, IsAvailable = false}
+                new Book {Id = 1, Title = "aaaa", BookType = BookEnum.Adventure, IsAvailable = true},
+                new Book {Id = 2, Title = "bbbb", BookType = BookEnum.Roman, IsAvailable = false},
+                new Book {Id = 3, Title = "cccc", BookType = BookEnum.Document, IsAvailable = false}
             };
         }
 
@@ -55,7 +55,6 @@ namespace Library.Logic.Repositories
             {
                 editedBook.Title = book.Title;
                 editedBook.BookType = book.BookType;
-                editedBook.Amount = book.Amount;
                 editedBook.IsAvailable = book.IsAvailable;
             }
         }
@@ -67,7 +66,6 @@ namespace Library.Logic.Repositories
                 Id = book.Id,
                 Title = book.Title,
                 BookType = book.BookType,
-                Amount = book.Amount,
                 IsAvailable = book.IsAvailable,
             };
 
