@@ -19,17 +19,33 @@ namespace Library.Logic.Services
 
         public List<Book> GetAllBooks()
         {
-           return bookRepository.GetAllBooks().ToList();
+            List <Book> books = bookRepository.GetAllBooks().ToList();
+
+            return books.Count == 0 ? null : books;
         }
 
         public Book GetBook(int id)
         {
-            return bookRepository.GetBookById(id);
+            Book book = bookRepository.GetBookById(id);
+
+            if (book.Equals(null))
+            {
+                return null;
+            }
+
+            return book;
         }
 
         public Book GetBook(BookEnum bookType)
         {
-            return bookRepository.GetBookByType(bookType);
+            Book book = bookRepository.GetBookByType(bookType);
+
+            if (book.Equals(null))
+            {
+                return null;
+            }
+
+            return book;
         }
 
         public void DeleteBook(int id)
