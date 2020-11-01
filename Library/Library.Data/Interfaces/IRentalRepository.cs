@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Library.Data.Models;
 
@@ -7,7 +8,9 @@ namespace Library.Data.Interfaces
 {
     public interface IRentalRepository
     {
-        Dictionary<Book, User> GetAllRentals();
-        Dictionary<Book, User> GetRentalById(int id);
+        IQueryable<Rental> GetAllRentals();
+        Rental GetRentalById(int id);
+        IQueryable<User> GetAllRentalUsers();
+        IQueryable<Book> GetAllRentedBooks();
     }
 }

@@ -16,12 +16,12 @@ namespace Library.Logic.Repositories
         {
             books = new List<Book>
             {
-                new Book {Id = 1, Title = "aaaa", BookType = BookEnum.Adventure, Amount = 3, IsAvailable = true, RentalDate = default},
-                new Book {Id = 2, Title = "bbbb", BookType = BookEnum.Roman, Amount = 1, IsAvailable = true, RentalDate = default},
-                new Book {Id = 3, Title = "cccc", BookType = BookEnum.Document, Amount = 5, IsAvailable = false, RentalDate = default},
-                new Book {Id = 4, Title = "dddd", BookType = BookEnum.Historic, Amount = 7, IsAvailable = true, RentalDate = default},
-                new Book {Id = 5, Title = "eeee", BookType = BookEnum.SciFi, Amount = 1, IsAvailable = false, RentalDate = default},
-                new Book {Id = 6, Title = "ffff", BookType = BookEnum.Document, Amount = 0, IsAvailable = false, RentalDate = default},
+                new Book {Id = 1, Title = "aaaa", BookType = BookEnum.Adventure, Amount = 3, IsAvailable = true, RentalDate = default, GiveBackDate = default},
+                new Book {Id = 2, Title = "bbbb", BookType = BookEnum.Roman, Amount = 1, IsAvailable = true, RentalDate = default, GiveBackDate = default},
+                new Book {Id = 3, Title = "cccc", BookType = BookEnum.Document, Amount = 5, IsAvailable = false, RentalDate = default, GiveBackDate = default},
+                new Book {Id = 4, Title = "dddd", BookType = BookEnum.Historic, Amount = 7, IsAvailable = true, RentalDate = default, GiveBackDate = default},
+                new Book {Id = 5, Title = "eeee", BookType = BookEnum.SciFi, Amount = 1, IsAvailable = false, RentalDate = default, GiveBackDate = default},
+                new Book {Id = 6, Title = "ffff", BookType = BookEnum.Document, Amount = 0, IsAvailable = false, RentalDate = default, GiveBackDate = default},
             };
         }
 

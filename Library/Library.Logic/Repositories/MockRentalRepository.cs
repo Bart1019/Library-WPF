@@ -1,35 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Library.Data.Interfaces;
 using Library.Data.Models;
 
 namespace Library.Logic.Repositories
 {
-    public class MockRentalRepository: IRentalRepository
+    public class MockRentalRepository : IRentalRepository
     {
-        private Dictionary<Book, User> rentalDictionary;
-
-        public MockRentalRepository()
+        public IQueryable<Rental> GetAllRentals()
         {
-            rentalDictionary = new Dictionary<Book, User>
-            {
-                [new Book { Id = 1 }] = new User { Id = 1, AmountOfBooksRented = 3 },
-                [new Book { Id = 2 }] = new User { Id = 1 },
-                [new Book { Id = 3 }] = new User { Id = 1 },
-                [new Book { Id = 1 }] = new User { Id = 2 }
-
-            };
+            throw new NotImplementedException();
         }
 
-        public Dictionary<Book, User> GetAllRentals()
+        public Rental GetRentalById(int id)
         {
-            return rentalDictionary;
+            throw new NotImplementedException();
         }
 
-        public Dictionary<Book, User> GetRentalById(int id)
+        public IQueryable<User> GetAllRentalUsers()
         {
-            //TODO
+            throw new NotImplementedException();
+        }
+
+        public IQueryable<Book> GetAllRentedBooks()
+        {
             throw new NotImplementedException();
         }
     }
