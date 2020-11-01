@@ -12,5 +12,8 @@ namespace Library.Data.Interfaces
         Rental GetRentalById(int id);
         IQueryable<User> GetAllRentalUsers(int id);
         IQueryable<Book> GetAllRentedBooks(int id);
+        void DeleteRental(int id);
+        void EditRental(Rental rental);
+        void AddRental(Rental rental);
     }
 }

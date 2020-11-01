@@ -44,5 +44,42 @@ namespace Library.Logic.Repositories
 
             return rental.RentedBooksHistory.AsQueryable();
         }
+
+        public void DeleteRental(int id)
+        {
+            Rental deletedRental = rentals.FirstOrDefault(i => i.Id.Equals(id));
+
+            if(deletedRental != null)
+            {
+                rentals.Remove(deletedRental);
+            }
+        }
+
+        public void EditRental(Rental rental)
+        {
+            Rental editedRental = rentals.FirstOrDefault(r => r.Id.Equals(rental.Id));
+
+            if (editedRental != null)
+            {
+                editedRental.RentalDate = rental.RentalDate;
+                editedRental.GiveBackDate = rental.GiveBackDate;
+                editedRental.RentalUsersHistory = rental.RentalUsersHistory;
+                editedRental.RentedBooksHistory = rental.RentedBooksHistory;
+            }
+        }
+
+        public void AddRental(Rental rental)
+        {
+            Rental addedRental = new Rental
+            {
+                Id = rental.Id,
+                RentalDate = rental.RentalDate,
+                GiveBackDate = rental.GiveBackDate,
+                RentalUsersHistory = rental.RentalUsersHistory,
+                RentedBooksHistory = rental.RentedBooksHistory
+            };
+
+            rentals.Add(addedRental);
+        }
     }
 }
