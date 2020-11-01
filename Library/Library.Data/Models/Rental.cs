@@ -11,8 +11,7 @@ namespace Library.Data.Models
         public DateTime RentalDate { get; set; }
         public DateTime GiveBackDate { get; set; }
         public User RentalUser { get; set; }
-        public Book RentedBook { get; set; }
+        public OurLibrary LibraryBooks { get; set; }
         public List<User> RentalUsersHistory { get; set; } = new List<User>();
-        public List<Book> RentedBooksHistory { get; set; } = new List<Book>();
     }
 }
