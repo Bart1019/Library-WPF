@@ -57,7 +57,6 @@ namespace Library.Logic.Repositories
                 editedBook.BookType = book.BookType;
                 editedBook.Amount = book.Amount;
                 editedBook.IsAvailable = book.IsAvailable;
-                editedBook.RentalDate = book.RentalDate;
             }
         }
 
@@ -70,7 +69,6 @@ namespace Library.Logic.Repositories
                 BookType = book.BookType,
                 Amount = book.Amount,
                 IsAvailable = book.IsAvailable,
-                RentalDate = book.RentalDate
             };
 
             books.Add(addedBook);
