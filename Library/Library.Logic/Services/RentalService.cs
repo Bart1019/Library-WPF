@@ -12,7 +12,6 @@ namespace Library.Logic.Services
         private readonly IRentalRepository rentalRepository;
         private readonly ILibraryRepository libraryRepository;
         private readonly IUserRepository userRepository;
-        private int initialRentalId = 0;
 
         public RentalService(IRentalRepository rentalRepository, ILibraryRepository libraryRepository, IUserRepository userRepository)
         {
@@ -50,7 +49,7 @@ namespace Library.Logic.Services
             rentalRepository.EditRental(existingRental);
         }
 
-        public void CreateNewRental(int userId, int bookId, DateTime rentalDate)
+        public Rental CreateNewRental(int rentalId, int userId, int bookId, DateTime rentalDate)
         {
             User rentalUser = userRepository.GetUserById(userId);
             OurLibrary availableLibraryBooks = new OurLibrary
@@ -58,18 +57,20 @@ namespace Library.Logic.Services
                 Books = libraryRepository.GetAllAvailableBooks().ToList()
             };
 
-            Rental rental = InitializeRental(initialRentalId, rentalDate, rentalUser, availableLibraryBooks, bookId, out Book book);
+            Rental rental = InitializeRental(rentalId, rentalDate, rentalUser, availableLibraryBooks, bookId, out Book book);
 
             if (ValidateData(rentalUser, book, rentalDate))
             {
-                initialRentalId++;
-
                 OnUserRent(rentalUser);
 
                 OnBookRent(book, false);
 
                 rentalRepository.AddRental(rental);
+
+                return rental;
             }
+
+            return null;
         }
 
         private Rental InitializeRental(int id, DateTime rentalDate, User rentalUser, OurLibrary library, int bookId, out Book book)
