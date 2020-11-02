@@ -12,7 +12,6 @@ namespace Library.Logic.Services
         private readonly IRentalRepository rentalRepository;
         private readonly ILibraryRepository libraryRepository;
         private readonly IUserRepository userRepository;
-        private Rental rental;
         private int initialRentalId = 0;
 
         public RentalService(IRentalRepository rentalRepository, ILibraryRepository libraryRepository, IUserRepository userRepository)
@@ -24,7 +23,7 @@ namespace Library.Logic.Services
 
         public List<Rental> GetAllRentals()
         {
-            List<Rental> rentals =  rentalRepository.GetAllRentals().ToList();
+            List<Rental> rentals =  rentalRepository.GetAllRentals();
 
             return rentals.Count == 0 ? null : rentals;
         }
@@ -54,20 +53,42 @@ namespace Library.Logic.Services
         public void CreateNewRental(int userId, int bookId, DateTime rentalDate)
         {
             User rentalUser = userRepository.GetUserById(userId);
-            List<Book> availableBooks = libraryRepository.GetAllAvailableBooks().ToList();
-            Book rentedBook = availableBooks.FirstOrDefault(i => i.Id.Equals(bookId));
-            
+            OurLibrary availableLibraryBooks = new OurLibrary
+            {
+                Books = libraryRepository.GetAllAvailableBooks().ToList()
+            };
 
-            if (ValidateData(rentalUser, rentedBook, rentalDate))
+            Rental rental = InitializeRental(initialRentalId, rentalDate, rentalUser, availableLibraryBooks, bookId, out Book book);
+
+            if (ValidateData(rentalUser, book, rentalDate))
             {
                 initialRentalId++;
 
                 OnUserRent(rentalUser);
 
-                OnBookRent(rentedBook);
+                OnBookRent(book, false);
 
                 rentalRepository.AddRental(rental);
             }
+        }
+
+        private Rental InitializeRental(int id, DateTime rentalDate, User rentalUser, OurLibrary library, int bookId, out Book book)
+        {
+            book = library.Books.FirstOrDefault(i => i.Id.Equals(bookId) && i.IsAvailable.Equals(true));
+
+            return new Rental
+            {
+                Id = id,
+                RentalDate = rentalDate,
+                GiveBackDate = default,
+                RentalUser = rentalUser,
+                LibraryBooks = library
+            };
+        }
+
+        public void GiveBookBack(int rentalId, int bookId, int userId, DateTime rentalEnd)
+        {
+            throw new NotImplementedException();
         }
 
         private bool ValidateData(User user, Book book, DateTime date)
@@ -80,9 +101,9 @@ namespace Library.Logic.Services
             return true;
         }
 
-        private void OnBookRent(Book book)
+        private void OnBookRent(Book book, bool rentalState)
         {
-            book.IsAvailable = false;
+            book.IsAvailable = rentalState;
             libraryRepository.AddBookWithChangedState(book);
         }
 
