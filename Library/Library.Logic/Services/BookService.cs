@@ -19,7 +19,7 @@ namespace Library.Logic.Services
 
         public List<Book> GetAllBooks()
         {
-            List <Book> books = bookRepository.GetAllBooks().ToList();
+            List <Book> books = bookRepository.GetAllBooks();
 
             return books.Count == 0 ? null : books;
         }

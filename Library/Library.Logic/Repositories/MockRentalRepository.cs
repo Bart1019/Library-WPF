@@ -21,9 +21,9 @@ namespace Library.Logic.Repositories
             };
         }
 
-        public IQueryable<Rental> GetAllRentals()
+        public List<Rental> GetAllRentals()
         {
-            return rentals.AsQueryable();
+            return rentals;
         }
 
         public Rental GetRentalById(int id)

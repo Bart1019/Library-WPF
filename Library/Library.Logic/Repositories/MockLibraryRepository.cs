@@ -25,14 +25,14 @@ namespace Library.Logic.Repositories
             };
         }
 
-        public IQueryable<Book> GetAllAvailableBooks()
+        public List<Book> GetAllAvailableBooks()
         {
-            return books.Where(x => x.IsAvailable.Equals(true)).AsQueryable();
+            return books.Where(x => x.IsAvailable.Equals(true)).ToList();
         }
 
-        public IQueryable<Book> GetAllUnavailableBooks()
+        public List<Book> GetAllUnavailableBooks()
         {
-            return books.Where(x => x.IsAvailable.Equals(false)).AsQueryable();
+            return books.Where(x => x.IsAvailable.Equals(false)).ToList();
         }
 
         public void AddBookWithChangedState(Book book)

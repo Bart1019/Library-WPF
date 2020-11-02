@@ -8,7 +8,7 @@ namespace Library.Data.Interfaces
 {
     public interface IBookRepository
     {
-        IQueryable<Book> GetAllBooks();
+        List<Book> GetAllBooks();
         Book GetBookById(int id);
         Book GetBookByType(BookEnum bookType);
         void DeleteBook(int id);

@@ -8,7 +8,7 @@ namespace Library.Data.Interfaces
 {
     public interface IRentalRepository
     {
-        IQueryable<Rental> GetAllRentals();
+        List<Rental> GetAllRentals();
         Rental GetRentalById(int id);
         IQueryable<User> GetAllRentalUsers();
         void DeleteRental(int id);

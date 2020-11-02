@@ -8,8 +8,8 @@ namespace Library.Data.Interfaces
 {
     public interface ILibraryRepository
     {
-        IQueryable<Book> GetAllAvailableBooks();
-        IQueryable<Book> GetAllUnavailableBooks();
+        List<Book> GetAllAvailableBooks();
+        List<Book> GetAllUnavailableBooks();
         void AddBookWithChangedState(Book book);
     }
 }

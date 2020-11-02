@@ -22,9 +22,9 @@ namespace Library.Logic.Repositories
             };
         }
 
-        public IQueryable<Book> GetAllBooks()
+        public List<Book> GetAllBooks()
         {
-            return books.AsQueryable();
+            return books;
         }
 
         public Book GetBookById(int id)

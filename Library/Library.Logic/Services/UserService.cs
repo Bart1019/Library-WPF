@@ -18,7 +18,7 @@ namespace Library.Logic.Services
 
         public List<User> GetAllUsers()
         {
-            List<User> users =  userRepository.GetAllUsers().ToList();
+            List<User> users =  userRepository.GetAllUsers();
 
             return users.Count == 0 ? null : users;
         }

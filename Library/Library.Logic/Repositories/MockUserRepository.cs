@@ -21,9 +21,9 @@ namespace Library.Logic.Repositories
             };
         }
 
-        public IQueryable<User> GetAllUsers()
+        public List<User> GetAllUsers()
         {
-            return users.AsQueryable();
+            return users;
         }
 
         public User GetUserById(int id)
