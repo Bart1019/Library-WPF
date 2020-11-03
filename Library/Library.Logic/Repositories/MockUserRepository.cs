@@ -15,9 +15,12 @@ namespace Library.Logic.Repositories
         {
             users = new List<User>
             {
-                new User{Id = 1, Name = "Bartek", Surname = "Runowski", AmountOfBooksRented = 1},
-                new User{Id = 2, Name = "Wojtek", Surname = "Wozniak", AmountOfBooksRented = 4},
-                new User{Id = 3, Name = "Mati", Surname = "Stolar", AmountOfBooksRented = 0},
+                new User {Id = 1, Name = "aaa", Surname = "aaaa", AmountOfBooksRented = 1},
+                new User {Id = 2, Name = "bbb", Surname = "bbb", AmountOfBooksRented = 4},
+                new User {Id = 3, Name = "ccc", Surname = "ccc", AmountOfBooksRented = 3},
+                new User {Id = 4, Name = "ddd", Surname = "ddd", AmountOfBooksRented = 1},
+                new User {Id = 5, Name = "eee", Surname = "eee", AmountOfBooksRented = 4},
+                new User {Id = 6, Name = "fff", Surname = "fff", AmountOfBooksRented = 6},
             };
         }
 

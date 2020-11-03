@@ -123,7 +123,7 @@ namespace Library.Tests.UnitTests.RepositoriesTests
             //Act
             bookRepository.EditBook(expectedBook);
 
-            var book = bookRepository.GetBookById(1);
+            var book = bookRepository.GetBookById(expectedBook.Id);
 
             //Assert
             Assert.Equal(expectedBook.Id, book.Id);
