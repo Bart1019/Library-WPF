@@ -31,11 +31,6 @@ namespace Library.Logic.Repositories
             return rentals.FirstOrDefault(i => i.Id.Equals(id));
         }
 
-        public IQueryable<User> GetAllRentalUsers()
-        {
-            throw new NotImplementedException();
-        }
-
         public void DeleteRental(int id)
         {
             Rental deletedRental = rentals.FirstOrDefault(i => i.Id.Equals(id));
@@ -73,13 +68,6 @@ namespace Library.Logic.Repositories
             };
 
             rentals.Add(addedRental);
-        }
-
-        public void AddUserToRentalHistory(User user)
-        {
-            Rental rental = rentals.FirstOrDefault(u => u.RentalUser.Id.Equals(user.Id));
-
-            rental?.RentalUsersHistory.Add(user);
         }
     }
 }

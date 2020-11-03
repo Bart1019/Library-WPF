@@ -127,10 +127,11 @@ namespace Library.Logic.Services
             if (isRenting)
             {
                 rentalUser.AmountOfBooksRented++;
-                rentalRepository.AddUserToRentalHistory(rentalUser);
             }
-
-            rentalUser.AmountOfBooksRented--;
+            else
+            {
+                rentalUser.AmountOfBooksRented--;
+            }
         }
     }
 }
