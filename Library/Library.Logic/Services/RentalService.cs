@@ -119,7 +119,7 @@ namespace Library.Logic.Services
         private void OnBookRent(Book book, bool isAvailable)
         {
             book.IsAvailable = isAvailable;
-            libraryRepository.AddBookWithChangedState(book);
+            libraryRepository.UpdateBookState(book, isAvailable);
         }
 
         private void OnUserRent(User rentalUser, bool isRenting)
