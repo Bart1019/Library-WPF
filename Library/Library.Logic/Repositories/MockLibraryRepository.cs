@@ -37,6 +37,10 @@ namespace Library.Logic.Repositories
 
         public void AddBookWithChangedState(Book book)
         {
+            Book bookToDelete = books.FirstOrDefault(b => b.Id.Equals(book.Id));
+
+            books.Remove(bookToDelete);
+
             books.Add(book);
         }
     }
