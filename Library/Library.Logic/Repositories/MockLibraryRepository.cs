@@ -35,13 +35,14 @@ namespace Library.Logic.Repositories
             return books.Where(x => x.IsAvailable.Equals(false)).ToList();
         }
 
-        public void AddBookWithChangedState(Book book)
+        public void UpdateBookState(Book book, bool isAvailable)
         {
-            Book bookToDelete = books.FirstOrDefault(b => b.Id.Equals(book.Id));
+            Book bookToUpdate = books.FirstOrDefault(i => i.Id.Equals(book.Id));
 
-            books.Remove(bookToDelete);
-
-            books.Add(book);
+            if (bookToUpdate != null)
+            {
+                bookToUpdate.IsAvailable = isAvailable;
+            }
         }
     }
 }
