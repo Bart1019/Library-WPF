@@ -19,7 +19,7 @@ namespace Library.Tests.UnitTests.RepositoriesTests
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
-        public void ShouldReturnAllAvailableOrAllUnavailableBasedOnCondition(bool isAvailable)
+        public void ShouldReturnAllAvailableOrAllUnavailableBooksBasedOnCondition(bool isAvailable)
         {
             //Arrange
             List<Book> books = new List<Book>();

@@ -39,7 +39,7 @@ namespace Library.Tests.UnitTests.ServicesTests
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
-        public void ShouldReturnAllAvailableOrAllUnavailableBasedOnCondition(bool isAvailable)
+        public void ShouldReturnAllAvailableOrAllUnavailableBooksBasedOnCondition(bool isAvailable)
         {
             //Arrange
             libraryRepositoryMock.Setup(x => x.GetAllAvailableBooks()).Returns(availableBooks);
