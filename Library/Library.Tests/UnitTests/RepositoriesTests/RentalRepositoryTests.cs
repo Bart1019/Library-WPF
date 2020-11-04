@@ -38,9 +38,9 @@ namespace Library.Tests.UnitTests.RepositoriesTests
             //Arrange
             List<Rental> expectedRentals = new List<Rental>
             {
-                new Rental { Id = 1, RentalDate = default, GiveBackDate = default, RentalUser = default, LibraryBooks = default, RentalUsersHistory = default},
-                new Rental { Id = 2, RentalDate = default, GiveBackDate = default, RentalUser = default, LibraryBooks = default, RentalUsersHistory = default},
-                new Rental { Id = 3, RentalDate = default, GiveBackDate = default, RentalUser = default, LibraryBooks = default, RentalUsersHistory = default}
+                new Rental { Id = 1, RentalDate = default, GiveBackDate = default, RentalUser = default, LibraryBooks = default },
+                new Rental { Id = 2, RentalDate = default, GiveBackDate = default, RentalUser = default, LibraryBooks = default },
+                new Rental { Id = 3, RentalDate = default, GiveBackDate = default, RentalUser = default, LibraryBooks = default }
             };
 
             //Act

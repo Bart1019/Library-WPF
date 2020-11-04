@@ -15,9 +15,9 @@ namespace Library.Logic.Repositories
         {
             rentals = new List<Rental>
             {
-                new Rental { Id = 1, RentalDate = default, GiveBackDate = default, RentalUser = default, LibraryBooks = default, RentalUsersHistory = default},
-                new Rental { Id = 2, RentalDate = default, GiveBackDate = default, RentalUser = default, LibraryBooks = default, RentalUsersHistory = default},
-                new Rental { Id = 3, RentalDate = default, GiveBackDate = default, RentalUser = default, LibraryBooks = default, RentalUsersHistory = default}
+                new Rental { Id = 1, RentalDate = default, GiveBackDate = default, RentalUser = default, LibraryBooks = default },
+                new Rental { Id = 2, RentalDate = default, GiveBackDate = default, RentalUser = default, LibraryBooks = default },
+                new Rental { Id = 3, RentalDate = default, GiveBackDate = default, RentalUser = default, LibraryBooks = default }
             };
         }
 
@@ -51,7 +51,6 @@ namespace Library.Logic.Repositories
                 editedRental.GiveBackDate = rental.GiveBackDate;
                 editedRental.RentalUser = rental.RentalUser;
                 editedRental.LibraryBooks = rental.LibraryBooks;
-                editedRental.RentalUsersHistory = rental.RentalUsersHistory;
             }
         }
 
@@ -63,8 +62,7 @@ namespace Library.Logic.Repositories
                 RentalDate = rental.RentalDate,
                 GiveBackDate = rental.GiveBackDate,
                 RentalUser = rental.RentalUser,
-                LibraryBooks = rental.LibraryBooks,
-                RentalUsersHistory = rental.RentalUsersHistory,
+                LibraryBooks = rental.LibraryBooks
             };
 
             rentals.Add(addedRental);
