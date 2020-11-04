@@ -41,7 +41,7 @@ namespace Library.Tests.UnitTests.ServicesTests
             var returnedUsers = userService.GetAllUsers();
 
             //Assert
-            Assert.Equal(returnedUsers, users);
+            Assert.Equal(users, returnedUsers);
         }
 
         [Theory]
@@ -57,7 +57,7 @@ namespace Library.Tests.UnitTests.ServicesTests
             var returnedUser = userService.GetUser(id);
 
             //Assert
-            Assert.Equal(returnedUser, user);
+            Assert.Equal(user, returnedUser);
         }
 
         [Fact]

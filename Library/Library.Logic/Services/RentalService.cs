@@ -53,7 +53,7 @@ namespace Library.Logic.Services
         public Rental CreateNewRental(int rentalId, int userId, int bookId, DateTime rentalDate)
         {
             User rentalUser = userRepository.GetUserById(userId);
-            availableLibraryBooks.Books = libraryRepository.GetAllAvailableBooks().ToList();
+            availableLibraryBooks.Books = libraryRepository.GetAllAvailableBooks();
             Rental rental = InitializeRental(rentalId, rentalDate, rentalUser, availableLibraryBooks, bookId, out Book book);
 
             if (ValidateData(rentalUser, book, rentalDate))

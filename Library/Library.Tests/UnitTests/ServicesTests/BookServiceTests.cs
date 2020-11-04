@@ -42,7 +42,7 @@ namespace Library.Tests.UnitTests.ServicesTests
             var resultedBooks = bookService.GetAllBooks();
 
             //Assert
-            Assert.Equal(resultedBooks, books);
+            Assert.Equal(books, resultedBooks);
         }
 
         [Theory]
@@ -58,7 +58,7 @@ namespace Library.Tests.UnitTests.ServicesTests
             var returnedBook = bookService.GetBook(id);
 
             //Assert
-            Assert.Equal(returnedBook, book);
+            Assert.Equal(book, returnedBook);
         }
 
         [Theory]
@@ -75,7 +75,7 @@ namespace Library.Tests.UnitTests.ServicesTests
             var returnedBook = bookService.GetBook(bookType);
 
             //Assert
-            Assert.Equal(returnedBook, book);
+            Assert.Equal(book, returnedBook);
         }
 
         [Fact]

@@ -53,7 +53,7 @@ namespace Library.Tests.UnitTests.ServicesTests
                     var returnedBooks = libraryService.GetAllAvailableBooks();
 
                     //Assert
-                    Assert.Equal(returnedBooks, availableBooks);
+                    Assert.Equal(availableBooks,returnedBooks);
 
                     break;
 
@@ -62,7 +62,7 @@ namespace Library.Tests.UnitTests.ServicesTests
                     returnedBooks = libraryService.GetAllUnavailableBooks();
 
                     //Assert
-                    Assert.Equal(returnedBooks, unAvailableBooks);
+                    Assert.Equal(unAvailableBooks, returnedBooks);
 
                     break;
             }
