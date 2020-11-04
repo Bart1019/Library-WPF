@@ -68,6 +68,7 @@ namespace Library.Tests.UnitTests.ServicesTests
         [InlineData(default)]
         public void ShouldReturnBookByBookType(BookEnum bookType)
         {
+            //Arrange
             bookRepositoryMock.Setup(x => x.GetBookByType(It.IsAny<BookEnum>())).Returns(book);
 
             //Act

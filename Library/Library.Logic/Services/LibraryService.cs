@@ -29,5 +29,10 @@ namespace Library.Logic.Services
 
             return unavailableBooks.Count == 0 ? null : unavailableBooks;
         }
+
+        public void UpdateBookState(Book book, bool isAvailable)
+        {
+            libraryRepository.UpdateBookState(book, isAvailable);
+        }
     }
 }
