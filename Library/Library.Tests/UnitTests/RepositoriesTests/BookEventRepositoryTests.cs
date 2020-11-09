@@ -8,13 +8,13 @@ using Xunit;
 
 namespace Library.Tests.UnitTests.RepositoriesTests
 {
-    public class RentalRepositoryTests
+    public class BookEventRepositoryTests
     {
-        private readonly MockRentalRepository rentalRepository;
+        private readonly MockBookEventRepository bookEventRepository;
 
-        public RentalRepositoryTests()
+        public BookEventRepositoryTests()
         {
-            rentalRepository = new MockRentalRepository();
+            bookEventRepository = new MockBookEventRepository();
         }
 
         [Fact]
@@ -23,7 +23,7 @@ namespace Library.Tests.UnitTests.RepositoriesTests
             //Arrange
 
             //Act
-            var returnedRentals = rentalRepository.GetAllRentals();
+            var returnedRentals = bookEventRepository.GetAllBookEvents();
 
             //Assert
             Assert.True(returnedRentals.Count.Equals(3));
@@ -36,15 +36,15 @@ namespace Library.Tests.UnitTests.RepositoriesTests
         public void ShouldReturnRentalId(int id)
         {
             //Arrange
-            List<Rental> expectedRentals = new List<Rental>
+            List<BookEvent> expectedRentals = new List<BookEvent>
             {
-                new Rental { Id = 1, RentalDate = default, GiveBackDate = default, RentalUser = default, LibraryBooks = default },
-                new Rental { Id = 2, RentalDate = default, GiveBackDate = default, RentalUser = default, LibraryBooks = default },
-                new Rental { Id = 3, RentalDate = default, GiveBackDate = default, RentalUser = default, LibraryBooks = default }
+                new BookEvent { Id = 1, RentalDate = default, GiveBackDate = default, EventType = default, RentalUser = default, BooksInLibrary = default },
+                new BookEvent { Id = 2, RentalDate = default, GiveBackDate = default, EventType = default, RentalUser = default, BooksInLibrary = default },
+                new BookEvent { Id = 3, RentalDate = default, GiveBackDate = default, EventType = default, RentalUser = default, BooksInLibrary = default }
             };
 
             //Act
-            var returnedRental = rentalRepository.GetRentalById(id);
+            var returnedRental = bookEventRepository.GetBookEventById(id);
 
             //Assert
             switch (id)
@@ -67,9 +67,9 @@ namespace Library.Tests.UnitTests.RepositoriesTests
             //Arrange
 
             //Act
-            rentalRepository.DeleteRental(1);
+            bookEventRepository.DeleteBookEvent(1);
 
-            var rentals = rentalRepository.GetAllRentals();
+            var rentals = bookEventRepository.GetAllBookEvents();
 
             //Assert
             Assert.True(rentals.Count.Equals(2));
@@ -79,7 +79,7 @@ namespace Library.Tests.UnitTests.RepositoriesTests
         public void ShouldEditRental()
         {
             //Arrange
-            Rental expectedRental = new Rental
+            BookEvent expectedBookEvent = new BookEvent
             {
                 Id = 1,
                 RentalDate = new DateTime(2020,11,03),
@@ -87,21 +87,21 @@ namespace Library.Tests.UnitTests.RepositoriesTests
             };
 
             //Act
-            rentalRepository.EditRental(expectedRental);
+            bookEventRepository.EditBookEvent(expectedBookEvent);
 
-            var rental = rentalRepository.GetRentalById(expectedRental.Id);
+            var rental = bookEventRepository.GetBookEventById(expectedBookEvent.Id);
 
             //Assert
-            Assert.Equal(expectedRental.Id, rental.Id);
-            Assert.Equal(expectedRental.RentalDate, rental.RentalDate);
-            Assert.Equal(expectedRental.GiveBackDate, rental.GiveBackDate);
+            Assert.Equal(expectedBookEvent.Id, rental.Id);
+            Assert.Equal(expectedBookEvent.RentalDate, rental.RentalDate);
+            Assert.Equal(expectedBookEvent.GiveBackDate, rental.GiveBackDate);
         }
 
         [Fact]
         public void ShouldAddRental()
         {
             //Arrange
-            Rental newRental = new Rental
+            BookEvent newBookEvent = new BookEvent
             {
                 Id = 4,
                 RentalDate = new DateTime(2020, 11, 03),
@@ -109,9 +109,9 @@ namespace Library.Tests.UnitTests.RepositoriesTests
             };
 
             //Act
-            rentalRepository.AddRental(newRental);
+            bookEventRepository.AddBookEvent(newBookEvent);
 
-            var books = rentalRepository.GetAllRentals();
+            var books = bookEventRepository.GetAllBookEvents();
 
             //Assert
             Assert.True(books.Count.Equals(4));
