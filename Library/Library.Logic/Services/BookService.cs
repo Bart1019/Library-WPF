@@ -5,62 +5,63 @@ using System.Text;
 using Library.Data;
 using Library.Data.Interfaces;
 using Library.Data.Models;
+using Book = Library.Data.Models.BooksCatalog.Book;
 
 namespace Library.Logic.Services
 {
     public class BookService
     {
-        private readonly IBookRepository bookRepository;
+        private readonly IBooksCatalogRepository booksCatalogRepository;
 
-        public BookService(IBookRepository bookRepository)
+        public BookService(IBooksCatalogRepository booksCatalogRepository)
         {
-            this.bookRepository = bookRepository;
+            this.booksCatalogRepository = booksCatalogRepository;
         }
 
         public List<Book> GetAllBooks()
         {
-            List <Book> books = bookRepository.GetAllBooks();
+            List <Book> books = booksCatalogRepository.GetAllBooks();
 
             return books.Count == 0 ? null : books;
         }
 
         public Book GetBook(int id)
         {
-            Book book = bookRepository.GetBookById(id);
+            Book bookById = booksCatalogRepository.GetBookById(id);
 
-            if (book.Equals(null))
+            if (bookById.Equals(null))
             {
                 return null;
             }
 
-            return book;
+            return bookById;
         }
 
         public Book GetBook(BookEnum bookType)
         {
-            Book book = bookRepository.GetBookByType(bookType);
+            Book bookByType = booksCatalogRepository.GetBookByType(bookType);
 
-            if (book.Equals(null))
+            if (bookByType.Equals(null))
             {
                 return null;
             }
 
-            return book;
+            return bookByType;
         }
 
         public void DeleteBook(int id)
         {
-            bookRepository.DeleteBook(id);
+            booksCatalogRepository.DeleteBook(id);
         }
 
         public void EditBook(Book book)
         {
-            bookRepository.EditBook(book);
+            booksCatalogRepository.EditBook(book);
         }
 
         public void AddBook(Book book)
         {
-            bookRepository.AddBook(book);
+            booksCatalogRepository.AddBook(book);
         }
     }
 }
