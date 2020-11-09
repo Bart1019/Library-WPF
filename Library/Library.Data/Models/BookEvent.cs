@@ -12,6 +12,6 @@ namespace Library.Data.Models
         public DateTime GiveBackDate { get; set; }
         public EventEnum EventType { get; set; }
         public User RentalUser { get; set; }
-        public BooksState LibraryBooks { get; set; }
+        public BooksState BooksInLibrary { get; set; }
     }
 }
