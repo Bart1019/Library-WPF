@@ -41,13 +41,13 @@ namespace Library.Logic.Repositories
             return booksState.BooksCatalog.Books;
         }
 
-        public void UpdateBooksAmount(int bookId, int actualBookAmount)
+        public void UpdateBooksAmount(int bookId, int actualBooksAmount)
         {
             Dictionary<int, int> updateDictionary = booksState.AvailableBooks;
 
             if (updateDictionary.ContainsKey(bookId))
             {
-                updateDictionary[bookId] = actualBookAmount;
+                updateDictionary[bookId] = actualBooksAmount;
             }
         }
     }
