@@ -9,5 +9,7 @@ namespace Library.Data.Interfaces
     public interface IBookEventRepository
     {
         List<BookEvent> GetAllBookEvents();
+        void AddRentalEvent(RentalEvent rentalEvent);
+        void AddReturnEvent(ReturnEvent returnEvent);
     }
 }

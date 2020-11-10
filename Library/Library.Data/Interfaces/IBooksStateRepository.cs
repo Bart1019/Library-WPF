@@ -10,6 +10,7 @@ namespace Library.Data.Interfaces
     public interface IBooksStateRepository
     {
         List<Book> GetAllAvailableBooks();
+        int GetAmountOfAvailableBooksById(int id);
         void UpdateBooksAmount(int bookId, int actualBooksAmount);
     }
 }

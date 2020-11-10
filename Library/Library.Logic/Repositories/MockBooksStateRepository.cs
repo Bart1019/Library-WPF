@@ -44,6 +44,19 @@ namespace Library.Logic.Repositories
             return booksState.BooksCatalog.Books;
         }
 
+        public int GetAmountOfAvailableBooksById(int id)
+        {
+            Book book = booksState.BooksCatalog.Books.FirstOrDefault(i => i.Id.Equals(id));
+
+            if (booksState.AvailableBooks.ContainsKey(book.Id))
+            {
+                int amount = booksState.AvailableBooks[book.Id];
+                return amount;
+            }
+
+            return default;
+        }
+
         public void UpdateBooksAmount(int bookId, int actualBooksAmount)
         {
             Book updatedBook = booksState.BooksCatalog.Books.FirstOrDefault(i => i.Id.Equals(bookId));
