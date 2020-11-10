@@ -49,6 +49,24 @@ namespace Library.Tests.UnitTests.ServicesTests
             Assert.Equal(booksState.BooksCatalog.Books, returnedBooks);
         }
 
+        [Theory]
+        [InlineData(1)]
+        [InlineData(3)]
+        [InlineData(5)]
+        [InlineData(default)]
+        public void ShouldGetAmountOfAvailableBooksById(int id)
+        {
+            //Arrange
+            int expectedAmountOfBooks = default;
+            libraryRepositoryMock.Setup(x => x.GetAmountOfAvailableBooksById(It.IsAny<int>())).Returns(expectedAmountOfBooks);
+
+            //Act
+            var resultedAmountOfBooks = booksStateService.GetAmountOfAvailableBooks(id);
+
+            //Assert
+            Assert.Equal(expectedAmountOfBooks, resultedAmountOfBooks);
+        }
+
         [Fact]
         public void ShouldUpdateBookWithProperlyChangedState()
         {
