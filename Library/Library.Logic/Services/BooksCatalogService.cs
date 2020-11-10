@@ -9,11 +9,11 @@ using Book = Library.Data.Models.BooksCatalog.Book;
 
 namespace Library.Logic.Services
 {
-    public class BookService
+    public class BooksCatalogService
     {
         private readonly IBooksCatalogRepository booksCatalogRepository;
 
-        public BookService(IBooksCatalogRepository booksCatalogRepository)
+        public BooksCatalogService(IBooksCatalogRepository booksCatalogRepository)
         {
             this.booksCatalogRepository = booksCatalogRepository;
         }

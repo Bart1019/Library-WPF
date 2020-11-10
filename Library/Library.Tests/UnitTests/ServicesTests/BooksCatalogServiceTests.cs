@@ -7,28 +7,29 @@ using Library.Data.Models;
 using Library.Logic.Services;
 using Moq;
 using Xunit;
+using Book = Library.Data.Models.BooksCatalog.Book;
 
 namespace Library.Tests.UnitTests.ServicesTests
 {
-    public class BookServiceTests
+    public class BooksCatalogServiceTests
     {
-        private readonly Mock<IBookRepository> bookRepositoryMock;
-        private readonly BookService bookService;
-        private List<Book> books;
-        private Book book = new Book();
+        private readonly Mock<IBooksCatalogRepository> bookRepositoryMock;
+        private readonly BooksCatalogService bookService;
+        private readonly Book book = new Book();
+        private BooksCatalog booksCatalog = new BooksCatalog();
 
-        public BookServiceTests()
+        public BooksCatalogServiceTests()
         {
-            bookRepositoryMock = new Mock<IBookRepository>();
-            bookService = new BookService(bookRepositoryMock.Object);
-            books = new List<Book>
+            bookRepositoryMock = new Mock<IBooksCatalogRepository>();
+            bookService = new BooksCatalogService(bookRepositoryMock.Object);
+            booksCatalog.Books = new List<Book>
             {
-                new Book {Id = 1, Title = "aaaa", BookType = BookEnum.Adventure, IsAvailable = true},
-                new Book {Id = 2, Title = "bbbb", BookType = BookEnum.Roman, IsAvailable = false},
-                new Book {Id = 3, Title = "cccc", BookType = BookEnum.Document, IsAvailable = false},
-                new Book {Id = 4, Title = "dddd", BookType = BookEnum.Adventure, IsAvailable = true},
-                new Book {Id = 5, Title = "eeee", BookType = BookEnum.Roman, IsAvailable = false},
-                new Book {Id = 6, Title = "ffff", BookType = BookEnum.Document, IsAvailable = false}
+                new Book { Id = 1, Title = "aaaa", BookType = BookEnum.Adventure },
+                new Book { Id = 2, Title = "bbbb", BookType = BookEnum.Roman },
+                new Book { Id = 3, Title = "cccc", BookType = BookEnum.Document },
+                new Book { Id = 4, Title = "dddd", BookType = BookEnum.Adventure },
+                new Book { Id = 5, Title = "eeee", BookType = BookEnum.Roman },
+                new Book { Id = 6, Title = "ffff", BookType = BookEnum.Document }
             };
         }
 
@@ -36,13 +37,13 @@ namespace Library.Tests.UnitTests.ServicesTests
         public void ShouldGetAllBooks()
         {
             //Arrange
-            bookRepositoryMock.Setup(x => x.GetAllBooks()).Returns(books);
+            bookRepositoryMock.Setup(x => x.GetAllBooks()).Returns(booksCatalog.Books);
 
             //Act
             var resultedBooks = bookService.GetAllBooks();
 
             //Assert
-            Assert.Equal(books, resultedBooks);
+            Assert.Equal(booksCatalog.Books, resultedBooks);
         }
 
         [Theory]
