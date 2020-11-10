@@ -24,6 +24,12 @@ namespace Library.Logic.Services
             return availableBooks.Count == 0 ? null : availableBooks;
         }
 
+        public int GetAmountOfAvailableBooks(int id)
+        {
+            int amount = booksStateRepository.GetAmountOfAvailableBooksById(id);
+            return amount;
+        }
+
         public void UpdateBooksAmount(int bookId, int actualBooksAmount)
         {
             booksStateRepository.UpdateBooksAmount(bookId, actualBooksAmount);
