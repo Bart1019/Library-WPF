@@ -15,24 +15,27 @@ namespace Library.Logic.Repositories
 
         public MockBooksStateRepository()
         {
-            booksState.BooksCatalog.Books = new List<Book>
+            booksState.BooksCatalog = new BooksCatalog
             {
-                new Book { Id = 1, Title = "aaaa", BookType = BookEnum.Adventure },
-                new Book { Id = 2, Title = "bbbb", BookType = BookEnum.Roman },
-                new Book { Id = 3, Title = "cccc", BookType = BookEnum.Document },
-                new Book { Id = 4, Title = "dddd", BookType = BookEnum.Historic },
-                new Book { Id = 5, Title = "eeee", BookType = BookEnum.SciFi },
-                new Book { Id = 6, Title = "ffff", BookType = BookEnum.Document }
+                Books = new List<Book>
+                {
+                    new Book { Id = 1, Title = "aaaa", BookType = BookEnum.Adventure },
+                    new Book { Id = 2, Title = "bbbb", BookType = BookEnum.Roman },
+                    new Book { Id = 3, Title = "cccc", BookType = BookEnum.Document },
+                    new Book { Id = 4, Title = "dddd", BookType = BookEnum.Historic },
+                    new Book { Id = 5, Title = "eeee", BookType = BookEnum.SciFi },
+                    new Book { Id = 6, Title = "ffff", BookType = BookEnum.Document }
+                }
             };
 
             booksState.AvailableBooks = new Dictionary<int, int>
             {
-                {1, 32 },
-                {2, 2 },
-                {3, 18 },
-                {4, 6 },
-                {5, 2 },
-                {6, 40 }
+                { booksState.BooksCatalog.Books[0].Id, 32 },
+                { booksState.BooksCatalog.Books[1].Id, 2 },
+                { booksState.BooksCatalog.Books[2].Id, 18 },
+                { booksState.BooksCatalog.Books[3].Id, 6 },
+                { booksState.BooksCatalog.Books[4].Id, 2 },
+                { booksState.BooksCatalog.Books[5].Id, 40 }
             };
         }
 
@@ -43,11 +46,11 @@ namespace Library.Logic.Repositories
 
         public void UpdateBooksAmount(int bookId, int actualBooksAmount)
         {
-            Dictionary<int, int> updateDictionary = booksState.AvailableBooks;
+            Book updatedBook = booksState.BooksCatalog.Books.FirstOrDefault(i => i.Id.Equals(bookId));
 
-            if (updateDictionary.ContainsKey(bookId))
+            if (booksState.AvailableBooks.ContainsKey(updatedBook.Id))
             {
-                updateDictionary[bookId] = actualBooksAmount;
+                booksState.AvailableBooks[updatedBook.Id] = actualBooksAmount;
             }
         }
     }
