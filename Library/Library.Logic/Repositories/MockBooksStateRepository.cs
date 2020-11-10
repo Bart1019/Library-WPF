@@ -48,7 +48,7 @@ namespace Library.Logic.Repositories
         {
             Book book = booksState.BooksCatalog.Books.FirstOrDefault(i => i.Id.Equals(id));
 
-            if (booksState.AvailableBooks.ContainsKey(book.Id))
+            if (book != null && booksState.AvailableBooks.ContainsKey(book.Id))
             {
                 int amount = booksState.AvailableBooks[book.Id];
                 return amount;

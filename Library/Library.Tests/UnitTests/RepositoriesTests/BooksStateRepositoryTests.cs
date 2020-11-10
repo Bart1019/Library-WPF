@@ -11,11 +11,11 @@ namespace Library.Tests.UnitTests.RepositoriesTests
 {
     public class BooksStateRepositoryTests
     {
-        private readonly MockBooksStateRepository _booksStateRepository;
+        private readonly MockBooksStateRepository booksStateRepository;
 
         public BooksStateRepositoryTests()
         {
-            _booksStateRepository = new MockBooksStateRepository();
+            booksStateRepository = new MockBooksStateRepository();
         }
 
         [Fact]
@@ -24,11 +24,46 @@ namespace Library.Tests.UnitTests.RepositoriesTests
             //Arrange
 
             //Act
-            var resultedBooks = _booksStateRepository.GetAllAvailableBooks();
+            var resultedBooks = booksStateRepository.GetAllAvailableBooks();
 
             //Assert
             Assert.True(resultedBooks.Count.Equals(6));
 
+        }
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(3)]
+        [InlineData(5)]
+        [InlineData(default)]
+        public void ShouldGetAmountOfAvailableBooksById(int id)
+        {
+            //Arrange
+            int expectedAmountOfBooks;
+
+            //Act
+            var resultedAmountOfBooks = booksStateRepository.GetAmountOfAvailableBooksById(id);
+
+            //Assert
+            switch (id)
+            {
+                case 1:
+                    expectedAmountOfBooks = 32;
+                        Assert.Equal(expectedAmountOfBooks, resultedAmountOfBooks);
+                    break;
+                case 3:
+                    expectedAmountOfBooks = 18;
+                        Assert.Equal(expectedAmountOfBooks, resultedAmountOfBooks);
+                    break;
+                case 5:
+                    expectedAmountOfBooks = 2;
+                        Assert.Equal(expectedAmountOfBooks, resultedAmountOfBooks);
+                    break;
+                case 0:
+                    expectedAmountOfBooks = 0;
+                        Assert.Equal(expectedAmountOfBooks, resultedAmountOfBooks);
+                    break;
+            }
         }
 
         [Fact]
@@ -37,7 +72,7 @@ namespace Library.Tests.UnitTests.RepositoriesTests
             //Arrange
 
             //Act
-            _booksStateRepository.UpdateBooksAmount(1, 33);
+            booksStateRepository.UpdateBooksAmount(1, 33);
 
             //Assert
         }

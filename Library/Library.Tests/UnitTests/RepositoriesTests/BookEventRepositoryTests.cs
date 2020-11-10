@@ -28,5 +28,29 @@ namespace Library.Tests.UnitTests.RepositoriesTests
             //Assert
             Assert.True(returnedRentals.Count.Equals(3));
         }
+
+        [Fact]
+        public void ShouldAddRentalEvent()
+        {
+            //Arrange
+            RentalEvent rentalEvent = new RentalEvent();
+
+            //Act
+            bookEventRepository.AddRentalEvent(rentalEvent);
+
+            //Assert
+        }
+
+        [Fact]
+        public void ShouldAddReturnEvent()
+        {
+            //Arrange
+            ReturnEvent returnEvent = new ReturnEvent();
+
+            //Act
+            bookEventRepository.AddReturnEvent(returnEvent);
+
+            //Assert
+        }
     }
 }
