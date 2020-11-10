@@ -9,9 +9,5 @@ namespace Library.Data.Interfaces
     public interface IBookEventRepository
     {
         List<BookEvent> GetAllBookEvents();
-        BookEvent GetBookEventById(int id);
-        void DeleteBookEvent(int id);
-        void EditBookEvent(BookEvent bookEvent);
-        void AddBookEvent(BookEvent bookEvent);
     }
 }
