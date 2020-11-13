@@ -51,7 +51,8 @@ namespace Library.Logic.Repositories
             if (book != null && booksState.AvailableBooks.ContainsKey(book.Id))
             {
                 int amount = booksState.AvailableBooks[book.Id];
-                return amount;
+
+                return amount > 0 ? amount : default;
             }
 
             return default;

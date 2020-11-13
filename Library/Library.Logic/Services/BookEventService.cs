@@ -14,6 +14,7 @@ namespace Library.Logic.Services
         private readonly IBooksStateRepository booksStateRepository;
         private readonly IUserRepository userRepository;
         private readonly BooksState availableLibraryBooks = new BooksState();
+        private BooksCatalog booksCatalog;
 
         public BookEventService(IBookEventRepository bookEventRepository, IBooksStateRepository booksStateRepository, IUserRepository userRepository)
         {
@@ -32,12 +33,12 @@ namespace Library.Logic.Services
         public RentalEvent RentBook(int userId, int bookId, DateTime rentalDate)
         {
             int availableAmountOfParticularBook = booksStateRepository.GetAmountOfAvailableBooksById(bookId);
-            User rentalUser = userRepository.GetUserById(userId);
-            availableLibraryBooks.BooksCatalog = new BooksCatalog
-            {
-                Books = booksStateRepository.GetAllAvailableBooks()
-            };
 
+            if (availableAmountOfParticularBook <= 0) return null;
+
+            User rentalUser = userRepository.GetUserById(userId);
+            booksCatalog.Books = booksStateRepository.GetAllAvailableBooks();
+            
             RentalEvent rental = InitializeEvent(rentalDate, rentalUser, availableLibraryBooks, bookId, out Book book);
 
             if (ValidateData(rentalUser, book, rentalDate))
@@ -54,11 +55,12 @@ namespace Library.Logic.Services
             return null;
         }
 
-        public void ReturnBook(int userId, int bookId, DateTime returnDate)
+        public ReturnEvent ReturnBook(int userId, int bookId, DateTime returnDate)
         {
             int availableAmountOfParticularBook = booksStateRepository.GetAmountOfAvailableBooksById(bookId);
             User rentalUser = userRepository.GetUserById(userId);
-            Book returnedBook = availableLibraryBooks.BooksCatalog.Books.FirstOrDefault(i => i.Id.Equals(bookId));
+            booksCatalog = availableLibraryBooks.BooksCatalog;
+            Book returnedBook = booksCatalog.Books.FirstOrDefault(i => i.Id.Equals(bookId));
 
             if (ValidateData(rentalUser, returnedBook, returnDate))
             {
@@ -73,7 +75,11 @@ namespace Library.Logic.Services
                 };
 
                 bookEventRepository.AddReturnEvent(returnEvent);
+
+                return returnEvent;
             }
+
+            return null;
         }
 
         private RentalEvent InitializeEvent(DateTime rentalDate, User rentalUser, BooksState booksState, int bookId, out Book book)

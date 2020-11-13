@@ -59,7 +59,6 @@ namespace Library.Logic.Repositories
             {
                 editedBook.Title = book.Title;
                 editedBook.BookType = book.BookType;
-                
             }
         }
 
