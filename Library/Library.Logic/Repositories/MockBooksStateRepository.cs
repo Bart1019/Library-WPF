@@ -57,7 +57,7 @@ namespace Library.Logic.Repositories
             return default;
         }
 
-        public void UpdateBooksAmount(int bookId, int actualBooksAmount)
+        public int UpdateBooksAmount(int bookId, int actualBooksAmount)
         {
             Book updatedBook = booksState.BooksCatalog.Books.FirstOrDefault(i => i.Id.Equals(bookId));
 
@@ -65,6 +65,8 @@ namespace Library.Logic.Repositories
             {
                 booksState.AvailableBooks[updatedBook.Id] = actualBooksAmount;
             }
+
+            return actualBooksAmount;
         }
     }
 }

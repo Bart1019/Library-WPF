@@ -18,7 +18,7 @@ namespace Library.Tests.UnitTests.RepositoriesTests
         }
 
         [Fact]
-        public void ShouldReturnAllRentals()
+        public void ShouldReturnAllEvents()
         {
             //Arrange
 

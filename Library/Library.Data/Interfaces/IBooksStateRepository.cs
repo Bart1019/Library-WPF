@@ -11,6 +11,6 @@ namespace Library.Data.Interfaces
     {
         List<Book> GetAllAvailableBooks();
         int GetAmountOfAvailableBooksById(int id);
-        void UpdateBooksAmount(int bookId, int actualBooksAmount);
+        int UpdateBooksAmount(int bookId, int actualBooksAmount);
     }
 }

@@ -8,132 +8,96 @@ using Library.Data.Models;
 using Library.Logic.Services;
 using Moq;
 using Xunit;
+using Book = Library.Data.Models.BooksCatalog.Book;
 
 namespace Library.Tests.UnitTests.ServicesTests
 {
     public class BooksEventServiceTests
     {
-       /*private readonly Mock<IBookEventRepository> rentalRepositoryMock;
-        private readonly Mock<IBooksStateRepository> libraryRepositoryMock;
+        private readonly Mock<IBookEventRepository> bookEventRepositoryMock;
+        private readonly Mock<IBooksStateRepository> bookStateRepositoryMock;
         private readonly Mock<IUserRepository> userRepositoryMock;
-        private BookEventService bookEventService;
-        private readonly List<RentalEvent> rentals = new List<RentalEvent>();
-        private readonly RentalEvent _bookEvent = new RentalEvent();
-        private readonly List<BooksCatalog> availableBooks;
-        private readonly List<BooksCatalog> unAvailableBooks;
+        private readonly BookEventService bookEventService;
+        private readonly List<BookEvent> bookEvents;
         private User user;
-        private BooksCatalog _rentedBooksCatalog;
+        private BooksState booksState = new BooksState();
+        private Random random = new Random();
+        private int availableAmountOfParticularBook;
 
         public BooksEventServiceTests()
         {
-            rentalRepositoryMock = new Mock<IBookEventRepository>();
-            libraryRepositoryMock = new Mock<IBooksStateRepository>();
+            bookEventRepositoryMock = new Mock<IBookEventRepository>();
+            bookStateRepositoryMock = new Mock<IBooksStateRepository>();
             userRepositoryMock = new Mock<IUserRepository>();
-            bookEventService = new BookEventService(rentalRepositoryMock.Object, libraryRepositoryMock.Object, userRepositoryMock.Object);
-            rentals = new List<RentalEvent>
+            bookEventService = new BookEventService(bookEventRepositoryMock.Object, bookStateRepositoryMock.Object, userRepositoryMock.Object);
+            
+            bookEvents = new List<BookEvent>
             {
-                new RentalEvent { Id = 1, EventDate = default, GiveBackDate = default, RentalUser = default, BooksInLibrary = default },
-                new RentalEvent { Id = 2, EventDate = default, GiveBackDate = default, RentalUser = default, BooksInLibrary = default },
-                new RentalEvent { Id = 3, EventDate = default, GiveBackDate = default, RentalUser = default, BooksInLibrary = default }
+                new RentalEvent { RentalDate = default, RentalUser = default, BooksInLibrary = default },
+                new RentalEvent { RentalDate = default, RentalUser = default, BooksInLibrary = default },
+                new ReturnEvent { ReturnDate = default, RentalUser = default },
             };
-            unAvailableBooks = new List<BooksCatalog>
+            booksState.BooksCatalog = new BooksCatalog
             {
-                new BooksCatalog {Id = 4, Title = "dddd", BookType = BookEnum.Document, IsAvailable = false},
-                new BooksCatalog {Id = 5, Title = "eeee", BookType = BookEnum.Historic, IsAvailable = false},
-                new BooksCatalog {Id = 6, Title = "ffff", BookType = BookEnum.SciFi, IsAvailable = false},
+                Books = new List<Book>
+                {
+                    new Book { Id = 1, Title = "aaaa", BookType = BookEnum.Adventure },
+                    new Book { Id = 2, Title = "bbbb", BookType = BookEnum.Roman },
+                    new Book { Id = 3, Title = "cccc", BookType = BookEnum.Document },
+                    new Book { Id = 4, Title = "dddd", BookType = BookEnum.Adventure },
+                    new Book { Id = 5, Title = "eeee", BookType = BookEnum.Roman },
+                    new Book { Id = 6, Title = "ffff", BookType = BookEnum.Document }
+                }
             };
-            availableBooks = new List<BooksCatalog>
-            {
-                new BooksCatalog {Id = 1, Title = "aaaa", BookType = BookEnum.Document, IsAvailable = true},
-                new BooksCatalog {Id = 2, Title = "bbbb", BookType = BookEnum.Historic, IsAvailable = true},
-                new BooksCatalog {Id = 3, Title = "cccc", BookType = BookEnum.SciFi, IsAvailable = true},
-            };
+
             user = new User
             {
-                  Id = 1, 
-                  Name = "aaa", 
-                  Surname = "aaaa", 
-                  AmountOfBooksRented = 1
-             };
-            _bookEvent = new RentalEvent
-            {
-                Id = 4,
+                Id = 1,
+                Name = "naaa",
+                Surname = "saaa",
+                AmountOfBooksRented = 0
             };
         }
 
         [Fact]
-        public void ShouldGetAllRentals()
+        public void ShouldGetAllBookEvents()
         {
             //Arrange
-            rentalRepositoryMock.Setup(x => x.GetAllBookEvents()).Returns(rentals);
+            bookEventRepositoryMock.Setup(x => x.GetAllBookEvents()).Returns(bookEvents);
 
             //Act
-            var resultedRentals = bookEventService.GetAllBookEvents();
+            var resultedBookEvents = bookEventService.GetAllBookEvents();
 
             //Assert
-            Assert.Equal(resultedRentals, rentals);
-        }
-
-        [Theory]
-        [InlineData(1)]
-        [InlineData(3)]
-        [InlineData(default)]
-        public void ShouldGetRentalById(int id)
-        {
-            //Arrange
-            rentalRepositoryMock.Setup(x => x.GetBookEventById(It.IsAny<int>())).Returns(_bookEvent);
-
-            //Act
-            var resultedRental = bookEventService.GetRental(id);
-
-            //Assert
-            Assert.Equal(resultedRental, _bookEvent);
+            Assert.Equal(resultedBookEvents, bookEvents);
         }
 
         [Fact]
-        public void ShouldDeleteRental()
+        public void ShouldCreateNewRental()
         {
             //Arrange
-            rentalRepositoryMock.Setup(x => x.DeleteBookEvent(It.IsAny<int>()));
-
-            //Act
-            bookEventService.DeleteRental(default);
-
-            //Assert
-        }
-
-        [Fact]
-        public void ShouldEditExistingRental()
-        {
-            //Arrange
-            rentalRepositoryMock.Setup(x => x.EditBookEvent(It.IsAny<RentalEvent>()));
-
-            //Act
-            bookEventService.EditExistingRental(default);
-
-            //Assert
-        }
-
-        [Theory]
-       // [InlineData(1)]
-        //[InlineData(2)]
-        [InlineData(3)]
-       // [InlineData(default)]
-        public void ShouldCreateNewRental(int bookId)
-        {
-            //Arrange
+            DateTime rentDate = new DateTime(2020, 11, 13);
+            availableAmountOfParticularBook = random.Next();
+            int expectedAmountOfAvailableBooks = availableAmountOfParticularBook - 1;
+            RentalEvent expectedRentalEvent = new RentalEvent
+            {
+                RentalUser = user,
+                BooksInLibrary = booksState,
+                RentalDate = rentDate
+            };
             userRepositoryMock.Setup(x => x.GetUserById(It.IsAny<int>())).Returns(user);
-            libraryRepositoryMock.Setup(x => x.GetAllAvailableBooks()).Returns(availableBooks);
-            _rentedBooksCatalog = availableBooks.FirstOrDefault(i => i.Id.Equals(bookId));
-            DateTime rentalDate = new DateTime(2020, 11, 02);
-
+            bookStateRepositoryMock.Setup(x => x.GetAmountOfAvailableBooksById(It.IsAny<int>()))
+                .Returns(availableAmountOfParticularBook);
+            bookStateRepositoryMock.Setup(x => x.GetAllAvailableBooks()).Returns(booksState.BooksCatalog.Books);
+            bookStateRepositoryMock.Setup(x => x.UpdateBooksAmount(It.IsAny<int>(), It.IsAny<int>())).Returns(--availableAmountOfParticularBook);
+            
             //Act
-            var resultedRental = bookEventService.CreateNewRental(_bookEvent.Id, user.Id, _rentedBooksCatalog.Id, rentalDate);
+            var resultedRentalEvent = bookEventService.RentBook(user.Id, booksState.BooksCatalog.Books[0].Id, rentDate);
 
             //Assert
-            Assert.True(user.AmountOfBooksRented.Equals(2));
-            Assert.True(_rentedBooksCatalog.IsAvailable.Equals(false));
-            Assert.Equal(_bookEvent.Id, resultedRental.Id);
+            Assert.Equal(1, user.AmountOfBooksRented);
+            Assert.Equal(expectedAmountOfAvailableBooks, availableAmountOfParticularBook);
+            Assert.Equal(expectedRentalEvent.ToString(),resultedRentalEvent.ToString());
         }
 
         [Fact]
@@ -144,6 +108,6 @@ namespace Library.Tests.UnitTests.ServicesTests
             //Act
 
             //Assert
-        }*/
+        }
     }
 }

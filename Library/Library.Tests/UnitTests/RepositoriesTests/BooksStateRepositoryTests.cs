@@ -70,11 +70,13 @@ namespace Library.Tests.UnitTests.RepositoriesTests
         public void ShouldUpdateBooksAmount()
         {
             //Arrange
+            int expectedAmountOfBooks = 33;
 
             //Act
-            booksStateRepository.UpdateBooksAmount(1, 33);
+            var actualAmountOfBooks = booksStateRepository.UpdateBooksAmount(1, 33);
 
             //Assert
+            Assert.Equal(expectedAmountOfBooks,actualAmountOfBooks);
         }
     }
 }

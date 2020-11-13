@@ -37,7 +37,7 @@ namespace Library.Tests.UnitTests.ServicesTests
         }
 
         [Fact]
-        public void ShouldReturnAllAvailableOrAllUnavailableBooksBasedOnCondition()
+        public void ShouldReturnAllAvailableBooks()
         {
             //Arrange
             libraryRepositoryMock.Setup(x => x.GetAllAvailableBooks()).Returns(booksState.BooksCatalog.Books);
@@ -47,6 +47,7 @@ namespace Library.Tests.UnitTests.ServicesTests
 
             //Assert
             Assert.Equal(booksState.BooksCatalog.Books, returnedBooks);
+            Assert.True(returnedBooks.Count.Equals(6));
         }
 
         [Theory]
