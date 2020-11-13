@@ -6,7 +6,7 @@ namespace Library.Data.Models
 {
     public class BooksCatalog
     {
-        public List<Book> Books { get; set; }
+        public List<Book> Books { get; set; } = new List<Book>();
 
         public class Book
         {

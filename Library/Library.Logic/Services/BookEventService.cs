@@ -13,14 +13,16 @@ namespace Library.Logic.Services
         private readonly IBookEventRepository bookEventRepository;
         private readonly IBooksStateRepository booksStateRepository;
         private readonly IUserRepository userRepository;
+        private readonly IBooksCatalogRepository booksCatalogRepository;
         private readonly BooksState availableLibraryBooks = new BooksState();
-        private BooksCatalog booksCatalog;
+        private readonly BooksCatalog booksCatalog;
 
-        public BookEventService(IBookEventRepository bookEventRepository, IBooksStateRepository booksStateRepository, IUserRepository userRepository)
+        public BookEventService(IBookEventRepository bookEventRepository, IBooksStateRepository booksStateRepository, IUserRepository userRepository, IBooksCatalogRepository booksCatalogRepository)
         {
             this.bookEventRepository = bookEventRepository;
             this.booksStateRepository = booksStateRepository;
             this.userRepository = userRepository;
+            this.booksCatalogRepository = booksCatalogRepository;
         }
 
         public List<BookEvent> GetAllBookEvents()
@@ -37,8 +39,11 @@ namespace Library.Logic.Services
             if (availableAmountOfParticularBook <= 0) return null;
 
             User rentalUser = userRepository.GetUserById(userId);
-            booksCatalog.Books = booksStateRepository.GetAllAvailableBooks();
-            
+            availableLibraryBooks.BooksCatalog = new BooksCatalog
+            {
+                Books = booksStateRepository.GetAllAvailableBooks()
+            };
+
             RentalEvent rental = InitializeEvent(rentalDate, rentalUser, availableLibraryBooks, bookId, out Book book);
 
             if (ValidateData(rentalUser, book, rentalDate))
@@ -59,8 +64,7 @@ namespace Library.Logic.Services
         {
             int availableAmountOfParticularBook = booksStateRepository.GetAmountOfAvailableBooksById(bookId);
             User rentalUser = userRepository.GetUserById(userId);
-            booksCatalog = availableLibraryBooks.BooksCatalog;
-            Book returnedBook = booksCatalog.Books.FirstOrDefault(i => i.Id.Equals(bookId));
+            Book returnedBook = booksCatalogRepository.GetBookById(bookId);
 
             if (ValidateData(rentalUser, returnedBook, returnDate))
             {
