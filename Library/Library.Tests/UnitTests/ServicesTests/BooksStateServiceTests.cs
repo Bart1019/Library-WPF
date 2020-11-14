@@ -1,39 +1,54 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using Library.Data;
 using Library.Data.Interfaces;
 using Library.Data.Models;
 using Library.Logic.Services;
 using Moq;
 using Xunit;
-using Book = Library.Data.Models.BooksCatalog.Book;
 
 namespace Library.Tests.UnitTests.ServicesTests
 {
     public class BooksStateServiceTests
     {
-        private readonly Mock<IBooksStateRepository> libraryRepositoryMock;
-        private readonly BooksStateService booksStateService;
-        private BooksState booksState = new BooksState();
-
         public BooksStateServiceTests()
         {
             libraryRepositoryMock = new Mock<IBooksStateRepository>();
             booksStateService = new BooksStateService(libraryRepositoryMock.Object);
             booksState.BooksCatalog = new BooksCatalog
             {
-                Books = new List<Book>
+                Books = new List<BooksCatalog.Book>
                 {
-                    new Book { Id = 1, Title = "aaaa", BookType = BookEnum.Adventure },
-                    new Book { Id = 2, Title = "bbbb", BookType = BookEnum.Roman },
-                    new Book { Id = 3, Title = "cccc", BookType = BookEnum.Document },
-                    new Book { Id = 4, Title = "dddd", BookType = BookEnum.Historic },
-                    new Book { Id = 5, Title = "eeee", BookType = BookEnum.SciFi },
-                    new Book { Id = 6, Title = "ffff", BookType = BookEnum.Document }
+                    new BooksCatalog.Book {Id = 1, Title = "aaaa", BookType = BookEnum.Adventure},
+                    new BooksCatalog.Book {Id = 2, Title = "bbbb", BookType = BookEnum.Roman},
+                    new BooksCatalog.Book {Id = 3, Title = "cccc", BookType = BookEnum.Document},
+                    new BooksCatalog.Book {Id = 4, Title = "dddd", BookType = BookEnum.Historic},
+                    new BooksCatalog.Book {Id = 5, Title = "eeee", BookType = BookEnum.SciFi},
+                    new BooksCatalog.Book {Id = 6, Title = "ffff", BookType = BookEnum.Document}
                 }
             };
+        }
+
+        private readonly Mock<IBooksStateRepository> libraryRepositoryMock;
+        private readonly BooksStateService booksStateService;
+        private readonly BooksState booksState = new BooksState();
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(3)]
+        [InlineData(5)]
+        [InlineData(default)]
+        public void ShouldGetAmountOfAvailableBooksById(int id)
+        {
+            //Arrange
+            int expectedAmountOfBooks = default;
+            libraryRepositoryMock.Setup(x => x.GetAmountOfAvailableBooksById(It.IsAny<int>()))
+                .Returns(expectedAmountOfBooks);
+
+            //Act
+            var resultedAmountOfBooks = booksStateService.GetAmountOfAvailableBooks(id);
+
+            //Assert
+            Assert.Equal(expectedAmountOfBooks, resultedAmountOfBooks);
         }
 
         [Fact]
@@ -48,24 +63,6 @@ namespace Library.Tests.UnitTests.ServicesTests
             //Assert
             Assert.Equal(booksState.BooksCatalog.Books, returnedBooks);
             Assert.True(returnedBooks.Count.Equals(6));
-        }
-
-        [Theory]
-        [InlineData(1)]
-        [InlineData(3)]
-        [InlineData(5)]
-        [InlineData(default)]
-        public void ShouldGetAmountOfAvailableBooksById(int id)
-        {
-            //Arrange
-            int expectedAmountOfBooks = default;
-            libraryRepositoryMock.Setup(x => x.GetAmountOfAvailableBooksById(It.IsAny<int>())).Returns(expectedAmountOfBooks);
-
-            //Act
-            var resultedAmountOfBooks = booksStateService.GetAmountOfAvailableBooks(id);
-
-            //Assert
-            Assert.Equal(expectedAmountOfBooks, resultedAmountOfBooks);
         }
 
         [Fact]

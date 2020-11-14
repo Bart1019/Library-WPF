@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using Library.Data;
 using Library.Data.Interfaces;
 using Library.Data.Models;
-using Book = Library.Data.Models.BooksCatalog.Book;
 
 namespace Library.Logic.Services
 {
@@ -18,35 +14,9 @@ namespace Library.Logic.Services
             this.booksCatalogRepository = booksCatalogRepository;
         }
 
-        public List<Book> GetAllBooks()
+        public void AddBook(BooksCatalog.Book book)
         {
-            List <Book> books = booksCatalogRepository.GetAllBooks();
-
-            return books.Count == 0 ? null : books;
-        }
-
-        public Book GetBook(int id)
-        {
-            Book bookById = booksCatalogRepository.GetBookById(id);
-
-            if (bookById.Equals(null))
-            {
-                return null;
-            }
-
-            return bookById;
-        }
-
-        public Book GetBook(BookEnum bookType)
-        {
-            Book bookByType = booksCatalogRepository.GetBookByType(bookType);
-
-            if (bookByType.Equals(null))
-            {
-                return null;
-            }
-
-            return bookByType;
+            booksCatalogRepository.AddBook(book);
         }
 
         public void DeleteBook(int id)
@@ -54,14 +24,34 @@ namespace Library.Logic.Services
             booksCatalogRepository.DeleteBook(id);
         }
 
-        public void EditBook(Book book)
+        public void EditBook(BooksCatalog.Book book)
         {
             booksCatalogRepository.EditBook(book);
         }
 
-        public void AddBook(Book book)
+        public List<BooksCatalog.Book> GetAllBooks()
         {
-            booksCatalogRepository.AddBook(book);
+            var books = booksCatalogRepository.GetAllBooks();
+
+            return books.Count == 0 ? null : books;
+        }
+
+        public BooksCatalog.Book GetBook(int id)
+        {
+            var bookById = booksCatalogRepository.GetBookById(id);
+
+            if (bookById.Equals(null)) return null;
+
+            return bookById;
+        }
+
+        public BooksCatalog.Book GetBook(BookEnum bookType)
+        {
+            var bookByType = booksCatalogRepository.GetBookByType(bookType);
+
+            if (bookByType.Equals(null)) return null;
+
+            return bookByType;
         }
     }
 }

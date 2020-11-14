@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Library.Data.Models
 {
@@ -10,9 +8,9 @@ namespace Library.Data.Models
 
         public class Book
         {
+            public BookEnum BookType { get; set; }
             public int Id { get; set; }
             public string Title { get; set; }
-            public BookEnum BookType { get; set; }
         }
     }
 }

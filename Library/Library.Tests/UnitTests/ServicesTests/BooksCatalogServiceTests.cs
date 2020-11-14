@@ -1,50 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Library.Data;
 using Library.Data.Interfaces;
 using Library.Data.Models;
 using Library.Logic.Services;
 using Moq;
 using Xunit;
-using Book = Library.Data.Models.BooksCatalog.Book;
 
 namespace Library.Tests.UnitTests.ServicesTests
 {
     public class BooksCatalogServiceTests
     {
-        private readonly Mock<IBooksCatalogRepository> bookRepositoryMock;
-        private readonly BooksCatalogService bookService;
-        private readonly Book book = new Book();
-        private BooksCatalog booksCatalog = new BooksCatalog();
-
         public BooksCatalogServiceTests()
         {
             bookRepositoryMock = new Mock<IBooksCatalogRepository>();
             bookService = new BooksCatalogService(bookRepositoryMock.Object);
-            booksCatalog.Books = new List<Book>
+            booksCatalog.Books = new List<BooksCatalog.Book>
             {
-                new Book { Id = 1, Title = "aaaa", BookType = BookEnum.Adventure },
-                new Book { Id = 2, Title = "bbbb", BookType = BookEnum.Roman },
-                new Book { Id = 3, Title = "cccc", BookType = BookEnum.Document },
-                new Book { Id = 4, Title = "dddd", BookType = BookEnum.Adventure },
-                new Book { Id = 5, Title = "eeee", BookType = BookEnum.Roman },
-                new Book { Id = 6, Title = "ffff", BookType = BookEnum.Document }
+                new BooksCatalog.Book {Id = 1, Title = "aaaa", BookType = BookEnum.Adventure},
+                new BooksCatalog.Book {Id = 2, Title = "bbbb", BookType = BookEnum.Roman},
+                new BooksCatalog.Book {Id = 3, Title = "cccc", BookType = BookEnum.Document},
+                new BooksCatalog.Book {Id = 4, Title = "dddd", BookType = BookEnum.Adventure},
+                new BooksCatalog.Book {Id = 5, Title = "eeee", BookType = BookEnum.Roman},
+                new BooksCatalog.Book {Id = 6, Title = "ffff", BookType = BookEnum.Document}
             };
         }
 
-        [Fact]
-        public void ShouldGetAllBooks()
-        {
-            //Arrange
-            bookRepositoryMock.Setup(x => x.GetAllBooks()).Returns(booksCatalog.Books);
-
-            //Act
-            var resultedBooks = bookService.GetAllBooks();
-
-            //Assert
-            Assert.Equal(booksCatalog.Books, resultedBooks);
-        }
+        private readonly Mock<IBooksCatalogRepository> bookRepositoryMock;
+        private readonly BooksCatalogService bookService;
+        private readonly BooksCatalog.Book book = new BooksCatalog.Book();
+        private readonly BooksCatalog booksCatalog = new BooksCatalog();
 
         [Theory]
         [InlineData(1)]
@@ -80,6 +64,18 @@ namespace Library.Tests.UnitTests.ServicesTests
         }
 
         [Fact]
+        public void ShouldAddBook()
+        {
+            //Arrange
+            bookRepositoryMock.Setup(x => x.AddBook(It.IsAny<BooksCatalog.Book>()));
+
+            //Act
+            bookService.AddBook(default);
+
+            //Assert
+        }
+
+        [Fact]
         public void ShouldDeleteBook()
         {
             //Arrange
@@ -89,15 +85,14 @@ namespace Library.Tests.UnitTests.ServicesTests
             bookService.DeleteBook(default);
 
             //Assert
-           
         }
 
         [Fact]
         public void ShouldEditBook()
         {
             //Arrange
-            bookRepositoryMock.Setup(x => x.EditBook(It.IsAny<Book>()));
-            
+            bookRepositoryMock.Setup(x => x.EditBook(It.IsAny<BooksCatalog.Book>()));
+
 
             //Act
             bookService.EditBook(default);
@@ -106,15 +101,16 @@ namespace Library.Tests.UnitTests.ServicesTests
         }
 
         [Fact]
-        public void ShouldAddBook()
+        public void ShouldGetAllBooks()
         {
             //Arrange
-            bookRepositoryMock.Setup(x => x.AddBook(It.IsAny<Book>()));
+            bookRepositoryMock.Setup(x => x.GetAllBooks()).Returns(booksCatalog.Books);
 
             //Act
-            bookService.AddBook(default);
+            var resultedBooks = bookService.GetAllBooks();
 
             //Assert
+            Assert.Equal(booksCatalog.Books, resultedBooks);
         }
     }
 }

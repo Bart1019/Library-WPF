@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using Library.Data.Interfaces;
 using Library.Data.Models;
 
@@ -23,7 +20,7 @@ namespace Library.Logic.Repositories
 
         public void AddRentalEvent(RentalEvent rentalEvent)
         {
-            RentalEvent addedRentalEvent = new RentalEvent
+            var addedRentalEvent = new RentalEvent
             {
                 BooksInLibrary = rentalEvent.BooksInLibrary,
                 RentalDate = rentalEvent.RentalDate,
@@ -35,7 +32,7 @@ namespace Library.Logic.Repositories
 
         public void AddReturnEvent(ReturnEvent returnEvent)
         {
-            ReturnEvent addedReturnEvent = new ReturnEvent
+            var addedReturnEvent = new ReturnEvent
             {
                 ReturnDate = returnEvent.ReturnDate,
                 RentalUser = returnEvent.RentalUser

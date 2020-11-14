@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Library.Data.Interfaces;
 using Library.Data.Models;
 
@@ -9,7 +7,7 @@ namespace Library.Logic.Repositories
 {
     public class MockUserRepository : IUserRepository
     {
-        private MockDbContext dbContext;
+        private readonly MockDbContext dbContext;
 
         public MockUserRepository(MockDbContext dbContext)
         {
@@ -28,17 +26,14 @@ namespace Library.Logic.Repositories
 
         public void DeleteUser(int id)
         {
-            User deletedUser = dbContext.Users().FirstOrDefault(i => i.Id.Equals(id));
+            var deletedUser = dbContext.Users().FirstOrDefault(i => i.Id.Equals(id));
 
-            if (deletedUser != null)
-            {
-                dbContext.Users().Remove(deletedUser);
-            }
+            if (deletedUser != null) dbContext.Users().Remove(deletedUser);
         }
 
         public void EditUser(User user)
         {
-            User editedUser = dbContext.Users().FirstOrDefault(b => b.Id.Equals(user.Id));
+            var editedUser = dbContext.Users().FirstOrDefault(b => b.Id.Equals(user.Id));
 
             if (editedUser != null)
             {
@@ -51,7 +46,7 @@ namespace Library.Logic.Repositories
 
         public void AddUser(User user)
         {
-            User addedUser = new User
+            var addedUser = new User
             {
                 Id = user.Id,
                 Name = user.Name,

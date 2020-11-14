@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Library.Data.Interfaces;
 using Library.Data.Models;
 using Library.Logic.Services;
@@ -11,11 +9,6 @@ namespace Library.Tests.UnitTests.ServicesTests
 {
     public class UserServiceTests
     {
-        private readonly Mock<IUserRepository> userRepositoryMock;
-        private readonly UserService userService;
-        private List<User> users;
-        private User user = new User();
-
         public UserServiceTests()
         {
             userRepositoryMock = new Mock<IUserRepository>();
@@ -27,22 +20,14 @@ namespace Library.Tests.UnitTests.ServicesTests
                 new User {Id = 3, Name = "ccc", Surname = "ccc", AmountOfBooksRented = 3},
                 new User {Id = 4, Name = "ddd", Surname = "ddd", AmountOfBooksRented = 1},
                 new User {Id = 5, Name = "eee", Surname = "eee", AmountOfBooksRented = 4},
-                new User {Id = 6, Name = "fff", Surname = "fff", AmountOfBooksRented = 6},
+                new User {Id = 6, Name = "fff", Surname = "fff", AmountOfBooksRented = 6}
             };
         }
 
-        [Fact]
-        public void ShouldGetAllUsers()
-        {
-            //Arrange
-            userRepositoryMock.Setup(x => x.GetAllUsers()).Returns(users);
-
-            //Act
-            var returnedUsers = userService.GetAllUsers();
-
-            //Assert
-            Assert.Equal(users, returnedUsers);
-        }
+        private readonly Mock<IUserRepository> userRepositoryMock;
+        private readonly UserService userService;
+        private readonly List<User> users;
+        private readonly User user = new User();
 
         [Theory]
         [InlineData(1)]
@@ -61,6 +46,18 @@ namespace Library.Tests.UnitTests.ServicesTests
         }
 
         [Fact]
+        public void ShouldAddUser()
+        {
+            //Arrange
+            userRepositoryMock.Setup(x => x.AddUser(It.IsAny<User>()));
+
+            //Act
+            userService.AddUser(default);
+
+            //Assert
+        }
+
+        [Fact]
         public void ShouldDeleteUser()
         {
             //Arrange
@@ -70,7 +67,6 @@ namespace Library.Tests.UnitTests.ServicesTests
             userService.DeleteUser(default);
 
             //Assert
-
         }
 
         [Fact]
@@ -87,15 +83,16 @@ namespace Library.Tests.UnitTests.ServicesTests
         }
 
         [Fact]
-        public void ShouldAddUser()
+        public void ShouldGetAllUsers()
         {
             //Arrange
-            userRepositoryMock.Setup(x => x.AddUser(It.IsAny<User>()));
+            userRepositoryMock.Setup(x => x.GetAllUsers()).Returns(users);
 
             //Act
-            userService.AddUser(default);
+            var returnedUsers = userService.GetAllUsers();
 
             //Assert
+            Assert.Equal(users, returnedUsers);
         }
     }
 }

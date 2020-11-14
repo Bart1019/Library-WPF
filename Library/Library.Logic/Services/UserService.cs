@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using Library.Data.Interfaces;
 using Library.Data.Models;
 
@@ -16,23 +13,9 @@ namespace Library.Logic.Services
             this.userRepository = userRepository;
         }
 
-        public List<User> GetAllUsers()
+        public void AddUser(User user)
         {
-            List<User> users =  userRepository.GetAllUsers();
-
-            return users.Count == 0 ? null : users;
-        }
-
-        public User GetUser(int id)
-        {
-            User user = userRepository.GetUserById(id);
-
-            if (user.Equals(null))
-            {
-                return null;
-            }
-
-            return user;
+            userRepository.AddUser(user);
         }
 
         public void DeleteUser(int id)
@@ -45,9 +28,20 @@ namespace Library.Logic.Services
             userRepository.EditUser(user);
         }
 
-        public void AddUser(User user)
+        public List<User> GetAllUsers()
         {
-            userRepository.AddUser(user);
+            var users = userRepository.GetAllUsers();
+
+            return users.Count == 0 ? null : users;
+        }
+
+        public User GetUser(int id)
+        {
+            var user = userRepository.GetUserById(id);
+
+            if (user.Equals(null)) return null;
+
+            return user;
         }
     }
 }

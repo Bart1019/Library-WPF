@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using Library.Data.Models;
-using Book = Library.Data.Models.BooksCatalog.Book;
 
 namespace Library.Data.Interfaces
 {
     public interface IBooksCatalogRepository
     {
-        List<Book> GetAllBooks();
-        Book GetBookById(int id);
-        Book GetBookByType(BookEnum bookType);
+        void AddBook(BooksCatalog.Book book);
         void DeleteBook(int id);
-        void EditBook(Book book);
-        void AddBook(Book book);
+        void EditBook(BooksCatalog.Book book);
+        List<BooksCatalog.Book> GetAllBooks();
+        BooksCatalog.Book GetBookById(int id);
+        BooksCatalog.Book GetBookByType(BookEnum bookType);
     }
 }
