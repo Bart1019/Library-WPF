@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Library.Data;
+﻿using System.Collections.Generic;
 using Library.Data.Models;
 using Library.Logic;
 using Library.Logic.Repositories;
@@ -11,26 +8,14 @@ namespace Library.Tests.UnitTests.RepositoriesTests
 {
     public class UserRepositoryTests
     {
-        private readonly MockUserRepository userRepository;
-        private readonly MockDbContext dbContext;
-
         public UserRepositoryTests()
         {
             dbContext = new MockDbContext();
             userRepository = new MockUserRepository(dbContext);
         }
 
-        [Fact]
-        public void ShouldReturnAllUsers()
-        {
-            //Arrange
-
-            //Act
-            var returnedUsers = userRepository.GetAllUsers();
-
-            //Assert
-            Assert.True(returnedUsers.Count.Equals(6));
-        }
+        private readonly MockUserRepository userRepository;
+        private readonly MockDbContext dbContext;
 
         [Theory]
         [InlineData(1)]
@@ -39,7 +24,7 @@ namespace Library.Tests.UnitTests.RepositoriesTests
         public void ShouldReturnUserById(int id)
         {
             //Arrange
-            List<User> expectedUsers = new List<User>
+            var expectedUsers = new List<User>
             {
                 new User {Id = 1, Name = "aaa", Surname = "aaaa", AmountOfBooksRented = 1},
                 new User {Id = 3, Name = "ccc", Surname = "ccc", AmountOfBooksRented = 3},
@@ -65,6 +50,24 @@ namespace Library.Tests.UnitTests.RepositoriesTests
         }
 
         [Fact]
+        public void ShouldAddUser()
+        {
+            //Arrange
+            var newUser = new User
+            {
+                Id = 7,
+                Name = "fff",
+                Surname = "fff",
+                AmountOfBooksRented = 30
+            };
+
+            //Act
+            userRepository.AddUser(newUser);
+
+            //Assert
+        }
+
+        [Fact]
         public void ShouldDeleteUser()
         {
             //Arrange
@@ -79,7 +82,7 @@ namespace Library.Tests.UnitTests.RepositoriesTests
         public void ShouldEditUser()
         {
             //Arrange
-            User expectedUser = new User
+            var expectedUser = new User
             {
                 Id = 1,
                 Name = "fff",
@@ -94,21 +97,15 @@ namespace Library.Tests.UnitTests.RepositoriesTests
         }
 
         [Fact]
-        public void ShouldAddUser()
+        public void ShouldReturnAllUsers()
         {
             //Arrange
-            User newUser = new User
-            {
-                Id = 7,
-                Name = "fff",
-                Surname = "fff",
-                AmountOfBooksRented = 30
-            };
 
             //Act
-            userRepository.AddUser(newUser);
+            var returnedUsers = userRepository.GetAllUsers();
 
             //Assert
+            Assert.True(returnedUsers.Count.Equals(6));
         }
     }
 }

@@ -1,39 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Library.Data;
-using Library.Data.Interfaces;
 using Library.Data.Models;
 using Library.Logic;
 using Library.Logic.Repositories;
-using Moq;
 using Xunit;
-using Book = Library.Data.Models.BooksCatalog.Book;
 
 namespace Library.Tests.UnitTests.RepositoriesTests
 {
     public class BooksCatalogRepositoryTests
     {
-        private readonly MockBooksCatalogRepository booksCatalogRepository;
-        private readonly MockDbContext dbContext;
-
         public BooksCatalogRepositoryTests()
         {
             dbContext = new MockDbContext();
             booksCatalogRepository = new MockBooksCatalogRepository(dbContext);
         }
 
-        [Fact]
-        public void ShouldReturnAllBooks()
-        {
-            //Arrange
-
-            //Act
-            var returnedBooks = booksCatalogRepository.GetAllBooks();
-
-            //Assert
-            Assert.True(returnedBooks.Count.Equals(6));
-        }
+        private readonly MockBooksCatalogRepository booksCatalogRepository;
+        private readonly MockDbContext dbContext;
 
         [Theory]
         [InlineData(1)]
@@ -42,14 +25,14 @@ namespace Library.Tests.UnitTests.RepositoriesTests
         public void ShouldReturnBookById(int id)
         {
             //Arrange
-            BooksCatalog booksCatalog = new BooksCatalog
+            var booksCatalog = new BooksCatalog
             {
-                Books = new List<Book>
-            {
-                new Book { Id = 1, Title = "aaaa", BookType = BookEnum.Adventure },
-                new Book { Id = 3, Title = "cccc", BookType = BookEnum.Document },
-                new Book { Id = 6, Title = "ffff", BookType = BookEnum.Document }
-            }
+                Books = new List<BooksCatalog.Book>
+                {
+                    new BooksCatalog.Book {Id = 1, Title = "aaaa", BookType = BookEnum.Adventure},
+                    new BooksCatalog.Book {Id = 3, Title = "cccc", BookType = BookEnum.Document},
+                    new BooksCatalog.Book {Id = 6, Title = "ffff", BookType = BookEnum.Document}
+                }
             };
 
             //Act
@@ -77,14 +60,14 @@ namespace Library.Tests.UnitTests.RepositoriesTests
         public void ShouldReturnBookByBookType(BookEnum bookType)
         {
             //Arrange
-            BooksCatalog booksCatalog = new BooksCatalog
+            var booksCatalog = new BooksCatalog
             {
-                Books = new List<Book>
-            {
-                new Book { Id = 1, Title = "aaaa", BookType = BookEnum.Adventure },
-                new Book { Id = 3, Title = "cccc", BookType = BookEnum.Document },
-                new Book { Id = 5, Title = "ffff", BookType = BookEnum.Roman }
-            }
+                Books = new List<BooksCatalog.Book>
+                {
+                    new BooksCatalog.Book {Id = 1, Title = "aaaa", BookType = BookEnum.Adventure},
+                    new BooksCatalog.Book {Id = 3, Title = "cccc", BookType = BookEnum.Document},
+                    new BooksCatalog.Book {Id = 5, Title = "ffff", BookType = BookEnum.Roman}
+                }
             };
 
             //Act
@@ -106,6 +89,22 @@ namespace Library.Tests.UnitTests.RepositoriesTests
         }
 
         [Fact]
+        public void ShouldAddBook()
+        {
+            //Arrange
+            var booksCatalog = new BooksCatalog
+            {
+                Books = new List<BooksCatalog.Book>
+                    {new BooksCatalog.Book {Id = 7, Title = "aaaa", BookType = BookEnum.Historic}}
+            };
+
+            //Act
+            booksCatalogRepository.AddBook(booksCatalog.Books[0]);
+
+            //Assert
+        }
+
+        [Fact]
         public void ShouldDeleteBook()
         {
             //Arrange
@@ -122,9 +121,10 @@ namespace Library.Tests.UnitTests.RepositoriesTests
         public void ShouldEditBook()
         {
             //Arrange
-            BooksCatalog booksCatalog = new BooksCatalog
+            var booksCatalog = new BooksCatalog
             {
-                Books = new List<Book> { new Book { Id = 1, Title = "aaaa", BookType = BookEnum.Adventure } }
+                Books = new List<BooksCatalog.Book>
+                    {new BooksCatalog.Book {Id = 1, Title = "aaaa", BookType = BookEnum.Adventure}}
             };
 
             //Act
@@ -134,18 +134,15 @@ namespace Library.Tests.UnitTests.RepositoriesTests
         }
 
         [Fact]
-        public void ShouldAddBook()
+        public void ShouldReturnAllBooks()
         {
             //Arrange
-            BooksCatalog booksCatalog = new BooksCatalog
-            {
-                Books = new List<Book> { new Book { Id = 7, Title = "aaaa", BookType = BookEnum.Historic } }
-            };
 
             //Act
-            booksCatalogRepository.AddBook(booksCatalog.Books[0]);
+            var returnedBooks = booksCatalogRepository.GetAllBooks();
 
             //Assert
+            Assert.True(returnedBooks.Count.Equals(6));
         }
     }
 }
