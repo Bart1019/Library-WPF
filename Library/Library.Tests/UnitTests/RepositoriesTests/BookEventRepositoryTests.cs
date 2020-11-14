@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Library.Data;
 using Library.Data.Models;
+using Library.Logic;
 using Library.Logic.Repositories;
 using Xunit;
 
@@ -11,10 +12,12 @@ namespace Library.Tests.UnitTests.RepositoriesTests
     public class BookEventRepositoryTests
     {
         private readonly MockBookEventRepository bookEventRepository;
+        private readonly MockDbContext dbContext;
 
         public BookEventRepositoryTests()
         {
-            bookEventRepository = new MockBookEventRepository();
+            dbContext = new MockDbContext();
+            bookEventRepository = new MockBookEventRepository(dbContext);
         }
 
         [Fact]

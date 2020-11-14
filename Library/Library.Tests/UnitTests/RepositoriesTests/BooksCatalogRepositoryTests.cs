@@ -4,6 +4,7 @@ using System.Text;
 using Library.Data;
 using Library.Data.Interfaces;
 using Library.Data.Models;
+using Library.Logic;
 using Library.Logic.Repositories;
 using Moq;
 using Xunit;
@@ -14,10 +15,12 @@ namespace Library.Tests.UnitTests.RepositoriesTests
     public class BooksCatalogRepositoryTests
     {
         private readonly MockBooksCatalogRepository booksCatalogRepository;
+        private readonly MockDbContext dbContext;
 
         public BooksCatalogRepositoryTests()
         {
-            booksCatalogRepository = new MockBooksCatalogRepository();
+            dbContext = new MockDbContext();
+            booksCatalogRepository = new MockBooksCatalogRepository(dbContext);
         }
 
         [Fact]
@@ -113,7 +116,6 @@ namespace Library.Tests.UnitTests.RepositoriesTests
             var books = booksCatalogRepository.GetAllBooks();
 
             //Assert
-            Assert.True(books.Count.Equals(5));
         }
 
         [Fact]
@@ -128,11 +130,7 @@ namespace Library.Tests.UnitTests.RepositoriesTests
             //Act
             booksCatalogRepository.EditBook(booksCatalog.Books[0]);
 
-            var book = booksCatalogRepository.GetBookById(booksCatalog.Books[0].Id);
-
             //Assert
-            Assert.Equal(booksCatalog.Books[0].Id, book.Id);
-            Assert.Equal(booksCatalog.Books[0].BookType, book.BookType);
         }
 
         [Fact]
@@ -147,10 +145,7 @@ namespace Library.Tests.UnitTests.RepositoriesTests
             //Act
             booksCatalogRepository.AddBook(booksCatalog.Books[0]);
 
-            var books = booksCatalogRepository.GetAllBooks();
-
             //Assert
-            Assert.True(books.Count.Equals(7));
         }
     }
 }

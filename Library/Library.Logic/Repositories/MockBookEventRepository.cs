@@ -9,21 +9,16 @@ namespace Library.Logic.Repositories
 {
     public class MockBookEventRepository : IBookEventRepository
     {
-        private List<BookEvent> bookEvents;
+        private readonly MockDbContext dbContext;
 
-        public MockBookEventRepository()
+        public MockBookEventRepository(MockDbContext dbContext)
         {
-            bookEvents = new List<BookEvent>
-            {
-                new RentalEvent { RentalDate = default, RentalUser = default, BooksInLibrary = default },
-                new RentalEvent { RentalDate = default, RentalUser = default, BooksInLibrary = default },
-                new ReturnEvent { ReturnDate = default, RentalUser = default },
-            };
+            this.dbContext = dbContext;
         }
 
         public List<BookEvent> GetAllBookEvents()
         {
-            return bookEvents;
+            return dbContext.BookEvents();
         }
 
         public void AddRentalEvent(RentalEvent rentalEvent)
@@ -35,7 +30,7 @@ namespace Library.Logic.Repositories
                 RentalUser = rentalEvent.RentalUser
             };
 
-            bookEvents.Add(addedRentalEvent);
+            dbContext.BookEvents().Add(addedRentalEvent);
         }
 
         public void AddReturnEvent(ReturnEvent returnEvent)
@@ -46,7 +41,7 @@ namespace Library.Logic.Repositories
                 RentalUser = returnEvent.RentalUser
             };
 
-            bookEvents.Add(addedReturnEvent);
+            dbContext.BookEvents().Add(addedReturnEvent);
         }
     }
 }

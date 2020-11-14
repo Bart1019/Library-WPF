@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Library.Data;
 using Library.Data.Models;
+using Library.Logic;
 using Library.Logic.Repositories;
 using Xunit;
 using Book = Library.Data.Models.BooksCatalog.Book;
@@ -12,10 +13,12 @@ namespace Library.Tests.UnitTests.RepositoriesTests
     public class BooksStateRepositoryTests
     {
         private readonly MockBooksStateRepository booksStateRepository;
+        private readonly MockDbContext dbContext;
 
         public BooksStateRepositoryTests()
         {
-            booksStateRepository = new MockBooksStateRepository();
+            dbContext = new MockDbContext();
+            booksStateRepository = new MockBooksStateRepository(dbContext);
         }
 
         [Fact]

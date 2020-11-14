@@ -11,49 +11,41 @@ namespace Library.Logic.Repositories
 {
     public class MockBooksCatalogRepository : IBooksCatalogRepository
     {
-        private BooksCatalog bookCatalog = new BooksCatalog();
+        private readonly MockDbContext dbContext;
 
-        public MockBooksCatalogRepository()
+        public MockBooksCatalogRepository(MockDbContext dbContext)
         {
-            bookCatalog.Books = new List<Book>
-            {
-                new Book { Id = 1, Title = "aaaa", BookType = BookEnum.Adventure },
-                new Book { Id = 2, Title = "bbbb", BookType = BookEnum.Roman },
-                new Book { Id = 3, Title = "cccc", BookType = BookEnum.Document },
-                new Book { Id = 4, Title = "dddd", BookType = BookEnum.Adventure },
-                new Book { Id = 5, Title = "eeee", BookType = BookEnum.Roman },
-                new Book { Id = 6, Title = "ffff", BookType = BookEnum.Document }
-            };
+            this.dbContext = dbContext;
         }
 
         public List<Book> GetAllBooks()
         {
-            return bookCatalog.Books;
+            return dbContext.Books();
         }
 
         public Book GetBookById(int id)
         {
-            return bookCatalog.Books.FirstOrDefault(i => i.Id.Equals(id));
+            return dbContext.Books().FirstOrDefault(i => i.Id.Equals(id));
         }
 
         public Book GetBookByType(BookEnum bookType)
         {
-            return bookCatalog.Books.FirstOrDefault(t => t.BookType.Equals(bookType));
+            return dbContext.Books().FirstOrDefault(t => t.BookType.Equals(bookType));
         }
 
         public void DeleteBook(int id)
         {
-            Book deletedBook = bookCatalog.Books.FirstOrDefault(i => i.Id.Equals(id));
+            Book deletedBook = dbContext.Books().FirstOrDefault(i => i.Id.Equals(id));
 
             if (deletedBook != null)
             {
-                bookCatalog.Books.Remove(deletedBook);
+                dbContext.Books().Remove(deletedBook);
             }
         }
 
         public void EditBook(Book book)
         {
-            Book editedBook = bookCatalog.Books.FirstOrDefault(b => b.Id.Equals(book.Id));
+            Book editedBook = dbContext.Books().FirstOrDefault(b => b.Id.Equals(book.Id));
 
             if (editedBook != null)
             {
@@ -71,7 +63,7 @@ namespace Library.Logic.Repositories
                 BookType = book.BookType,
             };
 
-            bookCatalog.Books.Add(addedBook);
+            dbContext.Books().Add(addedBook);
         }
     }
 }
