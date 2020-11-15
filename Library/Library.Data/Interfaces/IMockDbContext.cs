@@ -7,7 +7,7 @@ namespace Library.Data.Interfaces
     {
         Dictionary<int, int> AvailableBooksAmount();
         List<BookEvent> BookEvents();
-        List<BooksCatalog.Book> BooksCatalog();
+        BooksCatalog BooksCatalog();
         BooksState AvailableBooks();
         List<User> Users();
     }

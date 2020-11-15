@@ -57,7 +57,7 @@ namespace Library.Logic
             return booksState.AvailableBooksAmount;
         }
 
-        public List<BooksCatalog.Book> BooksCatalog()
+        public BooksCatalog BooksCatalog()
         {
             bookCatalog.Books = new List<BooksCatalog.Book>
             {
@@ -69,7 +69,7 @@ namespace Library.Logic
                 new BooksCatalog.Book {Id = 6, Title = "ffff", BookType = BookEnum.Document}
             };
 
-            return bookCatalog.Books;
+            return bookCatalog;
         }
 
         public List<User> Users()

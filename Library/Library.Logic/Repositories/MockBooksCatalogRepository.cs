@@ -17,29 +17,29 @@ namespace Library.Logic.Repositories
 
         public List<BooksCatalog.Book> GetAllBooks()
         {
-            return dbContext.BooksCatalog();
+            return dbContext.BooksCatalog().Books;
         }
 
         public BooksCatalog.Book GetBookById(int id)
         {
-            return dbContext.BooksCatalog().FirstOrDefault(i => i.Id.Equals(id));
+            return dbContext.BooksCatalog().Books.FirstOrDefault(i => i.Id.Equals(id));
         }
 
         public BooksCatalog.Book GetBookByType(BookEnum bookType)
         {
-            return dbContext.BooksCatalog().FirstOrDefault(t => t.BookType.Equals(bookType));
+            return dbContext.BooksCatalog().Books.FirstOrDefault(t => t.BookType.Equals(bookType));
         }
 
         public void DeleteBook(int id)
         {
-            var deletedBook = dbContext.BooksCatalog().FirstOrDefault(i => i.Id.Equals(id));
+            var deletedBook = dbContext.BooksCatalog().Books.FirstOrDefault(i => i.Id.Equals(id));
 
-            if (deletedBook != null) dbContext.BooksCatalog().Remove(deletedBook);
+            if (deletedBook != null) dbContext.BooksCatalog().Books.Remove(deletedBook);
         }
 
         public void EditBook(BooksCatalog.Book book)
         {
-            var editedBook = dbContext.BooksCatalog().FirstOrDefault(b => b.Id.Equals(book.Id));
+            var editedBook = dbContext.BooksCatalog().Books.FirstOrDefault(b => b.Id.Equals(book.Id));
 
             if (editedBook != null)
             {
@@ -57,7 +57,7 @@ namespace Library.Logic.Repositories
                 BookType = book.BookType
             };
 
-            dbContext.BooksCatalog().Add(addedBook);
+            dbContext.BooksCatalog().Books.Add(addedBook);
         }
     }
 }
