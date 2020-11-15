@@ -38,7 +38,7 @@ namespace Library.Logic.Services
             if (availableAmountOfParticularBook <= 0) return null;
 
             var rentalUser = userRepository.GetUserById(userId);
-            availableLibraryBooks.BooksCatalog = new BooksCatalog
+            availableLibraryBooks.AvailableBooks = new BooksCatalog
             {
                 Books = booksStateRepository.GetAllAvailableBooks()
             };
@@ -88,7 +88,7 @@ namespace Library.Logic.Services
         private RentalEvent InitializeEvent(DateTime rentalDate, User rentalUser, BooksState booksState, int bookId,
             out BooksCatalog.Book book)
         {
-            book = booksState.BooksCatalog.Books.FirstOrDefault(i => i.Id.Equals(bookId));
+            book = booksState.AvailableBooks.Books.FirstOrDefault(i => i.Id.Equals(bookId));
 
             return new RentalEvent
             {

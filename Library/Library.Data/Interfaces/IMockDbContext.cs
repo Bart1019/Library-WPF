@@ -5,10 +5,10 @@ namespace Library.Data.Interfaces
 {
     public interface IMockDbContext
     {
-        Dictionary<int, int> AvailableBooks();
+        Dictionary<int, int> AvailableBooksAmount();
         List<BookEvent> BookEvents();
-        List<BooksCatalog.Book> Books();
         List<BooksCatalog.Book> BooksCatalog();
+        BooksState AvailableBooks();
         List<User> Users();
     }
 }

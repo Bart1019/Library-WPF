@@ -24,9 +24,9 @@ namespace Library.Logic
             return bookEvents;
         }
 
-        public List<BooksCatalog.Book> BooksCatalog()
+        public BooksState AvailableBooks()
         {
-            booksState.BooksCatalog = new BooksCatalog
+            booksState.AvailableBooks = new BooksCatalog
             {
                 Books = new List<BooksCatalog.Book>
                 {
@@ -39,25 +39,25 @@ namespace Library.Logic
                 }
             };
 
-            return booksState.BooksCatalog.Books;
+            return booksState;
         }
 
-        public Dictionary<int, int> AvailableBooks()
+        public Dictionary<int, int> AvailableBooksAmount()
         {
-            booksState.AvailableBooks = new Dictionary<int, int>
+            booksState.AvailableBooksAmount = new Dictionary<int, int>
             {
-                {booksState.BooksCatalog.Books[0].Id, 32},
-                {booksState.BooksCatalog.Books[1].Id, 2},
-                {booksState.BooksCatalog.Books[2].Id, 18},
-                {booksState.BooksCatalog.Books[3].Id, 6},
-                {booksState.BooksCatalog.Books[4].Id, 2},
-                {booksState.BooksCatalog.Books[5].Id, 40}
+                {booksState.AvailableBooks.Books[0].Id, 32},
+                {booksState.AvailableBooks.Books[1].Id, 2},
+                {booksState.AvailableBooks.Books[2].Id, 18},
+                {booksState.AvailableBooks.Books[3].Id, 6},
+                {booksState.AvailableBooks.Books[4].Id, 2},
+                {booksState.AvailableBooks.Books[5].Id, 40}
             };
 
-            return booksState.AvailableBooks;
+            return booksState.AvailableBooksAmount;
         }
 
-        public List<BooksCatalog.Book> Books()
+        public List<BooksCatalog.Book> BooksCatalog()
         {
             bookCatalog.Books = new List<BooksCatalog.Book>
             {

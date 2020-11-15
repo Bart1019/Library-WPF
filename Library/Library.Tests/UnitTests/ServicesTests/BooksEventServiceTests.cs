@@ -28,7 +28,7 @@ namespace Library.Tests.UnitTests.ServicesTests
                 new ReturnEvent {ReturnDate = default, RentalUser = default}
             };
 
-            booksState.BooksCatalog = new BooksCatalog
+            booksState.AvailableBooks = new BooksCatalog
             {
                 Books = new List<BooksCatalog.Book>
                 {
@@ -61,7 +61,7 @@ namespace Library.Tests.UnitTests.ServicesTests
 
             bookStateRepositoryMock.Setup(x => x.GetAmountOfAvailableBooksById(It.IsAny<int>()))
                 .Returns(availableAmountOfParticularBook);
-            bookStateRepositoryMock.Setup(x => x.GetAllAvailableBooks()).Returns(booksState.BooksCatalog.Books);
+            bookStateRepositoryMock.Setup(x => x.GetAllAvailableBooks()).Returns(booksState.AvailableBooks.Books);
         }
 
         private readonly Mock<IBookEventRepository> bookEventRepositoryMock;
@@ -95,7 +95,7 @@ namespace Library.Tests.UnitTests.ServicesTests
 
             //Act
             var resultedRentalEvent =
-                bookEventService.RentBook(rentalUser.Id, booksState.BooksCatalog.Books[0].Id, rentDate);
+                bookEventService.RentBook(rentalUser.Id, booksState.AvailableBooks.Books[0].Id, rentDate);
 
             //Assert
             Assert.Equal(1, rentalUser.AmountOfBooksRented);
@@ -132,11 +132,11 @@ namespace Library.Tests.UnitTests.ServicesTests
             bookStateRepositoryMock.Setup(x => x.UpdateBooksAmount(It.IsAny<int>(), It.IsAny<int>()))
                 .Returns(++availableAmountOfParticularBook);
             booksCatalogRepositoryMock.Setup(x => x.GetBookById(It.IsAny<int>()))
-                .Returns(booksState.BooksCatalog.Books[0]);
+                .Returns(booksState.AvailableBooks.Books[0]);
 
             //Act
             var resultedRentedEvent =
-                bookEventService.ReturnBook(returnedUser.Id, booksState.BooksCatalog.Books[0].Id, returnDate);
+                bookEventService.ReturnBook(returnedUser.Id, booksState.AvailableBooks.Books[0].Id, returnDate);
 
             //Assert
             Assert.Equal(12, returnedUser.AmountOfBooksRented);

@@ -14,7 +14,7 @@ namespace Library.Tests.UnitTests.ServicesTests
         {
             libraryRepositoryMock = new Mock<IBooksStateRepository>();
             booksStateService = new BooksStateService(libraryRepositoryMock.Object);
-            booksState.BooksCatalog = new BooksCatalog
+            booksState.AvailableBooks = new BooksCatalog
             {
                 Books = new List<BooksCatalog.Book>
                 {
@@ -55,13 +55,13 @@ namespace Library.Tests.UnitTests.ServicesTests
         public void ShouldReturnAllAvailableBooks()
         {
             //Arrange
-            libraryRepositoryMock.Setup(x => x.GetAllAvailableBooks()).Returns(booksState.BooksCatalog.Books);
+            libraryRepositoryMock.Setup(x => x.GetAllAvailableBooks()).Returns(booksState.AvailableBooks.Books);
 
             //Act
             var returnedBooks = booksStateService.GetAllAvailableBooks();
 
             //Assert
-            Assert.Equal(booksState.BooksCatalog.Books, returnedBooks);
+            Assert.Equal(booksState.AvailableBooks.Books, returnedBooks);
             Assert.True(returnedBooks.Count.Equals(6));
         }
 
