@@ -15,17 +15,17 @@ namespace Library.Logic.Repositories
             this.dbContext = dbContext;
         }
 
-        public List<BookCatalog.Book> GetAllBooks()
+        public List<Book> GetAllBooks()
         {
             return dbContext.BookCatalog.Books;
         }
 
-        public BookCatalog.Book GetBookById(int id)
+        public Book GetBookById(int id)
         {
             return dbContext.BookCatalog.Books.FirstOrDefault(i => i.Id.Equals(id));
         }
 
-        public BookCatalog.Book GetBookByType(BookEnum bookType)
+        public Book GetBookByType(BookEnum bookType)
         {
             return dbContext.BookCatalog.Books.FirstOrDefault(t => t.BookType.Equals(bookType));
         }
@@ -37,7 +37,7 @@ namespace Library.Logic.Repositories
             if (deletedBook != null) dbContext.BookCatalog.Books.Remove(deletedBook);
         }
 
-        public void EditBook(BookCatalog.Book book)
+        public void EditBook(Book book)
         {
             var editedBook = dbContext.BookCatalog.Books.FirstOrDefault(b => b.Id.Equals(book.Id));
 
@@ -48,9 +48,9 @@ namespace Library.Logic.Repositories
             }
         }
 
-        public void AddBook(BookCatalog.Book book)
+        public void AddBook(Book book)
         {
-            var addedBook = new BookCatalog.Book
+            var addedBook = new Book
             {
                 Id = book.Id,
                 Title = book.Title,

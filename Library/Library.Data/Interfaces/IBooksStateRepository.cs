@@ -5,7 +5,7 @@ namespace Library.Data.Interfaces
 {
     public interface IBooksStateRepository
     {
-        List<BookCatalog.Book> GetAllAvailableBooks();
+        List<Book> GetAllAvailableBooks();
         int GetAmountOfAvailableBooksById(int id);
         int UpdateBooksAmount(int bookId, int actualBooksAmount);
     }

@@ -14,7 +14,7 @@ namespace Library.Logic.Repositories
             this.dbContext = dbContext;
         }
 
-        public List<BookCatalog.Book> GetAllAvailableBooks()
+        public List<Book> GetAllAvailableBooks()
         {
             return dbContext.BookState.AvailableBook.Books;
         }

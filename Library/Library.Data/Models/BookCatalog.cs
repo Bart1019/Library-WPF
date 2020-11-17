@@ -5,12 +5,5 @@ namespace Library.Data.Models
     public class BookCatalog
     {
         public List<Book> Books { get; set; } = new List<Book>();
-
-        public class Book
-        {
-            public BookEnum BookType { get; set; }
-            public int Id { get; set; }
-            public string Title { get; set; }
-        }
     }
 }
