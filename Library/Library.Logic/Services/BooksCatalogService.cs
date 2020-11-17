@@ -14,7 +14,7 @@ namespace Library.Logic.Services
             this.booksCatalogRepository = booksCatalogRepository;
         }
 
-        public void AddBook(BooksCatalog.Book book)
+        public void AddBook(BookCatalog.Book book)
         {
             booksCatalogRepository.AddBook(book);
         }
@@ -24,19 +24,19 @@ namespace Library.Logic.Services
             booksCatalogRepository.DeleteBook(id);
         }
 
-        public void EditBook(BooksCatalog.Book book)
+        public void EditBook(BookCatalog.Book book)
         {
             booksCatalogRepository.EditBook(book);
         }
 
-        public List<BooksCatalog.Book> GetAllBooks()
+        public List<BookCatalog.Book> GetAllBooks()
         {
             var books = booksCatalogRepository.GetAllBooks();
 
             return books.Count == 0 ? null : books;
         }
 
-        public BooksCatalog.Book GetBook(int id)
+        public BookCatalog.Book GetBook(int id)
         {
             var bookById = booksCatalogRepository.GetBookById(id);
 
@@ -45,7 +45,7 @@ namespace Library.Logic.Services
             return bookById;
         }
 
-        public BooksCatalog.Book GetBook(BookEnum bookType)
+        public BookCatalog.Book GetBook(BookEnum bookType)
         {
             var bookByType = booksCatalogRepository.GetBookByType(bookType);
 

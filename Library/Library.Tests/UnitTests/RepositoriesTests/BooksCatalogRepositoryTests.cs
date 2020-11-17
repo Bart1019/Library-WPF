@@ -25,13 +25,13 @@ namespace Library.Tests.UnitTests.RepositoriesTests
         public void ShouldReturnBookById(int id)
         {
             //Arrange
-            var booksCatalog = new BooksCatalog
+            var booksCatalog = new BookCatalog
             {
-                Books = new List<BooksCatalog.Book>
+                Books = new List<BookCatalog.Book>
                 {
-                    new BooksCatalog.Book {Id = 1, Title = "aaaa", BookType = BookEnum.Adventure},
-                    new BooksCatalog.Book {Id = 3, Title = "cccc", BookType = BookEnum.Document},
-                    new BooksCatalog.Book {Id = 6, Title = "ffff", BookType = BookEnum.Document}
+                    new BookCatalog.Book {Id = 1, Title = "aaaa", BookType = BookEnum.Adventure},
+                    new BookCatalog.Book {Id = 3, Title = "cccc", BookType = BookEnum.Document},
+                    new BookCatalog.Book {Id = 6, Title = "ffff", BookType = BookEnum.Document}
                 }
             };
 
@@ -60,13 +60,13 @@ namespace Library.Tests.UnitTests.RepositoriesTests
         public void ShouldReturnBookByBookType(BookEnum bookType)
         {
             //Arrange
-            var booksCatalog = new BooksCatalog
+            var booksCatalog = new BookCatalog
             {
-                Books = new List<BooksCatalog.Book>
+                Books = new List<BookCatalog.Book>
                 {
-                    new BooksCatalog.Book {Id = 1, Title = "aaaa", BookType = BookEnum.Adventure},
-                    new BooksCatalog.Book {Id = 3, Title = "cccc", BookType = BookEnum.Document},
-                    new BooksCatalog.Book {Id = 5, Title = "ffff", BookType = BookEnum.Roman}
+                    new BookCatalog.Book {Id = 1, Title = "aaaa", BookType = BookEnum.Adventure},
+                    new BookCatalog.Book {Id = 3, Title = "cccc", BookType = BookEnum.Document},
+                    new BookCatalog.Book {Id = 5, Title = "ffff", BookType = BookEnum.Roman}
                 }
             };
 
@@ -92,10 +92,10 @@ namespace Library.Tests.UnitTests.RepositoriesTests
         public void ShouldAddBook()
         {
             //Arrange
-            var booksCatalog = new BooksCatalog
+            var booksCatalog = new BookCatalog
             {
-                Books = new List<BooksCatalog.Book>
-                    {new BooksCatalog.Book {Id = 7, Title = "aaaa", BookType = BookEnum.Historic}}
+                Books = new List<BookCatalog.Book>
+                    {new BookCatalog.Book {Id = 7, Title = "aaaa", BookType = BookEnum.Historic}}
             };
 
             //Act
@@ -121,10 +121,10 @@ namespace Library.Tests.UnitTests.RepositoriesTests
         public void ShouldEditBook()
         {
             //Arrange
-            var booksCatalog = new BooksCatalog
+            var booksCatalog = new BookCatalog
             {
-                Books = new List<BooksCatalog.Book>
-                    {new BooksCatalog.Book {Id = 1, Title = "aaaa", BookType = BookEnum.Adventure}}
+                Books = new List<BookCatalog.Book>
+                    {new BookCatalog.Book {Id = 1, Title = "aaaa", BookType = BookEnum.Adventure}}
             };
 
             //Act

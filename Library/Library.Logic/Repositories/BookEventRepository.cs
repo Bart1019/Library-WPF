@@ -15,19 +15,19 @@ namespace Library.Logic.Repositories
 
         public List<BookEvent> GetAllBookEvents()
         {
-            return dbContext.BookEvents();
+            return dbContext.BookEvents;
         }
 
         public void AddRentalEvent(RentalEvent rentalEvent)
         {
             var addedRentalEvent = new RentalEvent
             {
-                BooksInLibrary = rentalEvent.BooksInLibrary,
+                BookInLibrary = rentalEvent.BookInLibrary,
                 RentalDate = rentalEvent.RentalDate,
                 RentalUser = rentalEvent.RentalUser
             };
 
-            dbContext.BookEvents().Add(addedRentalEvent);
+            dbContext.BookEvents.Add(addedRentalEvent);
         }
 
         public void AddReturnEvent(ReturnEvent returnEvent)
@@ -38,7 +38,7 @@ namespace Library.Logic.Repositories
                 RentalUser = returnEvent.RentalUser
             };
 
-            dbContext.BookEvents().Add(addedReturnEvent);
+            dbContext.BookEvents.Add(addedReturnEvent);
         }
     }
 }

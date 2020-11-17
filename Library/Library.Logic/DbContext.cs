@@ -7,66 +7,66 @@ namespace Library.Logic
 {
     public class DbContext
     {
-        u readonly BooksCatalog bookCatalog = new BooksCatalog();
-        private List<BookEvent> bookEvents;
-        private readonly BooksState booksState = new BooksState();
-        private List<User> users;
+        public List<User> Users = new List<User>();
+        public List<BookEvent> BookEvents = new List<BookEvent>();
+        public BookState BookState = new BookState();
+        public BookCatalog BookCatalog = new BookCatalog();
 
         /*public List<BookEvent> BookEvents()
         {
             bookEvents = new List<BookEvent>
             {
-                new RentalEvent {RentalDate = default, RentalUser = default, BooksInLibrary = default},
-                new RentalEvent {RentalDate = default, RentalUser = default, BooksInLibrary = default},
+                new RentalEvent {RentalDate = default, RentalUser = default, BookInLibrary = default},
+                new RentalEvent {RentalDate = default, RentalUser = default, BookInLibrary = default},
                 new ReturnEvent {ReturnDate = default, RentalUser = default}
             };
 
             return bookEvents;
         }
 
-        public BooksState AvailableBooks()
+        public BookState AvailableBook()
         {
-            booksState.AvailableBooks = new BooksCatalog
+            _bookState.AvailableBook = new BookCatalog
             {
-                Books = new List<BooksCatalog.Book>
+                Books = new List<BookCatalog.Book>
                 {
-                    new BooksCatalog.Book {Id = 1, Title = "aaaa", BookType = BookEnum.Adventure},
-                    new BooksCatalog.Book {Id = 2, Title = "bbbb", BookType = BookEnum.Roman},
-                    new BooksCatalog.Book {Id = 3, Title = "cccc", BookType = BookEnum.Document},
-                    new BooksCatalog.Book {Id = 4, Title = "dddd", BookType = BookEnum.Historic},
-                    new BooksCatalog.Book {Id = 5, Title = "eeee", BookType = BookEnum.SciFi},
-                    new BooksCatalog.Book {Id = 6, Title = "ffff", BookType = BookEnum.Document}
+                    new BookCatalog.Book {Id = 1, Title = "aaaa", BookType = BookEnum.Adventure},
+                    new BookCatalog.Book {Id = 2, Title = "bbbb", BookType = BookEnum.Roman},
+                    new BookCatalog.Book {Id = 3, Title = "cccc", BookType = BookEnum.Document},
+                    new BookCatalog.Book {Id = 4, Title = "dddd", BookType = BookEnum.Historic},
+                    new BookCatalog.Book {Id = 5, Title = "eeee", BookType = BookEnum.SciFi},
+                    new BookCatalog.Book {Id = 6, Title = "ffff", BookType = BookEnum.Document}
                 }
             };
 
-            return booksState;
+            return _bookState;
         }
 
         public Dictionary<int, int> AvailableBooksAmount()
         {
-            booksState.AvailableBooksAmount = new Dictionary<int, int>
+            _bookState.AvailableBooksAmount = new Dictionary<int, int>
             {
-                {booksState.AvailableBooks.Books[0].Id, 32},
-                {booksState.AvailableBooks.Books[1].Id, 2},
-                {booksState.AvailableBooks.Books[2].Id, 18},
-                {booksState.AvailableBooks.Books[3].Id, 6},
-                {booksState.AvailableBooks.Books[4].Id, 2},
-                {booksState.AvailableBooks.Books[5].Id, 40}
+                {_bookState.AvailableBook.Books[0].Id, 32},
+                {_bookState.AvailableBook.Books[1].Id, 2},
+                {_bookState.AvailableBook.Books[2].Id, 18},
+                {_bookState.AvailableBook.Books[3].Id, 6},
+                {_bookState.AvailableBook.Books[4].Id, 2},
+                {_bookState.AvailableBook.Books[5].Id, 40}
             };
 
-            return booksState.AvailableBooksAmount;
+            return _bookState.AvailableBooksAmount;
         }
 
-        public BooksCatalog BooksCatalog()
+        public BookCatalog BookCatalog()
         {
-            bookCatalog.Books = new List<BooksCatalog.Book>
+            bookCatalog.Books = new List<BookCatalog.Book>
             {
-                new BooksCatalog.Book {Id = 1, Title = "aaaa", BookType = BookEnum.Adventure},
-                new BooksCatalog.Book {Id = 2, Title = "bbbb", BookType = BookEnum.Roman},
-                new BooksCatalog.Book {Id = 3, Title = "cccc", BookType = BookEnum.Document},
-                new BooksCatalog.Book {Id = 4, Title = "dddd", BookType = BookEnum.Adventure},
-                new BooksCatalog.Book {Id = 5, Title = "eeee", BookType = BookEnum.Roman},
-                new BooksCatalog.Book {Id = 6, Title = "ffff", BookType = BookEnum.Document}
+                new BookCatalog.Book {Id = 1, Title = "aaaa", BookType = BookEnum.Adventure},
+                new BookCatalog.Book {Id = 2, Title = "bbbb", BookType = BookEnum.Roman},
+                new BookCatalog.Book {Id = 3, Title = "cccc", BookType = BookEnum.Document},
+                new BookCatalog.Book {Id = 4, Title = "dddd", BookType = BookEnum.Adventure},
+                new BookCatalog.Book {Id = 5, Title = "eeee", BookType = BookEnum.Roman},
+                new BookCatalog.Book {Id = 6, Title = "ffff", BookType = BookEnum.Document}
             };
 
             return bookCatalog;

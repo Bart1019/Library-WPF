@@ -16,24 +16,24 @@ namespace Library.Logic.Repositories
 
         public List<User> GetAllUsers()
         {
-            return dbContext.Users();
+            return dbContext.Users;
         }
 
         public User GetUserById(int id)
         {
-            return dbContext.Users().FirstOrDefault(i => i.Id.Equals(id));
+            return dbContext.Users.FirstOrDefault(i => i.Id.Equals(id));
         }
 
         public void DeleteUser(int id)
         {
-            var deletedUser = dbContext.Users().FirstOrDefault(i => i.Id.Equals(id));
+            var deletedUser = dbContext.Users.FirstOrDefault(i => i.Id.Equals(id));
 
-            if (deletedUser != null) dbContext.Users().Remove(deletedUser);
+            if (deletedUser != null) dbContext.Users.Remove(deletedUser);
         }
 
         public void EditUser(User user)
         {
-            var editedUser = dbContext.Users().FirstOrDefault(b => b.Id.Equals(user.Id));
+            var editedUser = dbContext.Users.FirstOrDefault(b => b.Id.Equals(user.Id));
 
             if (editedUser != null)
             {
@@ -54,7 +54,7 @@ namespace Library.Logic.Repositories
                 AmountOfBooksRented = user.AmountOfBooksRented
             };
 
-            dbContext.Users().Add(addedUser);
+            dbContext.Users.Add(addedUser);
         }
     }
 }

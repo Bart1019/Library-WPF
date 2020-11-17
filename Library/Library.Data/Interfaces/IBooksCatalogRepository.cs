@@ -5,11 +5,11 @@ namespace Library.Data.Interfaces
 {
     public interface IBooksCatalogRepository
     {
-        void AddBook(BooksCatalog.Book book);
+        void AddBook(BookCatalog.Book book);
         void DeleteBook(int id);
-        void EditBook(BooksCatalog.Book book);
-        List<BooksCatalog.Book> GetAllBooks();
-        BooksCatalog.Book GetBookById(int id);
-        BooksCatalog.Book GetBookByType(BookEnum bookType);
+        void EditBook(BookCatalog.Book book);
+        List<BookCatalog.Book> GetAllBooks();
+        BookCatalog.Book GetBookById(int id);
+        BookCatalog.Book GetBookByType(BookEnum bookType);
     }
 }

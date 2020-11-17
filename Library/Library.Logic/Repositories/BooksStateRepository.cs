@@ -14,18 +14,18 @@ namespace Library.Logic.Repositories
             this.dbContext = dbContext;
         }
 
-        public List<BooksCatalog.Book> GetAllAvailableBooks()
+        public List<BookCatalog.Book> GetAllAvailableBooks()
         {
-            return dbContext.AvailableBooks().AvailableBooks.Books;
+            return dbContext.BookState.AvailableBook.Books;
         }
 
         public int GetAmountOfAvailableBooksById(int id)
         {
-            var book = dbContext.AvailableBooks().AvailableBooks.Books.FirstOrDefault(i => i.Id.Equals(id));
+            var book = dbContext.BookState.AvailableBook.Books.FirstOrDefault(i => i.Id.Equals(id));
 
-            if (book != null && dbContext.AvailableBooksAmount().ContainsKey(book.Id))
+            if (book != null && dbContext.BookState.AvailableBooksAmount.ContainsKey(book.Id))
             {
-                var amount = dbContext.AvailableBooksAmount()[book.Id];
+                var amount = dbContext.BookState.AvailableBooksAmount[book.Id];
 
                 return amount > 0 ? amount : default;
             }
@@ -35,10 +35,10 @@ namespace Library.Logic.Repositories
 
         public int UpdateBooksAmount(int bookId, int actualBooksAmount)
         {
-            var updatedBook = dbContext.AvailableBooks().AvailableBooks.Books.FirstOrDefault(i => i.Id.Equals(bookId));
+            var updatedBook = dbContext.BookState.AvailableBook.Books.FirstOrDefault(i => i.Id.Equals(bookId));
 
-            if (dbContext.AvailableBooksAmount().ContainsKey(updatedBook.Id))
-                dbContext.AvailableBooksAmount()[updatedBook.Id] = actualBooksAmount;
+            if (dbContext.BookState.AvailableBooksAmount.ContainsKey(updatedBook.Id))
+                dbContext.BookState.AvailableBooksAmount[updatedBook.Id] = actualBooksAmount;
 
             return actualBooksAmount;
         }

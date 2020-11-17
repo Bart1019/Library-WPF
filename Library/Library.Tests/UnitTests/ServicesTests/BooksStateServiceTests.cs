@@ -14,23 +14,23 @@ namespace Library.Tests.UnitTests.ServicesTests
         {
             libraryRepositoryMock = new Mock<IBooksStateRepository>();
             booksStateService = new BooksStateService(libraryRepositoryMock.Object);
-            booksState.AvailableBooks = new BooksCatalog
+            _bookState.AvailableBook = new BookCatalog
             {
-                Books = new List<BooksCatalog.Book>
+                Books = new List<BookCatalog.Book>
                 {
-                    new BooksCatalog.Book {Id = 1, Title = "aaaa", BookType = BookEnum.Adventure},
-                    new BooksCatalog.Book {Id = 2, Title = "bbbb", BookType = BookEnum.Roman},
-                    new BooksCatalog.Book {Id = 3, Title = "cccc", BookType = BookEnum.Document},
-                    new BooksCatalog.Book {Id = 4, Title = "dddd", BookType = BookEnum.Historic},
-                    new BooksCatalog.Book {Id = 5, Title = "eeee", BookType = BookEnum.SciFi},
-                    new BooksCatalog.Book {Id = 6, Title = "ffff", BookType = BookEnum.Document}
+                    new BookCatalog.Book {Id = 1, Title = "aaaa", BookType = BookEnum.Adventure},
+                    new BookCatalog.Book {Id = 2, Title = "bbbb", BookType = BookEnum.Roman},
+                    new BookCatalog.Book {Id = 3, Title = "cccc", BookType = BookEnum.Document},
+                    new BookCatalog.Book {Id = 4, Title = "dddd", BookType = BookEnum.Historic},
+                    new BookCatalog.Book {Id = 5, Title = "eeee", BookType = BookEnum.SciFi},
+                    new BookCatalog.Book {Id = 6, Title = "ffff", BookType = BookEnum.Document}
                 }
             };
         }
 
         private readonly Mock<IBooksStateRepository> libraryRepositoryMock;
         private readonly BooksStateService booksStateService;
-        private readonly BooksState booksState = new BooksState();
+        private readonly BookState _bookState = new BookState();
 
         [Theory]
         [InlineData(1)]
@@ -55,13 +55,13 @@ namespace Library.Tests.UnitTests.ServicesTests
         public void ShouldReturnAllAvailableBooks()
         {
             //Arrange
-            libraryRepositoryMock.Setup(x => x.GetAllAvailableBooks()).Returns(booksState.AvailableBooks.Books);
+            libraryRepositoryMock.Setup(x => x.GetAllAvailableBooks()).Returns(_bookState.AvailableBook.Books);
 
             //Act
             var returnedBooks = booksStateService.GetAllAvailableBooks();
 
             //Assert
-            Assert.Equal(booksState.AvailableBooks.Books, returnedBooks);
+            Assert.Equal(_bookState.AvailableBook.Books, returnedBooks);
             Assert.True(returnedBooks.Count.Equals(6));
         }
 

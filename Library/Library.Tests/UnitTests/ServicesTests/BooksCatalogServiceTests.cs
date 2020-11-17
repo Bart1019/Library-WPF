@@ -14,21 +14,21 @@ namespace Library.Tests.UnitTests.ServicesTests
         {
             bookRepositoryMock = new Mock<IBooksCatalogRepository>();
             bookService = new BooksCatalogService(bookRepositoryMock.Object);
-            booksCatalog.Books = new List<BooksCatalog.Book>
+            _bookCatalog.Books = new List<BookCatalog.Book>
             {
-                new BooksCatalog.Book {Id = 1, Title = "aaaa", BookType = BookEnum.Adventure},
-                new BooksCatalog.Book {Id = 2, Title = "bbbb", BookType = BookEnum.Roman},
-                new BooksCatalog.Book {Id = 3, Title = "cccc", BookType = BookEnum.Document},
-                new BooksCatalog.Book {Id = 4, Title = "dddd", BookType = BookEnum.Adventure},
-                new BooksCatalog.Book {Id = 5, Title = "eeee", BookType = BookEnum.Roman},
-                new BooksCatalog.Book {Id = 6, Title = "ffff", BookType = BookEnum.Document}
+                new BookCatalog.Book {Id = 1, Title = "aaaa", BookType = BookEnum.Adventure},
+                new BookCatalog.Book {Id = 2, Title = "bbbb", BookType = BookEnum.Roman},
+                new BookCatalog.Book {Id = 3, Title = "cccc", BookType = BookEnum.Document},
+                new BookCatalog.Book {Id = 4, Title = "dddd", BookType = BookEnum.Adventure},
+                new BookCatalog.Book {Id = 5, Title = "eeee", BookType = BookEnum.Roman},
+                new BookCatalog.Book {Id = 6, Title = "ffff", BookType = BookEnum.Document}
             };
         }
 
         private readonly Mock<IBooksCatalogRepository> bookRepositoryMock;
         private readonly BooksCatalogService bookService;
-        private readonly BooksCatalog.Book book = new BooksCatalog.Book();
-        private readonly BooksCatalog booksCatalog = new BooksCatalog();
+        private readonly BookCatalog.Book book = new BookCatalog.Book();
+        private readonly BookCatalog _bookCatalog = new BookCatalog();
 
         [Theory]
         [InlineData(1)]
@@ -67,7 +67,7 @@ namespace Library.Tests.UnitTests.ServicesTests
         public void ShouldAddBook()
         {
             //Arrange
-            bookRepositoryMock.Setup(x => x.AddBook(It.IsAny<BooksCatalog.Book>()));
+            bookRepositoryMock.Setup(x => x.AddBook(It.IsAny<BookCatalog.Book>()));
 
             //Act
             bookService.AddBook(default);
@@ -91,7 +91,7 @@ namespace Library.Tests.UnitTests.ServicesTests
         public void ShouldEditBook()
         {
             //Arrange
-            bookRepositoryMock.Setup(x => x.EditBook(It.IsAny<BooksCatalog.Book>()));
+            bookRepositoryMock.Setup(x => x.EditBook(It.IsAny<BookCatalog.Book>()));
 
 
             //Act
@@ -104,13 +104,13 @@ namespace Library.Tests.UnitTests.ServicesTests
         public void ShouldGetAllBooks()
         {
             //Arrange
-            bookRepositoryMock.Setup(x => x.GetAllBooks()).Returns(booksCatalog.Books);
+            bookRepositoryMock.Setup(x => x.GetAllBooks()).Returns(_bookCatalog.Books);
 
             //Act
             var resultedBooks = bookService.GetAllBooks();
 
             //Assert
-            Assert.Equal(booksCatalog.Books, resultedBooks);
+            Assert.Equal(_bookCatalog.Books, resultedBooks);
         }
     }
 }
