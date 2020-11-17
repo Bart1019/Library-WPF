@@ -4,11 +4,11 @@ using Library.Data.Models;
 
 namespace Library.Logic.Repositories
 {
-    public class MockBookEventRepository : IBookEventRepository
+    public class BookEventRepository : IBookEventRepository
     {
-        private readonly MockDbContext dbContext;
+        private readonly DbContext dbContext;
 
-        public MockBookEventRepository(MockDbContext dbContext)
+        public BookEventRepository(DbContext dbContext)
         {
             this.dbContext = dbContext;
         }

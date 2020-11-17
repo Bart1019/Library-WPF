@@ -5,11 +5,11 @@ using Library.Data.Models;
 
 namespace Library.Logic.Repositories
 {
-    public class MockBooksStateRepository : IBooksStateRepository
+    public class BooksStateRepository : IBooksStateRepository
     {
-        private readonly MockDbContext dbContext;
+        private readonly DbContext dbContext;
 
-        public MockBooksStateRepository(MockDbContext dbContext)
+        public BooksStateRepository(DbContext dbContext)
         {
             this.dbContext = dbContext;
         }

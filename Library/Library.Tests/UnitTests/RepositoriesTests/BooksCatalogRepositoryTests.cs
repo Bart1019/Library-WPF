@@ -11,12 +11,12 @@ namespace Library.Tests.UnitTests.RepositoriesTests
     {
         public BooksCatalogRepositoryTests()
         {
-            dbContext = new MockDbContext();
-            booksCatalogRepository = new MockBooksCatalogRepository(dbContext);
+            dbContext = new DbContext();
+            booksCatalogRepository = new BooksCatalogRepository(dbContext);
         }
 
-        private readonly MockBooksCatalogRepository booksCatalogRepository;
-        private readonly MockDbContext dbContext;
+        private readonly BooksCatalogRepository booksCatalogRepository;
+        private readonly DbContext dbContext;
 
         [Theory]
         [InlineData(1)]

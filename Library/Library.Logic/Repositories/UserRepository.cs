@@ -5,11 +5,11 @@ using Library.Data.Models;
 
 namespace Library.Logic.Repositories
 {
-    public class MockUserRepository : IUserRepository
+    public class UserRepository : IUserRepository
     {
-        private readonly MockDbContext dbContext;
+        private readonly DbContext dbContext;
 
-        public MockUserRepository(MockDbContext dbContext)
+        public UserRepository(DbContext dbContext)
         {
             this.dbContext = dbContext;
         }

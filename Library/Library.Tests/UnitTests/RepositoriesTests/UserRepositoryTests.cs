@@ -10,12 +10,12 @@ namespace Library.Tests.UnitTests.RepositoriesTests
     {
         public UserRepositoryTests()
         {
-            dbContext = new MockDbContext();
-            userRepository = new MockUserRepository(dbContext);
+            dbContext = new DbContext();
+            userRepository = new UserRepository(dbContext);
         }
 
-        private readonly MockUserRepository userRepository;
-        private readonly MockDbContext dbContext;
+        private readonly UserRepository userRepository;
+        private readonly DbContext dbContext;
 
         [Theory]
         [InlineData(1)]

@@ -5,14 +5,14 @@ using Library.Data.Models;
 
 namespace Library.Logic
 {
-    public class MockDbContext : IMockDbContext
+    public class DbContext
     {
-        private readonly BooksCatalog bookCatalog = new BooksCatalog();
+        u readonly BooksCatalog bookCatalog = new BooksCatalog();
         private List<BookEvent> bookEvents;
         private readonly BooksState booksState = new BooksState();
         private List<User> users;
 
-        public List<BookEvent> BookEvents()
+        /*public List<BookEvent> BookEvents()
         {
             bookEvents = new List<BookEvent>
             {
@@ -85,6 +85,6 @@ namespace Library.Logic
             };
 
             return users;
-        }
+        }*/
     }
 }

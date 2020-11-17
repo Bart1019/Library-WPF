@@ -6,11 +6,11 @@ using Library.Data.Models;
 
 namespace Library.Logic.Repositories
 {
-    public class MockBooksCatalogRepository : IBooksCatalogRepository
+    public class BooksCatalogRepository : IBooksCatalogRepository
     {
-        private readonly MockDbContext dbContext;
+        private readonly DbContext dbContext;
 
-        public MockBooksCatalogRepository(MockDbContext dbContext)
+        public BooksCatalogRepository(DbContext dbContext)
         {
             this.dbContext = dbContext;
         }
