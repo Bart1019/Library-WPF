@@ -14,16 +14,16 @@ namespace Library.Tests.UnitTests.ServicesTests
         {
             libraryRepositoryMock = new Mock<IBooksStateRepository>();
             booksStateService = new BooksStateService(libraryRepositoryMock.Object);
-            _bookState.AvailableBook = new BookCatalog
+            _bookState.AllBooks = new BookCatalog
             {
-                Books = new List<BookCatalog.Book>
+                Books = new List<Book>
                 {
-                    new BookCatalog.Book {Id = 1, Title = "aaaa", BookType = BookEnum.Adventure},
-                    new BookCatalog.Book {Id = 2, Title = "bbbb", BookType = BookEnum.Roman},
-                    new BookCatalog.Book {Id = 3, Title = "cccc", BookType = BookEnum.Document},
-                    new BookCatalog.Book {Id = 4, Title = "dddd", BookType = BookEnum.Historic},
-                    new BookCatalog.Book {Id = 5, Title = "eeee", BookType = BookEnum.SciFi},
-                    new BookCatalog.Book {Id = 6, Title = "ffff", BookType = BookEnum.Document}
+                    new Book {Id = 1, Title = "aaaa", BookType = BookEnum.Adventure, Author = "Aaaa"},
+                    new Book {Id = 2, Title = "bbbb", BookType = BookEnum.Roman, Author = "Bbbb"},
+                    new Book {Id = 3, Title = "cccc", BookType = BookEnum.Document, Author = "Cccc"},
+                    new Book {Id = 4, Title = "dddd", BookType = BookEnum.Adventure, Author = "Aaaa"},
+                    new Book {Id = 5, Title = "eeee", BookType = BookEnum.Roman, Author = "Bbbb"},
+                    new Book {Id = 6, Title = "ffff", BookType = BookEnum.Document, Author = "Cccc"}
                 }
             };
         }
@@ -55,13 +55,13 @@ namespace Library.Tests.UnitTests.ServicesTests
         public void ShouldReturnAllAvailableBooks()
         {
             //Arrange
-            libraryRepositoryMock.Setup(x => x.GetAllAvailableBooks()).Returns(_bookState.AvailableBook.Books);
+            libraryRepositoryMock.Setup(x => x.GetAllAvailableBooks()).Returns(_bookState.AllBooks.Books);
 
             //Act
             var returnedBooks = booksStateService.GetAllAvailableBooks();
 
             //Assert
-            Assert.Equal(_bookState.AvailableBook.Books, returnedBooks);
+            Assert.Equal(_bookState.AllBooks.Books, returnedBooks);
             Assert.True(returnedBooks.Count.Equals(6));
         }
 

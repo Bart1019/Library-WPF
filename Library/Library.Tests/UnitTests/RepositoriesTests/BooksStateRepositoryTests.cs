@@ -1,4 +1,5 @@
-﻿using Library.Logic;
+﻿using Library.Data;
+using Library.Logic;
 using Library.Logic.Repositories;
 using Xunit;
 

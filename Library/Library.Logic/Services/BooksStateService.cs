@@ -13,7 +13,7 @@ namespace Library.Logic.Services
             this.booksStateRepository = booksStateRepository;
         }
 
-        public List<BookCatalog.Book> GetAllAvailableBooks()
+        public List<Book> GetAllAvailableBooks()
         {
             var availableBooks = booksStateRepository.GetAllAvailableBooks();
 

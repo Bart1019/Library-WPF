@@ -27,11 +27,11 @@ namespace Library.Tests.UnitTests.RepositoriesTests
             //Arrange
             var booksCatalog = new BookCatalog
             {
-                Books = new List<BookCatalog.Book>
+                Books = new List<Book>
                 {
-                    new BookCatalog.Book {Id = 1, Title = "aaaa", BookType = BookEnum.Adventure},
-                    new BookCatalog.Book {Id = 3, Title = "cccc", BookType = BookEnum.Document},
-                    new BookCatalog.Book {Id = 6, Title = "ffff", BookType = BookEnum.Document}
+                    new Book {Id = 1, Title = "aaaa", BookType = BookEnum.Adventure, Author = "Aaaa"},
+                    new Book {Id = 3, Title = "cccc", BookType = BookEnum.Document, Author = "Bbbb"},
+                    new Book {Id = 6, Title = "ffff", BookType = BookEnum.Document, Author = "Cccc"}
                 }
             };
 
@@ -62,11 +62,11 @@ namespace Library.Tests.UnitTests.RepositoriesTests
             //Arrange
             var booksCatalog = new BookCatalog
             {
-                Books = new List<BookCatalog.Book>
+                Books = new List<Book>
                 {
-                    new BookCatalog.Book {Id = 1, Title = "aaaa", BookType = BookEnum.Adventure},
-                    new BookCatalog.Book {Id = 3, Title = "cccc", BookType = BookEnum.Document},
-                    new BookCatalog.Book {Id = 5, Title = "ffff", BookType = BookEnum.Roman}
+                    new Book {Id = 1, Title = "aaaa", BookType = BookEnum.Adventure, Author = "Aaaa"},
+                    new Book {Id = 3, Title = "cccc", BookType = BookEnum.Document, Author = "Bbbb"},
+                    new Book {Id = 5, Title = "ffff", BookType = BookEnum.Roman, Author = "Cccc"}
                 }
             };
 
@@ -94,8 +94,8 @@ namespace Library.Tests.UnitTests.RepositoriesTests
             //Arrange
             var booksCatalog = new BookCatalog
             {
-                Books = new List<BookCatalog.Book>
-                    {new BookCatalog.Book {Id = 7, Title = "aaaa", BookType = BookEnum.Historic}}
+                Books = new List<Book>
+                    {new Book {Id = 7, Title = "aaaa", BookType = BookEnum.Historic, Author = "Aaaa"}}
             };
 
             //Act
@@ -123,8 +123,8 @@ namespace Library.Tests.UnitTests.RepositoriesTests
             //Arrange
             var booksCatalog = new BookCatalog
             {
-                Books = new List<BookCatalog.Book>
-                    {new BookCatalog.Book {Id = 1, Title = "aaaa", BookType = BookEnum.Adventure}}
+                Books = new List<Book>
+                    {new Book {Id = 1, Title = "aaaa", BookType = BookEnum.Adventure, Author = "Cccc"}}
             };
 
             //Act

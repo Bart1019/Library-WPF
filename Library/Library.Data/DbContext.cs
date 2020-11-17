@@ -3,7 +3,7 @@ using Library.Data;
 using Library.Data.Interfaces;
 using Library.Data.Models;
 
-namespace Library.Logic
+namespace Library.Data
 {
     public class DbContext
     {
@@ -24,9 +24,9 @@ namespace Library.Logic
             return bookEvents;
         }
 
-        public BookState AvailableBook()
+        public BookState AllBooks()
         {
-            _bookState.AvailableBook = new BookCatalog
+            _bookState.AllBooks = new BookCatalog
             {
                 Books = new List<BookCatalog.Book>
                 {
@@ -46,12 +46,12 @@ namespace Library.Logic
         {
             _bookState.AvailableBooksAmount = new Dictionary<int, int>
             {
-                {_bookState.AvailableBook.Books[0].Id, 32},
-                {_bookState.AvailableBook.Books[1].Id, 2},
-                {_bookState.AvailableBook.Books[2].Id, 18},
-                {_bookState.AvailableBook.Books[3].Id, 6},
-                {_bookState.AvailableBook.Books[4].Id, 2},
-                {_bookState.AvailableBook.Books[5].Id, 40}
+                {_bookState.AllBooks.Books[0].Id, 32},
+                {_bookState.AllBooks.Books[1].Id, 2},
+                {_bookState.AllBooks.Books[2].Id, 18},
+                {_bookState.AllBooks.Books[3].Id, 6},
+                {_bookState.AllBooks.Books[4].Id, 2},
+                {_bookState.AllBooks.Books[5].Id, 40}
             };
 
             return _bookState.AvailableBooksAmount;
