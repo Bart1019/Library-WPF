@@ -1,4 +1,4 @@
-﻿namespace Library.Data.Interfaces
+﻿namespace Library.Data
 {
     public interface IDataGenerator
     {

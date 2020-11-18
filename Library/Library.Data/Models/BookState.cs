@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Library.Data.Models
+namespace Library.Data
 {
     public class BookState
     {

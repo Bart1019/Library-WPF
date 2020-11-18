@@ -1,35 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Library.Data;
-using Library.Data.Models;
-using Library.Tests.Data.UnitTests.DataGenerators;
+﻿using Library.Data;
 using Xunit;
 
-namespace Library.Tests.Data.UnitTests.DataGenerationTests
+namespace Library.DataTests
 {
     public class DataGeneratorTests
     {
-        private DataContext dataContext;
-        private DataGenerator dataGenerator;
-
         public DataGeneratorTests()
         {
             dataGenerator = new DataGenerator();
             dataContext = dataGenerator.GenerateData();
         }
 
-        [Fact]
-        public void ShouldReturnProperAmountOfUsers()
-        {
-            //Arrange
-
-            //Act
-            var returnedUsers = dataContext.Users;
-
-            //Assert
-            Assert.True(returnedUsers.Count.Equals(6));
-        }
+        private readonly DataContext dataContext;
+        private readonly DataGenerator dataGenerator;
 
         [Fact]
         public void ShouldReturnProperAmountOfBooksFromCatalog()
@@ -65,6 +48,18 @@ namespace Library.Tests.Data.UnitTests.DataGenerationTests
 
             //Assert
             Assert.True(returnedEvents.Count.Equals(5));
+        }
+
+        [Fact]
+        public void ShouldReturnProperAmountOfUsers()
+        {
+            //Arrange
+
+            //Act
+            var returnedUsers = dataContext.Users;
+
+            //Assert
+            Assert.True(returnedUsers.Count.Equals(6));
         }
     }
 }

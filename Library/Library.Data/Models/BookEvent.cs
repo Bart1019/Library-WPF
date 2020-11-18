@@ -1,4 +1,4 @@
-﻿namespace Library.Data.Models
+﻿namespace Library.Data
 {
     public abstract class BookEvent
     {

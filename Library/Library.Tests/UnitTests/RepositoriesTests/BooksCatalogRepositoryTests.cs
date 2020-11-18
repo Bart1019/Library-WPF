@@ -1,11 +1,8 @@
 ﻿using System.Collections.Generic;
 using Library.Data;
-using Library.Data.Models;
-using Library.Logic.Repositories;
-using Library.Tests.Data.UnitTests.DataGenerators;
 using Xunit;
 
-namespace Library.Tests.Data.UnitTests.RepositoriesTests
+namespace Library.DataTests
 {
     public class BooksCatalogRepositoryTests
     {
@@ -126,14 +123,14 @@ namespace Library.Tests.Data.UnitTests.RepositoriesTests
         {
             //Arrange
 
-            Book book = new Book {Id = 1, Title = "Zzzz", BookGenre = BookEnum.Historic, Author = "Zzzz"};
+            var book = new Book {Id = 1, Title = "Zzzz", BookGenre = BookEnum.Historic, Author = "Zzzz"};
 
             //Act
             booksCatalogRepository.EditBook(book);
             var returnedBook = booksCatalogRepository.GetBookById(1);
 
             //Assert
-            Assert.Equal(book.Id, returnedBook.Id );
+            Assert.Equal(book.Id, returnedBook.Id);
             Assert.Equal(book.Title, returnedBook.Title);
             Assert.Equal(book.BookGenre, returnedBook.BookGenre);
             Assert.Equal(book.Author, returnedBook.Author);

@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Library.Data.Interfaces;
-using Library.Data.Models;
 
-namespace Library.Data.Repositories
+namespace Library.Data
 {
     public class BooksStateRepository : IBooksStateRepository
     {

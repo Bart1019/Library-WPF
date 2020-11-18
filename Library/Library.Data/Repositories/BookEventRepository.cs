@@ -1,9 +1,6 @@
 ﻿using System.Collections.Generic;
-using Library.Data;
-using Library.Data.Interfaces;
-using Library.Data.Models;
 
-namespace Library.Logic.Repositories
+namespace Library.Data
 {
     public class BookEventRepository : IBookEventRepository
     {

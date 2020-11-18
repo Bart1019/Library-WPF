@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Library.Data.Models
+namespace Library.Data
 {
     public class ReturnEvent : BookEvent
     {

@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using Library.Data;
-using Library.Data.Interfaces;
-using Library.Data.Models;
 
-namespace Library.Tests.Data.UnitTests.DataGenerators
+namespace Library.DataTests
 {
     public class DataGenerator : IDataGenerator
     {
@@ -26,11 +24,11 @@ namespace Library.Tests.Data.UnitTests.DataGenerators
             dataContext.Users.Add(user6);
 
             var book1 = new Book {Id = 1, Title = "aaaa", BookGenre = BookEnum.Adventure, Author = "Aaaa"};
-            var book2 = new Book {Id = 2, Title = "bbbb", BookGenre = BookEnum.Roman, Author = "Bbbb" };
-            var book3 = new Book {Id = 3, Title = "cccc", BookGenre = BookEnum.Document, Author = "Cccc" };
-            var book4 = new Book {Id = 4, Title = "dddd", BookGenre = BookEnum.Historic, Author = "Aaaa" };
-            var book5 = new Book {Id = 5, Title = "eeee", BookGenre = BookEnum.SciFi, Author = "Bbbb" };
-            var book6 = new Book {Id = 6, Title = "ffff", BookGenre = BookEnum.Document, Author = "Cccc" };
+            var book2 = new Book {Id = 2, Title = "bbbb", BookGenre = BookEnum.Roman, Author = "Bbbb"};
+            var book3 = new Book {Id = 3, Title = "cccc", BookGenre = BookEnum.Document, Author = "Cccc"};
+            var book4 = new Book {Id = 4, Title = "dddd", BookGenre = BookEnum.Historic, Author = "Aaaa"};
+            var book5 = new Book {Id = 5, Title = "eeee", BookGenre = BookEnum.SciFi, Author = "Bbbb"};
+            var book6 = new Book {Id = 6, Title = "ffff", BookGenre = BookEnum.Document, Author = "Cccc"};
 
             dataContext.BookCatalog.Books.Add(book1);
             dataContext.BookCatalog.Books.Add(book2);

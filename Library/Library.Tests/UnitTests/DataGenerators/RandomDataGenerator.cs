@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using Library.Data;
-using Library.Data.Interfaces;
-using Library.Data.Models;
 
-namespace Library.Tests.Data.UnitTests.DataGenerators
+namespace Library.DataTests
 {
     public class RandomDataGenerator : IDataGenerator
     {
-        private readonly Random random = new Random();
         private readonly DataContext dataContext = new DataContext();
+        private readonly Random random = new Random();
 
         public DataContext GenerateData()
         {

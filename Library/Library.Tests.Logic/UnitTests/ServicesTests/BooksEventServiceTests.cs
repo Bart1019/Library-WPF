@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using Library.Data;
-using Library.Data.Interfaces;
-using Library.Data.Models;
-using Library.Logic.Services;
+using Library.Logic;
 using Moq;
 using Xunit;
 
-namespace Library.Tests.Logic.UnitTests.ServicesTests
+namespace Library.LogicTests
 {
     public class BooksEventServiceTests
     {

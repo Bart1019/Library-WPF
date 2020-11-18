@@ -1,33 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Library.Data;
-using Library.Data.Models;
-using Library.Tests.Data.UnitTests.DataGenerators;
+﻿using Library.Data;
 using Xunit;
 
-namespace Library.Tests.Data.UnitTests.DataGenerationTests
+namespace Library.DataTests
 {
     public class RandomDataGeneratorTests
     {
-        private readonly RandomDataGenerator randomDataGenerator;
-
         public RandomDataGeneratorTests()
         {
             randomDataGenerator = new RandomDataGenerator();
         }
 
-        [Fact]
-        public void ShouldReturnUserType()
-        {
-            //Arrange
-
-            //Act
-            var returnedUser = randomDataGenerator.CreateRandomUser();
-
-            //Assert
-            Assert.IsType<User>(returnedUser);
-        }
+        private readonly RandomDataGenerator randomDataGenerator;
 
         [Fact]
         public void ShouldReturnBookType()
@@ -39,18 +22,6 @@ namespace Library.Tests.Data.UnitTests.DataGenerationTests
 
             //Assert
             Assert.IsType<Book>(returnedBook);
-        }
-
-        [Fact]
-        public void ShouldReturnStateType()
-        {
-            //Arrange
-
-            //Act
-            var randomBookState = randomDataGenerator.CreateRandomBookState();
-
-            //Assert
-            Assert.IsType<BookState>(randomBookState);
         }
 
         [Fact]
@@ -75,6 +46,30 @@ namespace Library.Tests.Data.UnitTests.DataGenerationTests
 
             //Assert
             Assert.IsType<ReturnEvent>(randomReturnEvent);
+        }
+
+        [Fact]
+        public void ShouldReturnStateType()
+        {
+            //Arrange
+
+            //Act
+            var randomBookState = randomDataGenerator.CreateRandomBookState();
+
+            //Assert
+            Assert.IsType<BookState>(randomBookState);
+        }
+
+        [Fact]
+        public void ShouldReturnUserType()
+        {
+            //Arrange
+
+            //Act
+            var returnedUser = randomDataGenerator.CreateRandomUser();
+
+            //Assert
+            Assert.IsType<User>(returnedUser);
         }
     }
 }

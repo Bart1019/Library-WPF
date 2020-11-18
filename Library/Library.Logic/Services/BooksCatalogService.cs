@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using Library.Data;
-using Library.Data.Interfaces;
-using Library.Data.Models;
 
-namespace Library.Logic.Services
+namespace Library.Logic
 {
     public class BooksCatalogService
     {
