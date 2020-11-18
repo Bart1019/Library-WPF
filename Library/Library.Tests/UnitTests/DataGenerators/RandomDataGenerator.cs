@@ -99,19 +99,19 @@ namespace Library.Tests.Data.UnitTests.DataGenerators
             return user;
         }
 
-        public BookEnum RandomGenre()
+        private BookEnum RandomGenre()
         {
             var values = Enum.GetValues(typeof(BookEnum));
             var randomGenre = (BookEnum) values.GetValue(random.Next(values.Length));
             return randomGenre;
         }
 
-        public int RandomNumber(int bottomBorder, int upperBorder)
+        private int RandomNumber(int bottomBorder, int upperBorder)
         {
             return random.Next(bottomBorder, upperBorder);
         }
 
-        public string RandomString(int length)
+        private string RandomString(int length)
         {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             return new string(Enumerable.Repeat(chars, length)

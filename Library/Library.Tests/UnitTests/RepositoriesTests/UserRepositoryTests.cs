@@ -65,8 +65,10 @@ namespace Library.Tests.Data.UnitTests.RepositoriesTests
 
             //Act
             userRepository.AddUser(newUser);
+            var returnedUsers = userRepository.GetAllUsers();
 
             //Assert
+            Assert.True(returnedUsers.Count.Equals(7));
         }
 
         [Fact]
@@ -76,8 +78,10 @@ namespace Library.Tests.Data.UnitTests.RepositoriesTests
 
             //Act
             userRepository.DeleteUser(1);
+            var returnedUsers = userRepository.GetAllUsers();
 
             //Assert
+            Assert.True(returnedUsers.Count.Equals(5));
         }
 
         [Fact]
@@ -94,8 +98,13 @@ namespace Library.Tests.Data.UnitTests.RepositoriesTests
 
             //Act
             userRepository.EditUser(expectedUser);
+            var returnedUser = userRepository.GetUserById(1);
 
             //Assert
+            Assert.Equal(expectedUser.Id, returnedUser.Id);
+            Assert.Equal(expectedUser.Name, returnedUser.Name);
+            Assert.Equal(expectedUser.Surname, returnedUser.Surname);
+            Assert.Equal(expectedUser.AmountOfBooksRented, returnedUser.AmountOfBooksRented);
         }
 
         [Fact]

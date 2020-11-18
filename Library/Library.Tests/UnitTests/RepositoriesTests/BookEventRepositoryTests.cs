@@ -26,8 +26,10 @@ namespace Library.Tests.Data.UnitTests.RepositoriesTests
 
             //Act
             bookEventRepository.AddRentalEvent(rentalEvent);
+            var returnedBookEvents = bookEventRepository.GetAllBookEvents();
 
             //Assert
+            Assert.True(returnedBookEvents.Count.Equals(6));
         }
 
         [Fact]
@@ -38,8 +40,10 @@ namespace Library.Tests.Data.UnitTests.RepositoriesTests
 
             //Act
             bookEventRepository.AddReturnEvent(returnEvent);
+            var returnedBookEvents = bookEventRepository.GetAllBookEvents();
 
             //Assert
+            Assert.True(returnedBookEvents.Count.Equals(6));
         }
 
         [Fact]
