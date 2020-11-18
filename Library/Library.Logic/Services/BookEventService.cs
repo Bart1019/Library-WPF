@@ -9,8 +9,8 @@ namespace Library.Logic.Services
     public class BookEventService
     {
         private readonly BookState _availableLibraryBook = new BookState();
-        private readonly IBookEventRepository bookEventRepository;
         private readonly BookCatalog _bookCatalog;
+        private readonly IBookEventRepository bookEventRepository;
         private readonly IBooksCatalogRepository booksCatalogRepository;
         private readonly IBooksStateRepository booksStateRepository;
         private readonly IUserRepository userRepository;

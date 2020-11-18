@@ -1,55 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Library.Data;
 using Library.Data.Interfaces;
 using Library.Data.Models;
 
 namespace Library.Tests.Data.UnitTests.DataGenerators
 {
-    public class RandomDataGenerator: IDataGenerator
+    public class RandomDataGenerator : IDataGenerator
     {
         private readonly Random random = new Random();
-        private DataContext dataContext = new DataContext();
+        private readonly DataContext dataContext = new DataContext();
 
         public DataContext GenerateData()
         {
-            User randomUser = CreateRandomUser();
+            var randomUser = CreateRandomUser();
             dataContext.Users.Add(randomUser);
 
-            Book randomBook = CreateRandomBook();
+            var randomBook = CreateRandomBook();
             dataContext.BookCatalog.Books.Add(randomBook);
 
-            BookState randomBookState = CreateRandomBookState();
+            var randomBookState = CreateRandomBookState();
             dataContext.BookState = randomBookState;
 
-            RentalEvent randomRentalEvent = CreateRandomRentalEvent();
-            ReturnEvent randomReturnEvent = CreateRandomReturnEvent();
+            var randomRentalEvent = CreateRandomRentalEvent();
+            var randomReturnEvent = CreateRandomReturnEvent();
             dataContext.BookEvents.Add(randomRentalEvent);
             dataContext.BookEvents.Add(randomReturnEvent);
 
             return dataContext;
         }
 
-        public User CreateRandomUser()
-        {
-            User user = new User
-            {
-                Id = RandomNumber(1,20),
-                Name = RandomString(6),
-                Surname = RandomString(10),
-                AmountOfBooksRented = RandomNumber(0,15)
-            };
-
-            return user;
-        }
-
         public Book CreateRandomBook()
         {
-            Book book = new Book
+            var book = new Book
             {
-                Id = RandomNumber(1,100),
+                Id = RandomNumber(1, 100),
                 Author = RandomString(20),
                 BookGenre = RandomGenre(),
                 Title = RandomString(10)
@@ -60,18 +46,17 @@ namespace Library.Tests.Data.UnitTests.DataGenerators
 
         public BookState CreateRandomBookState()
         {
-            BookState bookState = new BookState
+            var bookState = new BookState
             {
                 AllBooks = dataContext.BookCatalog,
                 AvailableBooksAmount = new Dictionary<Book, int>
                 {
-                    {CreateRandomBook(), RandomNumber(1,10) },
-                    {CreateRandomBook(), RandomNumber(1,10) },
-                    {CreateRandomBook(), RandomNumber(1,10) },
-                    {CreateRandomBook(), RandomNumber(1,10) },
-                    {CreateRandomBook(), RandomNumber(1,10) },
-                    {CreateRandomBook(), RandomNumber(1,10) },
-
+                    {CreateRandomBook(), RandomNumber(1, 10)},
+                    {CreateRandomBook(), RandomNumber(1, 10)},
+                    {CreateRandomBook(), RandomNumber(1, 10)},
+                    {CreateRandomBook(), RandomNumber(1, 10)},
+                    {CreateRandomBook(), RandomNumber(1, 10)},
+                    {CreateRandomBook(), RandomNumber(1, 10)}
                 }
             };
 
@@ -80,7 +65,7 @@ namespace Library.Tests.Data.UnitTests.DataGenerators
 
         public RentalEvent CreateRandomRentalEvent()
         {
-            RentalEvent rentalEvent = new RentalEvent
+            var rentalEvent = new RentalEvent
             {
                 BookInLibrary = CreateRandomBookState(),
                 RentalDate = default,
@@ -92,13 +77,33 @@ namespace Library.Tests.Data.UnitTests.DataGenerators
 
         public ReturnEvent CreateRandomReturnEvent()
         {
-           ReturnEvent returnEvent = new ReturnEvent
-           {
-               RentalUser = CreateRandomUser(),
-               ReturnDate = default
-           };
+            var returnEvent = new ReturnEvent
+            {
+                RentalUser = CreateRandomUser(),
+                ReturnDate = default
+            };
 
-           return returnEvent;
+            return returnEvent;
+        }
+
+        public User CreateRandomUser()
+        {
+            var user = new User
+            {
+                Id = RandomNumber(1, 20),
+                Name = RandomString(6),
+                Surname = RandomString(10),
+                AmountOfBooksRented = RandomNumber(0, 15)
+            };
+
+            return user;
+        }
+
+        public BookEnum RandomGenre()
+        {
+            var values = Enum.GetValues(typeof(BookEnum));
+            var randomGenre = (BookEnum) values.GetValue(random.Next(values.Length));
+            return randomGenre;
         }
 
         public int RandomNumber(int bottomBorder, int upperBorder)
@@ -111,13 +116,6 @@ namespace Library.Tests.Data.UnitTests.DataGenerators
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             return new string(Enumerable.Repeat(chars, length)
                 .Select(s => s[random.Next(s.Length)]).ToArray());
-        }
-
-        public BookEnum RandomGenre()
-        {
-            Array values = Enum.GetValues(typeof(BookEnum));
-            BookEnum randomGenre = (BookEnum)values.GetValue(random.Next(values.Length));
-            return randomGenre;
         }
     }
 }

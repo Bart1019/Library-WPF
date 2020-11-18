@@ -12,7 +12,7 @@ namespace Library.Logic.Repositories
 
         public BooksCatalogRepository(DataContext dataContext)
         {
-            this._dataContext = dataContext;
+            _dataContext = dataContext;
         }
 
         public List<Book> GetAllBooks()

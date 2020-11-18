@@ -11,7 +11,7 @@ namespace Library.Logic.Repositories
 
         public BookEventRepository(DataContext dataContext)
         {
-            this._dataContext = dataContext;
+            _dataContext = dataContext;
         }
 
         public List<BookEvent> GetAllBookEvents()

@@ -12,7 +12,7 @@ namespace Library.Logic.Repositories
 
         public UserRepository(DataContext dataContext)
         {
-            this._dataContext = dataContext;
+            _dataContext = dataContext;
         }
 
         public List<User> GetAllUsers()

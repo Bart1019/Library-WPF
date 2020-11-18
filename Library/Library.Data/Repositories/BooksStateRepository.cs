@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Library.Data;
 using Library.Data.Interfaces;
 using Library.Data.Models;
 
@@ -12,7 +11,7 @@ namespace Library.Data.Repositories
 
         public BooksStateRepository(DataContext dataContext)
         {
-            this._dataContext = dataContext;
+            _dataContext = dataContext;
         }
 
         public List<Book> GetAllAvailableBooks()
@@ -39,9 +38,7 @@ namespace Library.Data.Repositories
             var updatedBook = _dataContext.BookState.AllBooks.Books.FirstOrDefault(i => i.Id.Equals(bookId));
 
             if (updatedBook != null && _dataContext.BookState.AvailableBooksAmount.ContainsKey(updatedBook))
-            {
                 _dataContext.BookState.AvailableBooksAmount[updatedBook] = actualBooksAmount;
-            }
 
             return actualBooksAmount;
         }
