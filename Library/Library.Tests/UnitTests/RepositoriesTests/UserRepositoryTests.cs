@@ -11,12 +11,12 @@ namespace Library.Tests.Data.UnitTests.RepositoriesTests
     {
         public UserRepositoryTests()
         {
-            dbContext = new DbContext();
-            userRepository = new UserRepository(dbContext);
+            _dataContext = new DataContext();
+            userRepository = new UserRepository(_dataContext);
         }
 
         private readonly UserRepository userRepository;
-        private readonly DbContext dbContext;
+        private readonly DataContext _dataContext;
 
         [Theory]
         [InlineData(1)]

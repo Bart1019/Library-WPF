@@ -8,38 +8,38 @@ namespace Library.Logic.Repositories
 {
     public class BooksCatalogRepository : IBooksCatalogRepository
     {
-        private readonly DbContext dbContext;
+        private readonly DataContext _dataContext;
 
-        public BooksCatalogRepository(DbContext dbContext)
+        public BooksCatalogRepository(DataContext dataContext)
         {
-            this.dbContext = dbContext;
+            this._dataContext = dataContext;
         }
 
         public List<Book> GetAllBooks()
         {
-            return dbContext.BookCatalog.Books;
+            return _dataContext.BookCatalog.Books;
         }
 
         public Book GetBookById(int id)
         {
-            return dbContext.BookCatalog.Books.FirstOrDefault(i => i.Id.Equals(id));
+            return _dataContext.BookCatalog.Books.FirstOrDefault(i => i.Id.Equals(id));
         }
 
         public Book GetBookByType(BookEnum bookType)
         {
-            return dbContext.BookCatalog.Books.FirstOrDefault(t => t.BookType.Equals(bookType));
+            return _dataContext.BookCatalog.Books.FirstOrDefault(t => t.BookType.Equals(bookType));
         }
 
         public void DeleteBook(int id)
         {
-            var deletedBook = dbContext.BookCatalog.Books.FirstOrDefault(i => i.Id.Equals(id));
+            var deletedBook = _dataContext.BookCatalog.Books.FirstOrDefault(i => i.Id.Equals(id));
 
-            if (deletedBook != null) dbContext.BookCatalog.Books.Remove(deletedBook);
+            if (deletedBook != null) _dataContext.BookCatalog.Books.Remove(deletedBook);
         }
 
         public void EditBook(Book book)
         {
-            var editedBook = dbContext.BookCatalog.Books.FirstOrDefault(b => b.Id.Equals(book.Id));
+            var editedBook = _dataContext.BookCatalog.Books.FirstOrDefault(b => b.Id.Equals(book.Id));
 
             if (editedBook != null)
             {
@@ -57,7 +57,7 @@ namespace Library.Logic.Repositories
                 BookType = book.BookType
             };
 
-            dbContext.BookCatalog.Books.Add(addedBook);
+            _dataContext.BookCatalog.Books.Add(addedBook);
         }
     }
 }

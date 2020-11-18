@@ -10,12 +10,12 @@ namespace Library.Tests.Data.UnitTests.RepositoriesTests
     {
         public BooksStateRepositoryTests()
         {
-            dbContext = new DbContext();
-            booksStateRepository = new BooksStateRepository(dbContext);
+            _dataContext = new DataContext();
+            booksStateRepository = new BooksStateRepository(_dataContext);
         }
 
         private readonly BooksStateRepository booksStateRepository;
-        private readonly DbContext dbContext;
+        private readonly DataContext _dataContext;
 
         [Theory]
         [InlineData(1)]

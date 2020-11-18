@@ -8,33 +8,33 @@ namespace Library.Logic.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        private readonly DbContext dbContext;
+        private readonly DataContext _dataContext;
 
-        public UserRepository(DbContext dbContext)
+        public UserRepository(DataContext dataContext)
         {
-            this.dbContext = dbContext;
+            this._dataContext = dataContext;
         }
 
         public List<User> GetAllUsers()
         {
-            return dbContext.Users;
+            return _dataContext.Users;
         }
 
         public User GetUserById(int id)
         {
-            return dbContext.Users.FirstOrDefault(i => i.Id.Equals(id));
+            return _dataContext.Users.FirstOrDefault(i => i.Id.Equals(id));
         }
 
         public void DeleteUser(int id)
         {
-            var deletedUser = dbContext.Users.FirstOrDefault(i => i.Id.Equals(id));
+            var deletedUser = _dataContext.Users.FirstOrDefault(i => i.Id.Equals(id));
 
-            if (deletedUser != null) dbContext.Users.Remove(deletedUser);
+            if (deletedUser != null) _dataContext.Users.Remove(deletedUser);
         }
 
         public void EditUser(User user)
         {
-            var editedUser = dbContext.Users.FirstOrDefault(b => b.Id.Equals(user.Id));
+            var editedUser = _dataContext.Users.FirstOrDefault(b => b.Id.Equals(user.Id));
 
             if (editedUser != null)
             {
@@ -55,7 +55,7 @@ namespace Library.Logic.Repositories
                 AmountOfBooksRented = user.AmountOfBooksRented
             };
 
-            dbContext.Users.Add(addedUser);
+            _dataContext.Users.Add(addedUser);
         }
     }
 }

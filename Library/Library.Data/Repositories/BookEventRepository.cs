@@ -7,16 +7,16 @@ namespace Library.Logic.Repositories
 {
     public class BookEventRepository : IBookEventRepository
     {
-        private readonly DbContext dbContext;
+        private readonly DataContext _dataContext;
 
-        public BookEventRepository(DbContext dbContext)
+        public BookEventRepository(DataContext dataContext)
         {
-            this.dbContext = dbContext;
+            this._dataContext = dataContext;
         }
 
         public List<BookEvent> GetAllBookEvents()
         {
-            return dbContext.BookEvents;
+            return _dataContext.BookEvents;
         }
 
         public void AddRentalEvent(RentalEvent rentalEvent)
@@ -28,7 +28,7 @@ namespace Library.Logic.Repositories
                 RentalUser = rentalEvent.RentalUser
             };
 
-            dbContext.BookEvents.Add(addedRentalEvent);
+            _dataContext.BookEvents.Add(addedRentalEvent);
         }
 
         public void AddReturnEvent(ReturnEvent returnEvent)
@@ -39,7 +39,7 @@ namespace Library.Logic.Repositories
                 RentalUser = returnEvent.RentalUser
             };
 
-            dbContext.BookEvents.Add(addedReturnEvent);
+            _dataContext.BookEvents.Add(addedReturnEvent);
         }
     }
 }

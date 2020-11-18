@@ -8,25 +8,25 @@ namespace Library.Data.Repositories
 {
     public class BooksStateRepository : IBooksStateRepository
     {
-        private readonly DbContext dbContext;
+        private readonly DataContext _dataContext;
 
-        public BooksStateRepository(DbContext dbContext)
+        public BooksStateRepository(DataContext dataContext)
         {
-            this.dbContext = dbContext;
+            this._dataContext = dataContext;
         }
 
         public List<Book> GetAllAvailableBooks()
         {
-            return dbContext.BookState.AllBooks.Books;
+            return _dataContext.BookState.AllBooks.Books;
         }
 
         public int GetAmountOfAvailableBooksById(int id)
         {
-            var book = dbContext.BookState.AllBooks.Books.FirstOrDefault(i => i.Id.Equals(id));
+            var book = _dataContext.BookState.AllBooks.Books.FirstOrDefault(i => i.Id.Equals(id));
 
-            if (book != null && dbContext.BookState.AvailableBooksAmount.ContainsKey(book))
+            if (book != null && _dataContext.BookState.AvailableBooksAmount.ContainsKey(book))
             {
-                var amount = dbContext.BookState.AvailableBooksAmount[book];
+                var amount = _dataContext.BookState.AvailableBooksAmount[book];
 
                 return amount > 0 ? amount : default;
             }
@@ -36,11 +36,11 @@ namespace Library.Data.Repositories
 
         public int UpdateBooksAmount(int bookId, int actualBooksAmount)
         {
-            var updatedBook = dbContext.BookState.AllBooks.Books.FirstOrDefault(i => i.Id.Equals(bookId));
+            var updatedBook = _dataContext.BookState.AllBooks.Books.FirstOrDefault(i => i.Id.Equals(bookId));
 
-            if (updatedBook != null && dbContext.BookState.AvailableBooksAmount.ContainsKey(updatedBook))
+            if (updatedBook != null && _dataContext.BookState.AvailableBooksAmount.ContainsKey(updatedBook))
             {
-                dbContext.BookState.AvailableBooksAmount[updatedBook] = actualBooksAmount;
+                _dataContext.BookState.AvailableBooksAmount[updatedBook] = actualBooksAmount;
             }
 
             return actualBooksAmount;
