@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Library.Data.Models
+﻿namespace Library.Data.Models
 {
     public class Book
     {
+        public string Author { get; set; }
         public BookEnum BookGenre { get; set; }
         public int Id { get; set; }
         public string Title { get; set; }
-        public string Author { get; set; }
     }
 }

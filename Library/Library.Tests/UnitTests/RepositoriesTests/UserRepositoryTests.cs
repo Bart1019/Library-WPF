@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Library.Data;
 using Library.Data.Models;
-using Library.Logic;
 using Library.Logic.Repositories;
 using Library.Tests.Data.UnitTests.DataGenerators;
 using Xunit;
@@ -12,7 +11,7 @@ namespace Library.Tests.Data.UnitTests.RepositoriesTests
     {
         public UserRepositoryTests()
         {
-            DataGenerator dataGenerator = new DataGenerator();
+            var dataGenerator = new DataGenerator();
             dataContext = dataGenerator.GenerateData();
             userRepository = new UserRepository(dataContext);
         }

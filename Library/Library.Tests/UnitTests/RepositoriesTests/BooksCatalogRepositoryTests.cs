@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Library.Data;
 using Library.Data.Models;
-using Library.Logic;
 using Library.Logic.Repositories;
 using Library.Tests.Data.UnitTests.DataGenerators;
 using Xunit;
@@ -12,7 +11,7 @@ namespace Library.Tests.Data.UnitTests.RepositoriesTests
     {
         public BooksCatalogRepositoryTests()
         {
-            DataGenerator dataGenerator = new DataGenerator();
+            var dataGenerator = new DataGenerator();
             dataContext = dataGenerator.GenerateData();
             booksCatalogRepository = new BooksCatalogRepository(dataContext);
         }
@@ -102,8 +101,10 @@ namespace Library.Tests.Data.UnitTests.RepositoriesTests
 
             //Act
             booksCatalogRepository.AddBook(booksCatalog.Books[0]);
+            var books = booksCatalogRepository.GetAllBooks();
 
             //Assert
+            Assert.True(books.Count.Equals(7));
         }
 
         [Fact]
@@ -117,22 +118,25 @@ namespace Library.Tests.Data.UnitTests.RepositoriesTests
             var books = booksCatalogRepository.GetAllBooks();
 
             //Assert
+            Assert.True(books.Count.Equals(5));
         }
 
         [Fact]
         public void ShouldEditBook()
         {
             //Arrange
-            var booksCatalog = new BookCatalog
-            {
-                Books = new List<Book>
-                    {new Book {Id = 1, Title = "aaaa", BookGenre = BookEnum.Adventure, Author = "Cccc"}}
-            };
+
+            Book book = new Book {Id = 1, Title = "Zzzz", BookGenre = BookEnum.Historic, Author = "Zzzz"};
 
             //Act
-            booksCatalogRepository.EditBook(booksCatalog.Books[0]);
+            booksCatalogRepository.EditBook(book);
+            var returnedBook = booksCatalogRepository.GetBookById(1);
 
             //Assert
+            Assert.Equal(book.Id, returnedBook.Id );
+            Assert.Equal(book.Title, returnedBook.Title);
+            Assert.Equal(book.BookGenre, returnedBook.BookGenre);
+            Assert.Equal(book.Author, returnedBook.Author);
         }
 
         [Fact]

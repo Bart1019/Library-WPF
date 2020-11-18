@@ -1,6 +1,5 @@
 ﻿using Library.Data;
 using Library.Data.Models;
-using Library.Logic;
 using Library.Logic.Repositories;
 using Library.Tests.Data.UnitTests.DataGenerators;
 using Xunit;
@@ -11,7 +10,7 @@ namespace Library.Tests.Data.UnitTests.RepositoriesTests
     {
         public BookEventRepositoryTests()
         {
-            DataGenerator dataGenerator = new DataGenerator();
+            var dataGenerator = new DataGenerator();
             dataContext = dataGenerator.GenerateData();
             bookEventRepository = new BookEventRepository(dataContext);
         }

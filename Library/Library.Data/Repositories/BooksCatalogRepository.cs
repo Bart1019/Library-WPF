@@ -45,6 +45,7 @@ namespace Library.Logic.Repositories
             {
                 editedBook.Title = book.Title;
                 editedBook.BookGenre = book.BookGenre;
+                editedBook.Author = book.Author;
             }
         }
 
@@ -54,7 +55,8 @@ namespace Library.Logic.Repositories
             {
                 Id = book.Id,
                 Title = book.Title,
-                BookGenre = book.BookGenre
+                BookGenre = book.BookGenre,
+                Author = book.Author
             };
 
             _dataContext.BookCatalog.Books.Add(addedBook);
