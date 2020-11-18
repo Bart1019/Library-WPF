@@ -27,12 +27,12 @@ namespace Library.Tests.Data.UnitTests.DataGenerators
             dataContext.Users.Add(user5);
             dataContext.Users.Add(user6);
 
-            Book book1 = new Book { Id = 1, Title = "aaaa", BookType = BookEnum.Adventure };
-            Book book2 = new Book { Id = 2, Title = "bbbb", BookType = BookEnum.Roman };
-            Book book3 = new Book { Id = 3, Title = "cccc", BookType = BookEnum.Document };
-            Book book4 = new Book { Id = 4, Title = "dddd", BookType = BookEnum.Historic };
-            Book book5 = new Book { Id = 5, Title = "eeee", BookType = BookEnum.SciFi };
-            Book book6 = new Book { Id = 6, Title = "ffff", BookType = BookEnum.Document };
+            Book book1 = new Book { Id = 1, Title = "aaaa", BookGenre = BookEnum.Adventure };
+            Book book2 = new Book { Id = 2, Title = "bbbb", BookGenre = BookEnum.Roman };
+            Book book3 = new Book { Id = 3, Title = "cccc", BookGenre = BookEnum.Document };
+            Book book4 = new Book { Id = 4, Title = "dddd", BookGenre = BookEnum.Historic };
+            Book book5 = new Book { Id = 5, Title = "eeee", BookGenre = BookEnum.SciFi };
+            Book book6 = new Book { Id = 6, Title = "ffff", BookGenre = BookEnum.Document };
 
             dataContext.BookCatalog.Books.Add(book1);
             dataContext.BookCatalog.Books.Add(book2);

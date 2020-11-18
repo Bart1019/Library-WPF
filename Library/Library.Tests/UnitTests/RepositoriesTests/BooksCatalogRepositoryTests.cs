@@ -29,9 +29,9 @@ namespace Library.Tests.Data.UnitTests.RepositoriesTests
             {
                 Books = new List<Book>
                 {
-                    new Book {Id = 1, Title = "aaaa", BookType = BookEnum.Adventure, Author = "Aaaa"},
-                    new Book {Id = 3, Title = "cccc", BookType = BookEnum.Document, Author = "Bbbb"},
-                    new Book {Id = 6, Title = "ffff", BookType = BookEnum.Document, Author = "Cccc"}
+                    new Book {Id = 1, Title = "aaaa", BookGenre = BookEnum.Adventure, Author = "Aaaa"},
+                    new Book {Id = 3, Title = "cccc", BookGenre = BookEnum.Document, Author = "Bbbb"},
+                    new Book {Id = 6, Title = "ffff", BookGenre = BookEnum.Document, Author = "Cccc"}
                 }
             };
 
@@ -64,9 +64,9 @@ namespace Library.Tests.Data.UnitTests.RepositoriesTests
             {
                 Books = new List<Book>
                 {
-                    new Book {Id = 1, Title = "aaaa", BookType = BookEnum.Adventure, Author = "Aaaa"},
-                    new Book {Id = 3, Title = "cccc", BookType = BookEnum.Document, Author = "Bbbb"},
-                    new Book {Id = 5, Title = "ffff", BookType = BookEnum.Roman, Author = "Cccc"}
+                    new Book {Id = 1, Title = "aaaa", BookGenre = BookEnum.Adventure, Author = "Aaaa"},
+                    new Book {Id = 3, Title = "cccc", BookGenre = BookEnum.Document, Author = "Bbbb"},
+                    new Book {Id = 5, Title = "ffff", BookGenre = BookEnum.Roman, Author = "Cccc"}
                 }
             };
 
@@ -77,13 +77,13 @@ namespace Library.Tests.Data.UnitTests.RepositoriesTests
             switch (bookType)
             {
                 case BookEnum.Adventure:
-                    Assert.Equal(booksCatalog.Books[0].BookType, returnedBook.BookType);
+                    Assert.Equal(booksCatalog.Books[0].BookGenre, returnedBook.BookGenre);
                     break;
                 case BookEnum.Document:
-                    Assert.Equal(booksCatalog.Books[1].BookType, returnedBook.BookType);
+                    Assert.Equal(booksCatalog.Books[1].BookGenre, returnedBook.BookGenre);
                     break;
                 case BookEnum.Roman:
-                    Assert.Equal(booksCatalog.Books[2].BookType, returnedBook.BookType);
+                    Assert.Equal(booksCatalog.Books[2].BookGenre, returnedBook.BookGenre);
                     break;
             }
         }
@@ -95,7 +95,7 @@ namespace Library.Tests.Data.UnitTests.RepositoriesTests
             var booksCatalog = new BookCatalog
             {
                 Books = new List<Book>
-                    {new Book {Id = 7, Title = "aaaa", BookType = BookEnum.Historic, Author = "Aaaa"}}
+                    {new Book {Id = 7, Title = "aaaa", BookGenre = BookEnum.Historic, Author = "Aaaa"}}
             };
 
             //Act
@@ -124,7 +124,7 @@ namespace Library.Tests.Data.UnitTests.RepositoriesTests
             var booksCatalog = new BookCatalog
             {
                 Books = new List<Book>
-                    {new Book {Id = 1, Title = "aaaa", BookType = BookEnum.Adventure, Author = "Cccc"}}
+                    {new Book {Id = 1, Title = "aaaa", BookGenre = BookEnum.Adventure, Author = "Cccc"}}
             };
 
             //Act

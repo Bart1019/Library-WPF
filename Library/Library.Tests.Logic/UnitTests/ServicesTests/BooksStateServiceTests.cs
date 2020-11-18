@@ -18,12 +18,12 @@ namespace Library.Tests.Logic.UnitTests.ServicesTests
             {
                 Books = new List<Book>
                 {
-                    new Book {Id = 1, Title = "aaaa", BookType = BookEnum.Adventure, Author = "Aaaa"},
-                    new Book {Id = 2, Title = "bbbb", BookType = BookEnum.Roman, Author = "Bbbb"},
-                    new Book {Id = 3, Title = "cccc", BookType = BookEnum.Document, Author = "Cccc"},
-                    new Book {Id = 4, Title = "dddd", BookType = BookEnum.Adventure, Author = "Aaaa"},
-                    new Book {Id = 5, Title = "eeee", BookType = BookEnum.Roman, Author = "Bbbb"},
-                    new Book {Id = 6, Title = "ffff", BookType = BookEnum.Document, Author = "Cccc"}
+                    new Book {Id = 1, Title = "aaaa", BookGenre = BookEnum.Adventure, Author = "Aaaa"},
+                    new Book {Id = 2, Title = "bbbb", BookGenre = BookEnum.Roman, Author = "Bbbb"},
+                    new Book {Id = 3, Title = "cccc", BookGenre = BookEnum.Document, Author = "Cccc"},
+                    new Book {Id = 4, Title = "dddd", BookGenre = BookEnum.Adventure, Author = "Aaaa"},
+                    new Book {Id = 5, Title = "eeee", BookGenre = BookEnum.Roman, Author = "Bbbb"},
+                    new Book {Id = 6, Title = "ffff", BookGenre = BookEnum.Document, Author = "Cccc"}
                 }
             };
         }

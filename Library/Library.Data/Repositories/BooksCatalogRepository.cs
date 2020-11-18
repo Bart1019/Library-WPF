@@ -27,7 +27,7 @@ namespace Library.Logic.Repositories
 
         public Book GetBookByType(BookEnum bookType)
         {
-            return _dataContext.BookCatalog.Books.FirstOrDefault(t => t.BookType.Equals(bookType));
+            return _dataContext.BookCatalog.Books.FirstOrDefault(t => t.BookGenre.Equals(bookType));
         }
 
         public void DeleteBook(int id)
@@ -44,7 +44,7 @@ namespace Library.Logic.Repositories
             if (editedBook != null)
             {
                 editedBook.Title = book.Title;
-                editedBook.BookType = book.BookType;
+                editedBook.BookGenre = book.BookGenre;
             }
         }
 
@@ -54,7 +54,7 @@ namespace Library.Logic.Repositories
             {
                 Id = book.Id,
                 Title = book.Title,
-                BookType = book.BookType
+                BookGenre = book.BookGenre
             };
 
             _dataContext.BookCatalog.Books.Add(addedBook);
