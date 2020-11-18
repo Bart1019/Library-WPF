@@ -4,7 +4,7 @@ using Library.Data;
 using Library.Data.Interfaces;
 using Library.Data.Models;
 
-namespace Library.Logic.Repositories
+namespace Library.Data.Repositories
 {
     public class BooksStateRepository : IBooksStateRepository
     {
