@@ -6,7 +6,7 @@ using Library.Logic.Services;
 using Moq;
 using Xunit;
 
-namespace Library.Tests.UnitTests.ServicesTests
+namespace Library.Tests.Logic.UnitTests.ServicesTests
 {
     public class BooksStateServiceTests
     {

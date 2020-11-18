@@ -5,7 +5,7 @@ using Library.Logic;
 using Library.Logic.Repositories;
 using Xunit;
 
-namespace Library.Tests.UnitTests.RepositoriesTests
+namespace Library.Tests.Data.UnitTests.RepositoriesTests
 {
     public class UserRepositoryTests
     {
