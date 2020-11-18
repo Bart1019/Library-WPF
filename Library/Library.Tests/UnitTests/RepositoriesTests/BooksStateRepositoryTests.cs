@@ -2,6 +2,7 @@
 using Library.Data.Repositories;
 using Library.Logic;
 using Library.Logic.Repositories;
+using Library.Tests.Data.UnitTests.DataGenerators;
 using Xunit;
 
 namespace Library.Tests.Data.UnitTests.RepositoriesTests
@@ -10,12 +11,13 @@ namespace Library.Tests.Data.UnitTests.RepositoriesTests
     {
         public BooksStateRepositoryTests()
         {
-            _dataContext = new DataContext();
-            booksStateRepository = new BooksStateRepository(_dataContext);
+            DataGenerator dataGenerator = new DataGenerator();
+            dataContext = dataGenerator.GenerateData();
+            booksStateRepository = new BooksStateRepository(dataContext);
         }
 
         private readonly BooksStateRepository booksStateRepository;
-        private readonly DataContext _dataContext;
+        private readonly DataContext dataContext;
 
         [Theory]
         [InlineData(1)]

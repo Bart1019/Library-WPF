@@ -16,22 +16,18 @@ namespace Library.Tests.Data.UnitTests.DataGenerators
         public DataContext GenerateData()
         {
             User randomUser = CreateRandomUser();
-
             dataContext.Users.Add(randomUser);
 
             Book randomBook = CreateRandomBook();
-
             dataContext.BookCatalog.Books.Add(randomBook);
+
+            BookState randomBookState = CreateRandomBookState();
+            dataContext.BookState = randomBookState;
 
             RentalEvent randomRentalEvent = CreateRandomRentalEvent();
             ReturnEvent randomReturnEvent = CreateRandomReturnEvent();
-
             dataContext.BookEvents.Add(randomRentalEvent);
             dataContext.BookEvents.Add(randomReturnEvent);
-
-            BookState randomBookState = CreateRandomBookState();
-
-            dataContext.BookState = randomBookState;
 
             return dataContext;
         }

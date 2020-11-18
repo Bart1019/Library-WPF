@@ -2,6 +2,7 @@
 using Library.Data.Models;
 using Library.Logic;
 using Library.Logic.Repositories;
+using Library.Tests.Data.UnitTests.DataGenerators;
 using Xunit;
 
 namespace Library.Tests.Data.UnitTests.RepositoriesTests
@@ -10,12 +11,13 @@ namespace Library.Tests.Data.UnitTests.RepositoriesTests
     {
         public BookEventRepositoryTests()
         {
-            _dataContext = new DataContext();
-            bookEventRepository = new BookEventRepository(_dataContext);
+            DataGenerator dataGenerator = new DataGenerator();
+            dataContext = dataGenerator.GenerateData();
+            bookEventRepository = new BookEventRepository(dataContext);
         }
 
         private readonly BookEventRepository bookEventRepository;
-        private readonly DataContext _dataContext;
+        private readonly DataContext dataContext;
 
         [Fact]
         public void ShouldAddRentalEvent()
@@ -50,7 +52,7 @@ namespace Library.Tests.Data.UnitTests.RepositoriesTests
             var returnedRentals = bookEventRepository.GetAllBookEvents();
 
             //Assert
-            Assert.True(returnedRentals.Count.Equals(3));
+            Assert.True(returnedRentals.Count.Equals(5));
         }
     }
 }
