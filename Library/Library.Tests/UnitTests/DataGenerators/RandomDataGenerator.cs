@@ -78,7 +78,7 @@ namespace Library.DataTests
             var returnEvent = new ReturnEvent
             {
                 RentalUser = CreateRandomUser(),
-                ReturnDate = default
+                RentalDate = default
             };
 
             return returnEvent;

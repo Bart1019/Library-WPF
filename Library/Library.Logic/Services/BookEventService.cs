@@ -73,7 +73,7 @@ namespace Library.Logic
                 var returnEvent = new ReturnEvent
                 {
                     RentalUser = rentalUser,
-                    ReturnDate = returnDate
+                    RentalDate = returnDate
                 };
 
                 bookEventRepository.AddReturnEvent(returnEvent);

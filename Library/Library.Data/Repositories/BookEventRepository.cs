@@ -32,7 +32,7 @@ namespace Library.Data
         {
             var addedReturnEvent = new ReturnEvent
             {
-                ReturnDate = returnEvent.ReturnDate,
+                RentalDate = returnEvent.RentalDate,
                 RentalUser = returnEvent.RentalUser
             };
 

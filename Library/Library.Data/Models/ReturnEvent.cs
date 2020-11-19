@@ -4,6 +4,6 @@ namespace Library.Data
 {
     public class ReturnEvent : BookEvent
     {
-        public DateTime ReturnDate { get; set; }
+        public override DateTime EventDate { get; set; }
     }
 }

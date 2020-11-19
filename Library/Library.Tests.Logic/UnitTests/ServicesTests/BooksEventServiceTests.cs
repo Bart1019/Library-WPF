@@ -23,7 +23,7 @@ namespace Library.LogicTests
             {
                 new RentalEvent {RentalDate = default, RentalUser = default, BookInLibrary = default},
                 new RentalEvent {RentalDate = default, RentalUser = default, BookInLibrary = default},
-                new ReturnEvent {ReturnDate = default, RentalUser = default}
+                new ReturnEvent {RentalDate = default, RentalUser = default}
             };
 
             _bookState.AllBooks = new BookCatalog
@@ -123,7 +123,7 @@ namespace Library.LogicTests
             var expectedReturnEvent = new ReturnEvent
             {
                 RentalUser = returnedUser,
-                ReturnDate = returnDate
+                RentalDate = returnDate
             };
 
             userRepositoryMock.Setup(x => x.GetUserById(It.IsAny<int>())).Returns(returnedUser);
