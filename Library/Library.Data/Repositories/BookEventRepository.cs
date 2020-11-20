@@ -21,7 +21,7 @@ namespace Library.Data
             var addedRentalEvent = new RentalEvent
             {
                 BookInLibrary = rentalEvent.BookInLibrary,
-                RentalDate = rentalEvent.RentalDate,
+                EventDate = rentalEvent.EventDate,
                 RentalUser = rentalEvent.RentalUser
             };
 
@@ -32,7 +32,7 @@ namespace Library.Data
         {
             var addedReturnEvent = new ReturnEvent
             {
-                RentalDate = returnEvent.RentalDate,
+                EventDate = returnEvent.EventDate,
                 RentalUser = returnEvent.RentalUser
             };
 

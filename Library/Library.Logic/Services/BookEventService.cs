@@ -73,7 +73,7 @@ namespace Library.Logic
                 var returnEvent = new ReturnEvent
                 {
                     RentalUser = rentalUser,
-                    RentalDate = returnDate
+                    EventDate = returnDate
                 };
 
                 bookEventRepository.AddReturnEvent(returnEvent);
@@ -91,7 +91,7 @@ namespace Library.Logic
 
             return new RentalEvent
             {
-                RentalDate = rentalDate,
+                EventDate = rentalDate,
                 RentalUser = rentalUser,
                 BookInLibrary = bookState
             };
