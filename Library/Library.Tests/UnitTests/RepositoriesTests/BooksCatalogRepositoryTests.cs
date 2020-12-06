@@ -123,7 +123,7 @@ namespace Library.DataTests
         {
             //Arrange
 
-            var book = new Book {Id = 1, Title = "Zzzz", BookGenre = BookEnum.Historic, Author = "Zzzz"};
+            var book = new Book { Id = 1, Title = "Zzzz", BookGenre = BookEnum.Historic, Author = "Zzzz" };
 
             //Act
             booksCatalogRepository.EditBook(book);

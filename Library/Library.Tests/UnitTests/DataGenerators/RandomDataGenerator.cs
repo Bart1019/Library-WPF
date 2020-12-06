@@ -100,7 +100,7 @@ namespace Library.DataTests
         private BookEnum RandomGenre()
         {
             var values = Enum.GetValues(typeof(BookEnum));
-            var randomGenre = (BookEnum) values.GetValue(random.Next(values.Length));
+            var randomGenre = (BookEnum)values.GetValue(random.Next(values.Length));
             return randomGenre;
         }
 

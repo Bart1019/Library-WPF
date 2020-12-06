@@ -1,13 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Library.Data
+﻿namespace Library.Data
 {
     public class User
     {
-        [Key]
+        public int AmountOfBooksRented { get; set; }
         public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public int AmountOfBooksRented { get; set; }
     }
 }

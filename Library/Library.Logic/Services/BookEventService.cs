@@ -7,8 +7,7 @@ namespace Library.Logic
 {
     public class BookEventService
     {
-        private readonly BookState _availableLibraryBook = new BookState();
-        private readonly BookCatalog _bookCatalog;
+        private readonly BookState availableLibraryBook = new BookState();
         private readonly IBookEventRepository bookEventRepository;
         private readonly IBooksCatalogRepository booksCatalogRepository;
         private readonly IBooksStateRepository booksStateRepository;
@@ -37,12 +36,12 @@ namespace Library.Logic
             if (availableAmountOfParticularBook <= 0) return null;
 
             var rentalUser = userRepository.GetUserById(userId);
-            _availableLibraryBook.AllBooks = new BookCatalog
+            availableLibraryBook.AllBooks = new BookCatalog
             {
                 Books = booksStateRepository.GetAllAvailableBooks()
             };
 
-            var rental = InitializeEvent(rentalDate, rentalUser, _availableLibraryBook, bookId, out var book);
+            var rental = InitializeEvent(rentalDate, rentalUser, availableLibraryBook, bookId, out var book);
 
             if (ValidateData(rentalUser, book, rentalDate))
             {
