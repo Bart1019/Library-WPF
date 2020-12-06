@@ -7,13 +7,11 @@ namespace Library.Data
 {
     public class LibraryDbContext : DbContext
     {
-        public LibraryDbContext(DbContextOptions<LibraryDbContext> options) : base(options)
-        {
-        }
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=MSI\\BARTEKSQL;Database=LibraryDb;");
+            optionsBuilder.UseSqlServer("Server=MSI\\BARTEKSQL;Database=LibraryDb;Trusted_Connection=True;MultipleActiveResultSets=true");
+
+            base.OnConfiguring(optionsBuilder);
         }
 
         public DbSet<Book> Books { get; set; }
