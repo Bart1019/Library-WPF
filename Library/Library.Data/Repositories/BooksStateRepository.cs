@@ -14,19 +14,19 @@ namespace Library.Data
 
         public List<Book> GetAllAvailableBooks()
         {
-            return _dataContext.BookState.AllBooks.Books;
+            return new List<Book>();//_dataContext.BookState.AllBooks.Books;
         }
 
         public int GetAmountOfAvailableBooksById(int id)
         {
             var book = _dataContext.BookState.AllBooks.Books.FirstOrDefault(i => i.Id.Equals(id));
 
-            if (book != null && _dataContext.BookState.AvailableBooksAmount.ContainsKey(book))
-            {
-                var amount = _dataContext.BookState.AvailableBooksAmount[book];
+           // if (book != null && _dataContext.BookState.AvailableBooksAmount.ContainsKey(book))
+            //{
+            //    var amount = _dataContext.BookState.AvailableBooksAmount[book];
 
-                return amount > 0 ? amount : default;
-            }
+           //     return amount > 0 ? amount : default;
+           // }
 
             return default;
         }
@@ -35,8 +35,8 @@ namespace Library.Data
         {
             var updatedBook = _dataContext.BookState.AllBooks.Books.FirstOrDefault(i => i.Id.Equals(bookId));
 
-            if (updatedBook != null && _dataContext.BookState.AvailableBooksAmount.ContainsKey(updatedBook))
-                _dataContext.BookState.AvailableBooksAmount[updatedBook] = actualBooksAmount;
+           // if (updatedBook != null && _dataContext.BookState.AvailableBooksAmount.ContainsKey(updatedBook))
+           //     _dataContext.BookState.AvailableBooksAmount[updatedBook] = actualBooksAmount;
 
             return actualBooksAmount;
         }

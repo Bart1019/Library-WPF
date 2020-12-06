@@ -14,7 +14,7 @@ namespace Library.Data
 
         public List<Book> GetAllBooks()
         {
-            return _dataContext.BookCatalog.Books;
+            return new List<Book>();//_dataContext.BookCatalog.Books;
         }
 
         public Book GetBookById(int id)
