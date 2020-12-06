@@ -18,6 +18,7 @@ namespace Library.Data
         public DbSet<User> Users { get; set; }
         public DbSet<BookCatalog> BookCatalogs { get; set; }
         public DbSet<BookState> BookStates { get; set; }
-        public DbSet<BookEvent> BookEvents { get; set; }
+        public DbSet<RentalEvent> RentalEvents { get; set; }
+        public DbSet<ReturnEvent> ReturnEvents { get; set; }
     }
 }
