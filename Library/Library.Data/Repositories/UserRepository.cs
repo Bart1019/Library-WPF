@@ -5,33 +5,38 @@ namespace Library.Data
 {
     public class UserRepository : IUserRepository
     {
-        private readonly DataContext _dataContext;
+        private readonly LibraryDbContext _dbContext;
 
-        public UserRepository(DataContext dataContext)
+        public UserRepository(LibraryDbContext dbContext)
         {
-            _dataContext = dataContext;
+            _dbContext = dbContext;
         }
 
-        public List<User> GetAllUsers()
+        public IQueryable<User> GetAllUsers()
         {
-            return _dataContext.Users;
+            return _dbContext.Users;
         }
 
         public User GetUserById(int id)
         {
-            return _dataContext.Users.FirstOrDefault(i => i.Id.Equals(id));
+            return _dbContext.Users.FirstOrDefault(i => i.Id.Equals(id));
         }
 
         public void DeleteUser(int id)
         {
-            var deletedUser = _dataContext.Users.FirstOrDefault(i => i.Id.Equals(id));
+            var deletedUser = _dbContext.Users.FirstOrDefault(i => i.Id.Equals(id));
 
-            if (deletedUser != null) _dataContext.Users.Remove(deletedUser);
+            if (deletedUser != null)
+            {
+                _dbContext.Users.Remove(deletedUser);
+                _dbContext.SaveChanges();
+            }
+
         }
 
         public void EditUser(User user)
         {
-            var editedUser = _dataContext.Users.FirstOrDefault(b => b.Id.Equals(user.Id));
+            var editedUser = _dbContext.Users.FirstOrDefault(b => b.Id.Equals(user.Id));
 
             if (editedUser != null)
             {
@@ -39,6 +44,8 @@ namespace Library.Data
                 editedUser.Name = user.Name;
                 editedUser.Surname = user.Surname;
                 editedUser.AmountOfBooksRented = user.AmountOfBooksRented;
+
+                _dbContext.SaveChanges();
             }
         }
 
@@ -52,7 +59,9 @@ namespace Library.Data
                 AmountOfBooksRented = user.AmountOfBooksRented
             };
 
-            _dataContext.Users.Add(addedUser);
+            _dbContext.Users.Add(addedUser);
+
+            _dbContext.SaveChanges();
         }
     }
 }
