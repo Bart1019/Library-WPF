@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Library.Data;
 using Xunit;
 
@@ -10,7 +11,7 @@ namespace Library.DataTests
         {
             var dataGenerator = new DataGenerator();
             dataContext = dataGenerator.GenerateData();
-            booksCatalogRepository = new BooksCatalogRepository(dataContext);
+            //booksCatalogRepository = new BooksCatalogRepository(dataContext);
         }
 
         private readonly BooksCatalogRepository booksCatalogRepository;
@@ -98,7 +99,7 @@ namespace Library.DataTests
 
             //Act
             //booksCatalogRepository.AddBook(booksCatalog.Books[0]);
-            var books = booksCatalogRepository.GetAllBooks();
+            var books = booksCatalogRepository.GetAllBooks().ToList();
 
             //Assert
             Assert.True(books.Count.Equals(7));
@@ -112,7 +113,7 @@ namespace Library.DataTests
             //Act
             booksCatalogRepository.DeleteBook(1);
 
-            var books = booksCatalogRepository.GetAllBooks();
+            var books = booksCatalogRepository.GetAllBooks().ToList();
 
             //Assert
             Assert.True(books.Count.Equals(5));
@@ -142,7 +143,7 @@ namespace Library.DataTests
             //Arrange
 
             //Act
-            var returnedBooks = booksCatalogRepository.GetAllBooks();
+            var returnedBooks = booksCatalogRepository.GetAllBooks().ToList();
 
             //Assert
             Assert.True(returnedBooks.Count.Equals(6));
