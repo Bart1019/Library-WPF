@@ -12,7 +12,7 @@ namespace Library.Data
             _dbContext = dbContext;
         }
 
-        public IQueryable<User> GetAllUsers()
+        public IEnumerable<User> GetAllUsers()
         {
             return _dbContext.Users;
         }

@@ -7,7 +7,7 @@ namespace Library.Data
     {
         void AddRentalEvent(RentalEvent rentalEvent);
         void AddReturnEvent(ReturnEvent returnEvent);
-        IQueryable<BookEvent> GetAllBookReturnEvents();
-        IQueryable<BookEvent> GetAllBookRentalEvents();
+        IEnumerable<BookEvent> GetAllBookReturnEvents();
+        IEnumerable<BookEvent> GetAllBookRentalEvents();
     }
 }

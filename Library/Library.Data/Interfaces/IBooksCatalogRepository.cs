@@ -8,7 +8,7 @@ namespace Library.Data
         void AddBook(Book book);
         void DeleteBook(int id);
         void EditBook(Book book);
-        IQueryable<Book> GetAllBooks();
+        IEnumerable<Book> GetAllBooks();
         Book GetBookById(int id);
         Book GetBookByType(BookEnum bookType);
     }

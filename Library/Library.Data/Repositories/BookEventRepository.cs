@@ -39,12 +39,12 @@ namespace Library.Data
             _dbContext.SaveChanges();
         }
 
-        public IQueryable<BookEvent> GetAllBookReturnEvents()
+        public IEnumerable<BookEvent> GetAllBookReturnEvents()
         {
             return _dbContext.ReturnEvents;
         }
 
-        public IQueryable<BookEvent> GetAllBookRentalEvents()
+        public IEnumerable<BookEvent> GetAllBookRentalEvents()
         {
             return _dbContext.RentalEvents;
         }

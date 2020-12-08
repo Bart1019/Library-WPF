@@ -8,7 +8,7 @@ namespace Library.Data
         void AddUser(User user);
         void DeleteUser(int id);
         void EditUser(User user);
-        IQueryable<User> GetAllUsers();
+        IEnumerable<User> GetAllUsers();
         User GetUserById(int id);
     }
 }
