@@ -6,7 +6,7 @@ using Library.Data;
 
 namespace Library.Logic.ViewModels
 {
-    public class UserListViewModel
+    public class UserListViewModel : BaseViewModel
     {
         public ObservableCollection<User> Users { get; set; }
     }

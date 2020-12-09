@@ -7,32 +7,23 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="600">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20"/>
-            <ColumnDefinition Width="162"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="162"/>
-            <ColumnDefinition Width="20"/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="60"/>
-            <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Column="2" Grid.Row="1" FontSize="18" FontFamily="Segoe UI Light">
-            Welcome in the Library System
-        </TextBlock>
-        <Button Grid.Column="1" Grid.Row="3" FontSize="17" Width="120">
-            Manage Users
-        </Button>
-        <Button Grid.Column="2" Grid.Row="3" FontSize="17" Width="140">
-            Manage Rentals
-        </Button>
-        <Button Grid.Column="3" Grid.Row="3" FontSize="17" Width="120">
-            Manage Books
-        </Button>
+        <ContentControl Content="{Binding SelectedViewModel}"/>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button  Margin="10" FontSize="17" Width="120" Command="{Binding UpdateViewCommand}" CommandParameter="Users">
+                Manage Users
+            </Button>
+            <Button Margin="10" FontSize="17" Width="140" Command="{Binding UpdateViewCommand}" CommandParameter="Events">
+                Manage Rentals
+            </Button>
+            <Button Margin="10" FontSize="17" Width="120" Command="{Binding UpdateViewCommand}" CommandParameter="Books">
+                Manage Books
+            </Button>
+        </StackPanel>
     </Grid>
 </Window>
