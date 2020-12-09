@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 using Library.Data;
 
-namespace Library.Logic
+namespace Library.Logic.ViewModels
 {
     public class UserListViewModel
     {
