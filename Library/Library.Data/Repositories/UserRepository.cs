@@ -40,7 +40,6 @@ namespace Library.Data
 
             if (editedUser != null)
             {
-                editedUser.Id = user.Id;
                 editedUser.Name = user.Name;
                 editedUser.Surname = user.Surname;
                 editedUser.AmountOfBooksRented = user.AmountOfBooksRented;
