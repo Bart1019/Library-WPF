@@ -21,6 +21,19 @@ namespace Library.Logic.ViewModels
             }
         }
 
+        private User _selectedUser;
+
+        public User SelectedUser
+        {
+            get { return _selectedUser; }
+            set
+            {
+                _selectedUser = value;
+                OnPropertyChanged(nameof(SelectedUser));
+            }
+
+        }
+
         public UserViewModel()
         {
             Users = new ObservableCollection<User>(_userRepository.GetAllUsers());

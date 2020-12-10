@@ -5,12 +5,22 @@ namespace Library.Data
 {
     public class User : INotifyPropertyChanged
     {
+        private int _id;
         private string _name;
         private string _surname;
         private int _amountOfBooksRented;
 
         [Key]
-        public int Id { get; set; }
+        public int Id
+        {
+            get => _id;
+            set
+            {
+                if( _id == value) return;
+                _id = value;
+                RaisePropertyChanged("Id");
+            }
+        }
         public string Name 
         { 
             get => _name;
