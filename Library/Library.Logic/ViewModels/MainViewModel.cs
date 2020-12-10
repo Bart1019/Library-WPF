@@ -9,6 +9,7 @@ namespace Library.Logic.ViewModels
     public class MainViewModel : BaseViewModel
     {
         private BaseViewModel _selectedViewModel;
+
         public BaseViewModel SelectedViewModel
         {
             get { return _selectedViewModel; }

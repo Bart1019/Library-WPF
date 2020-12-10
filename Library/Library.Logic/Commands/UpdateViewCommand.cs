@@ -8,11 +8,11 @@ namespace Library.Logic.Commands
 {
     class UpdateViewCommand : ICommand
     {
-        private MainViewModel viewModel;
+        private MainViewModel _viewModel;
 
         public UpdateViewCommand(MainViewModel viewModel)
-        {
-            this.viewModel = viewModel;
+        { 
+            _viewModel = viewModel;
         }
 
         public event EventHandler CanExecuteChanged;
@@ -26,15 +26,15 @@ namespace Library.Logic.Commands
         {
             if (parameter.ToString() == "Users")
             {
-                viewModel.SelectedViewModel = new UserListViewModel();
+                _viewModel.SelectedViewModel = new UserListViewModel();
             }
             else if (parameter.ToString() == "Books")
             {
-                viewModel.SelectedViewModel = new BookCatalogViewModel();
+                _viewModel.SelectedViewModel = new BookCatalogViewModel();
             }
             else if (parameter.ToString() == "Events")
             {
-                viewModel.SelectedViewModel = new EventListViewModel();
+                _viewModel.SelectedViewModel = new EventListViewModel();
             }
         }
     }
