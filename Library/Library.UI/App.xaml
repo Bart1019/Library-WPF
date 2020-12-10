@@ -6,7 +6,7 @@
              xmlns:views="clr-namespace:Library.UI.Views"
              StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
-        <DataTemplate DataType="{x:Type viewmodels:UserListViewModel}">
+        <DataTemplate DataType="{x:Type viewmodels:UserViewModel}">
                 <views:UserListView/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type viewmodels:BookCatalogViewModel}">

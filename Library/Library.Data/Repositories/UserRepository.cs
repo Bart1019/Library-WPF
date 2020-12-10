@@ -5,12 +5,7 @@ namespace Library.Data
 {
     public class UserRepository : IUserRepository
     {
-        private readonly LibraryDbContext _dbContext;
-
-        public UserRepository(LibraryDbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
+        private readonly LibraryDbContext _dbContext = new LibraryDbContext();
 
         public IEnumerable<User> GetAllUsers()
         {
@@ -31,7 +26,6 @@ namespace Library.Data
                 _dbContext.Users.Remove(deletedUser);
                 _dbContext.SaveChanges();
             }
-
         }
 
         public void EditUser(User user)

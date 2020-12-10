@@ -26,7 +26,7 @@ namespace Library.Logic.Commands
         {
             if (parameter.ToString() == "Users")
             {
-                _viewModel.SelectedViewModel = new UserListViewModel();
+                _viewModel.SelectedViewModel = new UserViewModel();
             }
             else if (parameter.ToString() == "Books")
             {
