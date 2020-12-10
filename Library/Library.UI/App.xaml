@@ -8,12 +8,18 @@
     <Application.Resources>
         <DataTemplate DataType="{x:Type viewmodels:UserViewModel}">
                 <views:UserListView/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type viewmodels:BookCatalogViewModel}">
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:BookCatalogViewModel}">
                 <views:BookCatalogView/>
-            </DataTemplate>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type viewmodels:EventListViewModel}">
             <views:EventListView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:AddUserViewModel}">
+            <views:AddUserView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:EditUserViewModel}">
+            <views:EditUserView/>
         </DataTemplate>
     </Application.Resources>
 </Application>

@@ -5,17 +5,17 @@ using System.Windows.Input;
 
 namespace Library.Logic.Commands
 {
-    public class RelayCommand<T> : ICommand
+    public class RelayCommand : ICommand
     {
-        private readonly Action<T> _targetExecuteMethod;
-        private readonly Func<T, bool> _targetCanExecuteMethod;
+        private readonly Action _targetExecuteMethod;
+        private readonly Func<bool> _targetCanExecuteMethod;
 
-        public RelayCommand(Action<T> executeMethod)
+        public RelayCommand(Action executeMethod)
         {
             _targetExecuteMethod = executeMethod;
         }
 
-        public RelayCommand(Action<T> executeMethod, Func<T, bool> canExecuteMethod)
+        public RelayCommand(Action executeMethod, Func<bool> canExecuteMethod)
         {
             _targetExecuteMethod = executeMethod;
             _targetCanExecuteMethod = canExecuteMethod;
@@ -25,28 +25,22 @@ namespace Library.Logic.Commands
         {
             if (_targetCanExecuteMethod != null)
             {
-                T tparm = (T)parameter;
-                return _targetCanExecuteMethod(tparm);
+                return _targetCanExecuteMethod();
             }
 
-            if (_targetExecuteMethod != null)
-            {
-                return true;
-            }
-
-            return false;
+            return _targetExecuteMethod != null;
         }
 
         public void Execute(object parameter)
         {
-            _targetExecuteMethod?.Invoke((T)parameter);
+            _targetExecuteMethod();
         }
 
         public event EventHandler CanExecuteChanged;
 
         public void RaiseCanExecuteChanged()
         {
-            CanExecuteChanged(this, EventArgs.Empty);
+            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }

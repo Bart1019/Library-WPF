@@ -2,26 +2,30 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using Library.Data;
+using Library.Logic.Commands;
 
 namespace Library.Logic.ViewModels
 {
     public class UserViewModel : BaseViewModel
     {
-        private UserRepository _userRepository = new UserRepository();
+        private User _selectedUser;
+        private BaseViewModel _selectedViewModel;
 
+        public RelayCommand DeleteCommand { get; set; }
         public ObservableCollection<User> Users { get; set; }
+        public ICommand UpdateViewCommand { get; set; }
 
-        public UserRepository UserRepository
+        public UserViewModel()
         {
-            get { return _userRepository; }
-            set
-            {
-                _userRepository = value;
-            }
+            UpdateViewCommand = new UpdateUserViewCommand(this);
+            Users = new ObservableCollection<User>(UserRepository.GetAllUsers());
+            DeleteCommand = new RelayCommand(OnDelete, CanDelete);
         }
 
-        private User _selectedUser;
+        public UserRepository UserRepository { get; set; } = new UserRepository();
 
         public User SelectedUser
         {
@@ -29,14 +33,37 @@ namespace Library.Logic.ViewModels
             set
             {
                 _selectedUser = value;
-                OnPropertyChanged(nameof(SelectedUser));
+                DeleteCommand.RaiseCanExecuteChanged();
             }
-
         }
 
-        public UserViewModel()
+        public BaseViewModel SelectedViewModel
         {
-            Users = new ObservableCollection<User>(_userRepository.GetAllUsers());
+            get { return _selectedViewModel; }
+            set
+            {
+                _selectedViewModel = value;
+                OnPropertyChanged(nameof(SelectedViewModel));
+            }
+        }
+
+        private void OnDelete()
+        {
+            Users.Remove(SelectedUser);
+        }
+
+        private bool CanDelete()
+        {
+            return SelectedUser != null;
+        }
+
+        public void Delete()
+        {
+            Task.Run(() =>
+            {
+                Users.Remove(SelectedUser);
+            });
+            OnPropertyChanged(nameof(Users));
         }
     }
 }

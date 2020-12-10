@@ -24,7 +24,7 @@ namespace Library.Logic.ViewModels
 
         public MainViewModel()
         {
-            UpdateViewCommand = new UpdateViewCommand(this);
+            UpdateViewCommand = new UpdateMainViewCommand(this);
         }
     }
 }

@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="WindowsBase" Version="4.6.1055" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Library.Data\Library.Data.csproj" />
   </ItemGroup>
 

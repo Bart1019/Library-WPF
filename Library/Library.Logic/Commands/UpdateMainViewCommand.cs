@@ -6,11 +6,11 @@ using Library.Logic.ViewModels;
 
 namespace Library.Logic.Commands
 {
-    class UpdateViewCommand : ICommand
+    class UpdateMainViewCommand : ICommand
     {
-        private MainViewModel _viewModel;
+        private readonly MainViewModel _viewModel;
 
-        public UpdateViewCommand(MainViewModel viewModel)
+        public UpdateMainViewCommand(MainViewModel viewModel)
         { 
             _viewModel = viewModel;
         }
