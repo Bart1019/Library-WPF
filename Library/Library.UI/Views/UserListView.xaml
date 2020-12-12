@@ -18,32 +18,31 @@
             </StackPanel>
         </DataTemplate>
     </UserControl.Resources>
-
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="200"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Height="200" Margin="0 0 0 0" Orientation="Vertical">
-        <Label Content="List of Persons:" FontSize="18" FontWeight="Bold"/>
-        <Grid Height="100">
-            <StackPanel>
-                <ListBox ItemsSource = "{Binding Users}" ItemTemplate="{StaticResource UserTemplate}" SelectedItem = "{Binding SelectedUser}"/>
-            </StackPanel>
-        </Grid>
+    
+    <StackPanel Orientation="Vertical">
         <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="45"/>
+                <RowDefinition Height="330"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
+            <Label Grid.ColumnSpan="3" Content="List of Persons:" FontSize="18" FontWeight="Bold"/>
+            <ListBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row ="1" ItemsSource = "{Binding Users}" ItemTemplate="{StaticResource UserTemplate}" SelectedItem = "{Binding SelectedUser}"/>
 
-            <ContentControl Content="{Binding SelectedViewModel}"/>
+            <ContentControl Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="3" Content="{Binding SelectedViewModel}"></ContentControl>
 
-            <Button Height="30" Width ="100" Content="Add User" Margin="4 10 0 0" HorizontalAlignment="Left" Grid.Column="0" Command="{Binding UpdateViewCommand}" CommandParameter="Add"/>
-            <Button Height="30" Width ="100" Content="Delete User" Margin="20 10 0 0" HorizontalAlignment="Left" Grid.Column="1" Command="{Binding DeleteCommand}" />
-            <Button Height="30" Width ="100" Content="Edit User" Margin="20 10 0 0"  HorizontalAlignment="Left" Grid.Column="2" Command="{Binding UpdateViewCommand}" CommandParameter="Edit" />
+            <Button Grid.Row="2"  Height="30" Width ="100" Content="Add User" Margin="4 10 0 0" HorizontalAlignment="Left" Grid.Column="0" Command="{Binding UpdateViewCommand}" CommandParameter="Add"/>
+            <Button Grid.Row="2" Height="30" Width ="100" Content="Delete User" Margin="20 10 0 0" HorizontalAlignment="Left" Grid.Column="1" Command="{Binding DeleteCommand}" />
+            <Button Grid.Row="2" Height="30" Width ="100" Content="Edit User" Margin="20 10 0 0"  HorizontalAlignment="Left" Grid.Column="2" Command="{Binding UpdateViewCommand}" CommandParameter="Edit" />
         </Grid>
     </StackPanel>
-    </Grid>
+    
+  
 </UserControl>
