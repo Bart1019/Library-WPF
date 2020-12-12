@@ -23,7 +23,6 @@ namespace Library.Logic.ViewModels
         public UserViewModel()
         {
             UpdateViewCommand = new UpdateUserViewCommand(this);
-            //Users = new ObservableCollection<User>(UserRepository.GetAllUsers());
             LoadDataCommand = new RelayCommand(() => UserRepository = new UserRepository());
             DeleteCommand = new RelayCommand(Delete, CanDelete);
         }
@@ -44,6 +43,7 @@ namespace Library.Logic.ViewModels
             set
             {
                 _selectedUser = value;
+                RaisePropertyChanged();
                 DeleteCommand.RaiseCanExecuteChanged();
             }
         }
@@ -68,21 +68,16 @@ namespace Library.Logic.ViewModels
             }
         }
 
-        private void OnDelete()
-        {
-            Users.Remove(SelectedUser);
-        }
-
         private bool CanDelete()
         {
-            return _selectedUser != null;
+            return SelectedUser != null;
         }
 
         public void Delete()
         {
             Task.Run(() =>
             {
-                Users.Remove(SelectedUser);
+                UserRepository.DeleteUser(SelectedUser.Id);
             });
             RaisePropertyChanged(nameof(Users));
         }
