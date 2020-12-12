@@ -33,28 +33,11 @@
 
             <Label Grid.ColumnSpan="2" Content="Adding User:" FontSize="32" FontWeight="Bold"/>
 
-            <Label Content = "Id:" 
-            Grid.Column = "0" 
-            HorizontalAlignment = "Left" 
-            Margin = "3" 
-            Grid.Row = "1" 
-            VerticalAlignment = "Center" />
-
-            <TextBox x:Name = "IdTextBox" 
-            Grid.Column = "1" 
-            HorizontalAlignment = "Left" 
-            Height = "23" 
-            Margin = "3" 
-            Grid.Row = "1" 
-            Text = "{Binding Id, ValidatesOnNotifyDataErrors = True}"
-            VerticalAlignment = "Center" 
-            Width = "120" />
-
             <Label Content = "Name:" 
             Grid.Column = "0" 
             HorizontalAlignment = "Left" 
             Margin = "3" 
-            Grid.Row = "2" 
+            Grid.Row = "1" 
             VerticalAlignment = "Center" />
 
             <TextBox x:Name = "NameTextBox"
@@ -62,8 +45,8 @@
             HorizontalAlignment = "Left" 
             Height = "23" 
             Margin = "3" 
-            Grid.Row = "2" 
-            Text = "{Binding Name, ValidatesOnNotifyDataErrors = True}"
+            Grid.Row = "1" 
+            Text = "{Binding Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors = True}"
             VerticalAlignment = "Center" 
             Width = "120" />
 
@@ -71,7 +54,7 @@
             Grid.Column = "0" 
             HorizontalAlignment = "Left" 
             Margin = "3" 
-            Grid.Row = "3" 
+            Grid.Row = "2" 
             VerticalAlignment = "Center" />
 
             <TextBox x:Name = "SurnameTextBox" 
@@ -79,8 +62,8 @@
             HorizontalAlignment = "Left" 
             Height = "23" 
             Margin = "3" 
-            Grid.Row = "3" 
-            Text = "{Binding Surname, ValidatesOnNotifyDataErrors = True}"
+            Grid.Row = "2" 
+            Text = "{Binding Surname, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors = True}"
             VerticalAlignment = "Center" 
             Width = "120" />
 
@@ -88,7 +71,7 @@
             Grid.Column = "0" 
             HorizontalAlignment = "Left" 
             Margin = "3" 
-            Grid.Row = "4" 
+            Grid.Row = "3" 
             VerticalAlignment = "Center" />
 
             <TextBox x:Name = "BooksTextBox" 
@@ -96,8 +79,8 @@
             HorizontalAlignment = "Left" 
             Height = "23" 
             Margin = "3" 
-            Grid.Row = "4" 
-            Text = "{Binding AmountOfBooksRented, ValidatesOnNotifyDataErrors = True}"
+            Grid.Row = "3" 
+            Text = "{Binding AmountOfBooksRented, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors = True}"
             VerticalAlignment = "Center" 
             Width = "120" />
 
@@ -105,7 +88,7 @@
 
         <Grid Grid.Row = "1">
             <Button Content = "Add" 
-                    Command = "{Binding SaveCommand}" 
+                    Command = "{Binding AddCommand}" 
                     HorizontalAlignment = "Left" 
                     Margin = "25,5,0,0" 
                     VerticalAlignment = "Top" 
