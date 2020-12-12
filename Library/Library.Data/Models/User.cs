@@ -58,8 +58,6 @@ namespace Library.Data
             }
         }
 
-
-
         public string FullName
         {
             get

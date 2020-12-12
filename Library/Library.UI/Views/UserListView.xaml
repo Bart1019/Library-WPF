@@ -23,26 +23,30 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="35"/>
-                <RowDefinition Height="70"/>
+                <RowDefinition Height="75"/>
                 <RowDefinition Height="45"/>
-                <RowDefinition Height="330"/>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="45"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="250"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.ColumnSpan="3" Content="List of Persons:" FontSize="18" FontWeight="Bold"/>
-            <ListBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row ="1" ItemsSource = "{Binding Users}" ItemTemplate="{StaticResource UserTemplate}" SelectedItem = "{Binding SelectedUser}"/>
+            <Label Grid.ColumnSpan="3" Content="List of Users:" FontSize="18" FontWeight="Bold"/>
+            <ListBox x:Name="UserListBox" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row ="1" ItemsSource = "{Binding Users}" ItemTemplate="{StaticResource UserTemplate}" SelectedItem = "{Binding SelectedUser}"/>
 
-            <ContentControl Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="3" Content="{Binding SelectedViewModel}"></ContentControl>
+            <TextBlock Margin="10 0 0 0" Grid.Column="2" Grid.Row="1" Text="{Binding ElementName=UserListBox, Path=SelectedItem.Id, StringFormat=Id: {0}}"/>
+            <TextBlock Margin="10 20 0 0" Grid.Column="2" Grid.Row="1" Text="{Binding ElementName=UserListBox, Path=SelectedItem.Name, StringFormat= Name: {0}}"/>
+            <TextBlock Margin="10 40 0 0" Grid.Column="2" Grid.Row="1" Text="{Binding ElementName=UserListBox, Path=SelectedItem.Surname, StringFormat=Surname Name: {0}}"/>
+            <TextBlock Margin="10 60 0 0" Grid.Column="2" Grid.Row="1" Text="{Binding ElementName=UserListBox, Path=SelectedItem.AmountOfBooksRented, StringFormat=Books Rented: {0}}"/>
 
-            <Button Grid.Row="2"  Height="30" Width ="100" Content="Add User" Margin="4 10 0 0" HorizontalAlignment="Left" Grid.Column="0" Command="{Binding UpdateViewCommand}" CommandParameter="Add"/>
-            <Button Grid.Row="2" Height="30" Width ="100" Content="Delete User" Margin="20 10 0 0" HorizontalAlignment="Left" Grid.Column="1" Command="{Binding DeleteCommand}" />
-            <Button Grid.Row="2" Height="30" Width ="100" Content="Edit User" Margin="20 10 0 0"  HorizontalAlignment="Left" Grid.Column="2" Command="{Binding UpdateViewCommand}" CommandParameter="Edit" />
+            <ContentControl Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="3" Content="{Binding SelectedViewModel}"/>
+
+            <Button Grid.Row="2"  Height="30" Width ="100" Content="Load Data" Margin="4 10 0 0" HorizontalAlignment="Left" Grid.Column="0" Command="{Binding LoadDataCommand}"/>
+            <Button Grid.Row="2"  Height="30" Width ="100" Content="Add User" Margin="20 10 0 0" HorizontalAlignment="Left" Grid.Column="1" Command="{Binding UpdateViewCommand}" CommandParameter="Add"/>
+            <Button Grid.Row="2" Height="30" Width ="100" Content="Edit User" Margin="148 10 0 0"  HorizontalAlignment="Left" Grid.Column="1" Command="{Binding UpdateViewCommand}" CommandParameter="Edit" />
+            <Button Grid.Row="2" Height="30" Width ="100" Content="Delete User" Margin="20 10 0 0" HorizontalAlignment="Left" Grid.Column="2" Command="{Binding DeleteCommand}" />
         </Grid>
     </StackPanel>
-    
-  
 </UserControl>
