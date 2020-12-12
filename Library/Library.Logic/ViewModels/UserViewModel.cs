@@ -13,19 +13,30 @@ namespace Library.Logic.ViewModels
     {
         private User _selectedUser;
         private BaseViewModel _selectedViewModel;
+        private UserRepository _userRepository;
+        private ObservableCollection<User> _users;
 
+        public RelayCommand LoadDataCommand { get; set; }
         public RelayCommand DeleteCommand { get; set; }
-        public ObservableCollection<User> Users { get; set; }
         public ICommand UpdateViewCommand { get; set; }
 
         public UserViewModel()
         {
             UpdateViewCommand = new UpdateUserViewCommand(this);
-            Users = new ObservableCollection<User>(UserRepository.GetAllUsers());
-            DeleteCommand = new RelayCommand(OnDelete, CanDelete);
+            //Users = new ObservableCollection<User>(UserRepository.GetAllUsers());
+            LoadDataCommand = new RelayCommand(() => UserRepository = new UserRepository());
+            DeleteCommand = new RelayCommand(Delete, CanDelete);
         }
 
-        public UserRepository UserRepository { get; set; } = new UserRepository();
+        public ObservableCollection<User> Users
+        {
+            get { return _users; }
+            set
+            {
+                _users = value;
+                RaisePropertyChanged();
+            }
+        }
 
         public User SelectedUser
         {
@@ -34,6 +45,16 @@ namespace Library.Logic.ViewModels
             {
                 _selectedUser = value;
                 DeleteCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        public UserRepository UserRepository
+        {
+            get { return _userRepository; }
+            set
+            {
+                _userRepository = value; 
+                Users = new ObservableCollection<User>(value.GetAllUsers());
             }
         }
 
@@ -54,7 +75,7 @@ namespace Library.Logic.ViewModels
 
         private bool CanDelete()
         {
-            return SelectedUser != null;
+            return _selectedUser != null;
         }
 
         public void Delete()
@@ -63,7 +84,7 @@ namespace Library.Logic.ViewModels
             {
                 Users.Remove(SelectedUser);
             });
-            OnPropertyChanged(nameof(Users));
+            RaisePropertyChanged(nameof(Users));
         }
     }
 }
