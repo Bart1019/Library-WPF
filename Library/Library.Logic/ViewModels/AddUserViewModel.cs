@@ -12,13 +12,12 @@ namespace Library.Logic.ViewModels
 {
     public class AddUserViewModel : BaseViewModel, IDataErrorInfo
     {
-       
         private UserRepository _userRepository;
-        private readonly UserViewModel _userViewModel;
-        private User user;
+        private readonly UserViewModel _userViewModel; 
         private string name;
         private string surname;
         private int amountOfBooksRented;
+        private bool _canExecute = true;
 
         public RelayCommand AddCommand { get; set; }
         public Dictionary<string, string> ErrorCollection { get; private set; } = new Dictionary<string, string>();
@@ -38,15 +37,22 @@ namespace Library.Logic.ViewModels
                 {
                     case "Name":
                         if (string.IsNullOrWhiteSpace(Name))
+                        {
                             result = "Name cannot be empty";
+                            
+                        }
                         break;
                     case "Surname":
                         if (string.IsNullOrWhiteSpace(Surname))
+                        {
                             result = "Surname cannot be empty";
+                        }
                         break;
                     case "AmountOfBooksRented":
-                        if (AmountOfBooksRented.Equals(null))
+                        if (AmountOfBooksRented.Equals(default))
+                        {
                             result = "Rented Books cannot be empty";
+                        }
                         break;
                 }
 
@@ -64,10 +70,9 @@ namespace Library.Logic.ViewModels
             }
         }
 
-
         public AddUserViewModel()
         {
-            AddCommand = new RelayCommand(Add, CanAdd);
+            AddCommand = new RelayCommand(Add, ()=> _canExecute);
             _userViewModel = new UserViewModel();
             _userRepository = _userViewModel.UserRepository;
         }
@@ -102,38 +107,18 @@ namespace Library.Logic.ViewModels
             }
         }
 
-        public User User
-        {
-            get { return this.user; }
-            set
-            {
-                this.user = value;
-                RaisePropertyChanged();
-                AddCommand.RaiseCanExecuteChanged();
-            }
-        }
-
         public void Add()
         {
-            User = new User
+            User user = new User
             {
                 Name = Name,
                 Surname = Surname,
                 AmountOfBooksRented = AmountOfBooksRented
             };
 
-            Task.Factory.StartNew(() => _userRepository.AddUser(User))
+            Task.Factory.StartNew(() => _userRepository.AddUser(user))
                 .ContinueWith((t1) => _userRepository = new UserRepository());
         }
 
-        private bool CanAdd()
-        {
-            if (ErrorCollection.Count > 0)
-            {
-                return false;
-            }
-
-            return true;
-        }
     }
 }

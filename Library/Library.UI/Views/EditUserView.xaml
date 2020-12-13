@@ -32,26 +32,26 @@
             <Label Content = "Id:" Grid.Column = "0" HorizontalAlignment = "Left" Margin = "3" Grid.Row = "1" VerticalAlignment = "Center" />
 
             <TextBox x:Name = "IdTextBox" Grid.Column = "1" HorizontalAlignment = "Left" Height = "23" Margin = "3" Grid.Row = "1" IsReadOnly="True"
-            Text = "{Binding ElementName=UserListBox, Path=SelectedItem.Id, ValidatesOnNotifyDataErrors = True}" VerticalAlignment = "Center" Width = "120" />
+            Text = "{Binding ElementName=UserListBox, Path=SelectedItem.Id, ValidatesOnDataErrors = True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment = "Center" Width = "120" />
 
             <Label Content = "Name:" Grid.Column = "0" HorizontalAlignment = "Left" Margin = "3" Grid.Row = "2" VerticalAlignment = "Center" />
 
             <TextBox x:Name = "NameTextBox" Grid.Column = "1" HorizontalAlignment = "Left" Height = "23" Margin = "3" Grid.Row = "2" 
-            Text = "{Binding ElementName=UserListBox, Path=SelectedItem.Name, ValidatesOnNotifyDataErrors = True}" VerticalAlignment = "Center" Width = "120" />
+            Text = "{Binding ElementName=UserListBox, Path=Name, ValidatesOnDataErrors = True, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding ErrorCollection[Name]}" VerticalAlignment = "Center" Width = "120" />
 
             <Label Content = "Surname:" Grid.Column = "0" HorizontalAlignment = "Left" Margin = "3" Grid.Row = "3" VerticalAlignment = "Center" />
 
             <TextBox x:Name = "SurnameTextBox" Grid.Column = "1" HorizontalAlignment = "Left" Height = "23" Margin = "3" Grid.Row = "3" 
-            Text = "{Binding ElementName=UserListBox, Path=SelectedItem.Surname, ValidatesOnNotifyDataErrors = True}" VerticalAlignment = "Center" Width = "120" />
+            Text = "{Binding ElementName=UserListBox, Path=Surname, ValidatesOnDataErrors = True, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding ErrorCollection[Surname]}" VerticalAlignment = "Center" Width = "120" />
 
             <Label Content = "Amount of rented books:" Grid.Column = "0" HorizontalAlignment = "Left" Margin = "3" Grid.Row = "4" VerticalAlignment = "Center" />
 
             <TextBox x:Name = "BooksTextBox" Grid.Column = "1" HorizontalAlignment = "Left" Height = "23" Margin = "3" Grid.Row = "4" 
-            Text = "{Binding ElementName=UserListBox, Path=SelectedItem.AmountOfBooksRented, ValidatesOnNotifyDataErrors = True}" VerticalAlignment = "Center" Width = "120" />
+            Text = "{Binding ElementName=UserListBox, Path=AmountOfBooksRented, ValidatesOnDataErrors = True, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding ErrorCollection[AmountOfBooksRented]}" VerticalAlignment = "Center" Width = "120" />
         </Grid>
 
         <Grid Grid.Row = "1">
-            <Button Content = "Edit" Command = "{Binding SaveCommand}" HorizontalAlignment = "Left" Margin = "25,5,0,0" VerticalAlignment = "Top" Width = "255" />
+            <Button Content = "Edit" Command = "{Binding Path=EditCommand}" HorizontalAlignment = "Left" Margin = "25,5,0,0" VerticalAlignment = "Top" Width = "255" />
         </Grid>
     </Grid>
 </UserControl>
