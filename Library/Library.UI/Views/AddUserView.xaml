@@ -12,7 +12,7 @@
             <RowDefinition Height = "Auto" />
         </Grid.RowDefinitions>
 
-        <Grid x:Name = "Grid1" HorizontalAlignment = "Left" DataContext = "{Binding Users}" Margin = "10,10,0,0" VerticalAlignment = "Top">
+        <Grid x:Name = "Grid1" HorizontalAlignment = "Left" Margin = "10,10,0,0" VerticalAlignment = "Top">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width = "Auto" />
@@ -32,20 +32,19 @@
             <Label Content = "Name:" Grid.Column = "0" HorizontalAlignment = "Left" Margin = "3" Grid.Row = "1" VerticalAlignment = "Center" />
 
             <TextBox x:Name = "NameTextBox" Grid.Column = "1" HorizontalAlignment = "Left" Height = "23" Margin = "3" Grid.Row = "1" 
-            Text = "{Binding Path=Name, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment = "Center" Width = "120" />
+            Text = "{Binding Path=Name, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding ErrorCollection[Name]}" VerticalAlignment = "Center" Width = "120" />
 
             <Label Content = "Surname:" Grid.Column = "0" HorizontalAlignment = "Left" Margin = "3" Grid.Row = "2" VerticalAlignment = "Center" />
 
             <TextBox x:Name = "SurnameTextBox" Grid.Column = "1" HorizontalAlignment = "Left" Height = "23" Margin = "3" Grid.Row = "2" 
-            Text = "{Binding Path=Surname, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment = "Center" Width = "120" />
+            Text = "{Binding Path=Surname, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding ErrorCollection[Surname]}" VerticalAlignment = "Center" Width = "120" />
 
             <Label Content = "Amount of rented books:" Grid.Column = "0" HorizontalAlignment = "Left" Margin = "3" Grid.Row = "3" VerticalAlignment = "Center" />
 
             <TextBox x:Name = "BooksTextBox" Grid.Column = "1" HorizontalAlignment = "Left" Height = "23" Margin = "3" Grid.Row = "3" 
-            Text = "{Binding Path=AmountOfBooksRented, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment = "Center" Width = "120" />
+            Text = "{Binding Path=AmountOfBooksRented, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding ErrorCollection[AmountOfBooksRented]}" VerticalAlignment = "Center" Width = "120" />
 
         </Grid>
-
         <Grid Grid.Row = "1">
             <Button Content = "Add" Command = "{Binding Path=AddCommand}" HorizontalAlignment = "Left" Margin = "25,5,0,0" IsEnabled="True" VerticalAlignment = "Top" Width = "255" />
         </Grid>
