@@ -13,7 +13,8 @@ namespace Library.Logic.ViewModels
     public class AddUserViewModel : BaseViewModel, IDataErrorInfo
     {
         private UserRepository _userRepository;
-        private readonly UserViewModel _userViewModel; 
+        private readonly UserViewModel _userViewModel;
+        private ObservableCollection<User> _users;
         private string name;
         private string surname;
         private int amountOfBooksRented;
@@ -48,12 +49,6 @@ namespace Library.Logic.ViewModels
                             result = "Surname cannot be empty";
                         }
                         break;
-                    case "AmountOfBooksRented":
-                        if (AmountOfBooksRented.Equals(default))
-                        {
-                            result = "Rented Books cannot be empty";
-                        }
-                        break;
                 }
 
                 if (ErrorCollection.ContainsKey(columnName))
@@ -75,6 +70,7 @@ namespace Library.Logic.ViewModels
             AddCommand = new RelayCommand(Add, ()=> _canExecute);
             _userViewModel = new UserViewModel();
             _userRepository = _userViewModel.UserRepository;
+            _users = _userViewModel.Users;
         }
 
         public string Name
@@ -117,7 +113,9 @@ namespace Library.Logic.ViewModels
             };
 
             Task.Factory.StartNew(() => _userRepository.AddUser(user))
-                .ContinueWith((t1) => _userRepository = new UserRepository());
+                .ContinueWith((t1) => _users = _userViewModel.Users);
+
+            RaisePropertyChanged(nameof(_users));
         }
     }
 }

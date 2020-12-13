@@ -12,7 +12,8 @@ namespace Library.Logic.ViewModels
     {
         private UserRepository _userRepository;
         private readonly UserViewModel _userViewModel;
-        private User _user;
+        private User user;
+        private int id;
         private string name;
         private string surname;
         private int amountOfBooksRented;
@@ -45,12 +46,6 @@ namespace Library.Logic.ViewModels
                         if (string.IsNullOrWhiteSpace(Surname))
                         {
                             result = "Surname cannot be empty";
-                        }
-                        break;
-                    case "AmountOfBooksRented":
-                        if (AmountOfBooksRented.Equals(default))
-                        {
-                            result = "Rented Books cannot be empty";
                         }
                         break;
                 }
@@ -87,6 +82,16 @@ namespace Library.Logic.ViewModels
             _userRepository = _userViewModel.UserRepository;
         }
 
+        public int Id
+        {
+            get { return this.id; }
+            set
+            {
+                this.id = value;
+                OnPropertyChanged(nameof(Id));
+            }
+        }
+
         public string Surname
         {
             get { return this.surname; }
@@ -109,8 +114,12 @@ namespace Library.Logic.ViewModels
 
         public User User
         {
-            get {return _user;}
-            set { this._user = value; }
+            get {return user;}
+            set
+            {
+                this.user = value; 
+                OnPropertyChanged(nameof(User));
+            }
 
         }
 
@@ -118,13 +127,15 @@ namespace Library.Logic.ViewModels
         {
             User = new User
             {
-                Id = User.Id,
                 Name = Name,
                 Surname = Surname,
                 AmountOfBooksRented = AmountOfBooksRented
             };
+
             Task.Factory.StartNew(() => _userRepository.EditUser(User))
                 .ContinueWith((t1) => _userRepository = new UserRepository());
+
+            RaisePropertyChanged(nameof(_userViewModel.Users));
         }
     }
 }
