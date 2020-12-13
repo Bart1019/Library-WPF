@@ -12,6 +12,7 @@ namespace Library.Logic.ViewModels
     {
         private UserRepository _userRepository;
         private readonly UserViewModel _userViewModel;
+        private User _user;
         private string name;
         private string surname;
         private int amountOfBooksRented;
@@ -106,16 +107,23 @@ namespace Library.Logic.ViewModels
             }
         }
 
+        public User User
+        {
+            get {return _user;}
+            set { this._user = value; }
+
+        }
+
         public void Edit()
         {
-            User user = new User
+            User = new User
             {
+                Id = User.Id,
                 Name = Name,
                 Surname = Surname,
                 AmountOfBooksRented = AmountOfBooksRented
             };
-
-            Task.Factory.StartNew(() => _userRepository.EditUser(user))
+            Task.Factory.StartNew(() => _userRepository.EditUser(User))
                 .ContinueWith((t1) => _userRepository = new UserRepository());
         }
     }

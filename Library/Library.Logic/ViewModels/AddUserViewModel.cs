@@ -119,6 +119,5 @@ namespace Library.Logic.ViewModels
             Task.Factory.StartNew(() => _userRepository.AddUser(user))
                 .ContinueWith((t1) => _userRepository = new UserRepository());
         }
-
     }
 }
