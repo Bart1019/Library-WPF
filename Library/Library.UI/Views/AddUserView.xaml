@@ -32,17 +32,17 @@
             <Label Content = "Name:" Grid.Column = "0" HorizontalAlignment = "Left" Margin = "3" Grid.Row = "1" VerticalAlignment = "Center" />
 
             <TextBox x:Name = "NameTextBox" Grid.Column = "1" HorizontalAlignment = "Left" Height = "23" Margin = "3" Grid.Row = "1" 
-            Text = "{Binding ElementName=UserListBox, Path=CurrentUser.Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors = True}" VerticalAlignment = "Center" Width = "120" />
+            Text = "{Binding Path=Name, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment = "Center" Width = "120" />
 
             <Label Content = "Surname:" Grid.Column = "0" HorizontalAlignment = "Left" Margin = "3" Grid.Row = "2" VerticalAlignment = "Center" />
 
             <TextBox x:Name = "SurnameTextBox" Grid.Column = "1" HorizontalAlignment = "Left" Height = "23" Margin = "3" Grid.Row = "2" 
-            Text = "{Binding ElementName=UserListBox, Path=CurrentUser.Surname, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors = True}" VerticalAlignment = "Center" Width = "120" />
+            Text = "{Binding Path=Surname, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment = "Center" Width = "120" />
 
             <Label Content = "Amount of rented books:" Grid.Column = "0" HorizontalAlignment = "Left" Margin = "3" Grid.Row = "3" VerticalAlignment = "Center" />
 
             <TextBox x:Name = "BooksTextBox" Grid.Column = "1" HorizontalAlignment = "Left" Height = "23" Margin = "3" Grid.Row = "3" 
-            Text = "{Binding ElementName=UserListBox, Path=CurrentUser.AmountOfBooksRented, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors = True}" VerticalAlignment = "Center" Width = "120" />
+            Text = "{Binding Path=AmountOfBooksRented, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment = "Center" Width = "120" />
 
         </Grid>
 

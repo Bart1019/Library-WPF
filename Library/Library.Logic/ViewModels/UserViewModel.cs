@@ -24,10 +24,9 @@ namespace Library.Logic.ViewModels
 
         public UserViewModel()
         {
-            //Task.Run(() => { Users = new ObservableCollection<User>(UserRepository.GetAllUsers()); });
-            Users = new ObservableCollection<User>(UserRepository.GetAllUsers());
+            Task.Run(() => { Users = new ObservableCollection<User>(UserRepository.GetAllUsers()); });
             UpdateViewCommand = new UpdateUserViewCommand(this);
-            //LoadDataCommand = new RelayCommand(() => UserRepository = new UserRepository());
+            LoadDataCommand = new RelayCommand(() => UserRepository = _userRepository);
             DeleteCommand = new RelayCommand(Delete, CanDelete);
            
         }
@@ -73,18 +72,10 @@ namespace Library.Logic.ViewModels
             }
         }
 
-        
-
-        
-
         public void Delete()
         {
-            /*Task.Run(() =>
-            {
-                _userRepository.DeleteUser(SelectedUser.Id);
-            });
-            RaisePropertyChanged(nameof(Users));*/
-            Users.Remove(SelectedUser);
+            Task.Factory.StartNew(()=>_userRepository.DeleteUser(SelectedUser.Id))
+                .ContinueWith((t1) => UserRepository = _userRepository);
         }
 
         private bool CanDelete()
