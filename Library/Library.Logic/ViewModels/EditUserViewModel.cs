@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Library.Logic.ViewModels
 {
-    public class EditUserViewModel : BaseViewModel
+    public class EditUserViewModel : ErrorBaseViewModel
     {
     }
 }

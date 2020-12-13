@@ -13,21 +13,23 @@ namespace Library.Logic.ViewModels
     {
         private User _selectedUser;
         private BaseViewModel _selectedViewModel;
-        private UserRepository _userRepository;
+        private UserRepository _userRepository = new UserRepository();
         private ObservableCollection<User> _users;
-        private bool _canExecute;
+        private readonly bool _canExecute = true;
 
         public RelayCommand LoadDataCommand { get; set; }
-        public RelayCommand AddCommand { get; set; }
+        
         public RelayCommand DeleteCommand { get; set; }
         public ICommand UpdateViewCommand { get; set; }
 
         public UserViewModel()
         {
+            //Task.Run(() => { Users = new ObservableCollection<User>(UserRepository.GetAllUsers()); });
+            Users = new ObservableCollection<User>(UserRepository.GetAllUsers());
             UpdateViewCommand = new UpdateUserViewCommand(this);
-            LoadDataCommand = new RelayCommand(() => UserRepository = new UserRepository());
-            DeleteCommand = new RelayCommand(Delete, ()=>true);
-            AddCommand = new RelayCommand(Add, ()=> _canExecute);
+            //LoadDataCommand = new RelayCommand(() => UserRepository = new UserRepository());
+            DeleteCommand = new RelayCommand(Delete, CanDelete);
+           
         }
 
         public ObservableCollection<User> Users
@@ -47,7 +49,7 @@ namespace Library.Logic.ViewModels
             {
                 _selectedUser = value;
                 RaisePropertyChanged();
-               // DeleteCommand.RaiseCanExecuteChanged();
+                DeleteCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -71,32 +73,18 @@ namespace Library.Logic.ViewModels
             }
         }
 
-        public string Name { get; set; }
+        
 
-        public string Surname { get; set; }
-
-        public int AmountOfBooksRented { get; set; }
+        
 
         public void Delete()
         {
-            Task.Run(() =>
+            /*Task.Run(() =>
             {
                 _userRepository.DeleteUser(SelectedUser.Id);
             });
-            RaisePropertyChanged(nameof(Users));
-        }
-
-        public void Add()
-        {
-            User user = new User
-            {
-                Name = Name,
-                Surname = Surname,
-                AmountOfBooksRented = AmountOfBooksRented
-            };
-
-            Task.Run(() => { _userRepository.AddUser(user); });
-            RaisePropertyChanged(nameof(Users));
+            RaisePropertyChanged(nameof(Users));*/
+            Users.Remove(SelectedUser);
         }
 
         private bool CanDelete()
