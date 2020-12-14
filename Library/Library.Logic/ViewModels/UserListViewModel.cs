@@ -15,10 +15,8 @@ namespace Library.Logic.ViewModels
         private BaseViewModel _selectedViewModel;
         private UserRepository _userRepository = new UserRepository();
         private ObservableCollection<User> _users;
-        private readonly bool _canExecute = true;
 
         public RelayCommand LoadDataCommand { get; set; }
-        
         public RelayCommand DeleteCommand { get; set; }
         public ICommand UpdateViewCommand { get; set; }
 

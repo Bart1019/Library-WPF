@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:Library.UI"
         mc:Ignorable="d"
         Title="MainWindow" Height="530" Width="600">
+
+    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
