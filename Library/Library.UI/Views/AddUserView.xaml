@@ -46,7 +46,7 @@
 
         </Grid>
         <Grid Grid.Row = "1">
-            <Button Content = "Add" Command = "{Binding Path=AddCommand}" HorizontalAlignment = "Left" Margin = "25,5,0,0" IsEnabled="True" VerticalAlignment = "Top" Width = "255" />
+            <Button Content = "Add" Command = "{Binding Path=AddCommand}" HorizontalAlignment = "Left" Margin = "15,5,0,0" IsEnabled="True" VerticalAlignment = "Top" Width = "206" />
         </Grid>
     </Grid>
 </UserControl>

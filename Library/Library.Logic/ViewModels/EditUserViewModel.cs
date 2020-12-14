@@ -133,13 +133,8 @@ namespace Library.Logic.ViewModels
                 AmountOfBooksRented = AmountOfBooksRented
             };
 
-            //Task.Factory.StartNew(() => _userRepository.EditUser(User))
-             //   .ContinueWith((t1) => _userRepository = new UserRepository());
-
-             Task.Run(() =>
-             {
-                 _userRepository.EditUser(User);
-             });
+            Task.Factory.StartNew(() => _userRepository.EditUser(User))
+                .ContinueWith((t1) => _userRepository = new UserRepository());
 
             RaisePropertyChanged(nameof(User));
         }

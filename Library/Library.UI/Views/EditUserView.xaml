@@ -53,7 +53,7 @@
         </Grid>
 
         <Grid Grid.Row = "1">
-            <Button Content = "Edit" Command = "{Binding Path=EditCommand}" HorizontalAlignment = "Left" Margin = "25,5,0,0" VerticalAlignment = "Top" Width = "255" />
+            <Button Content = "Edit" Command = "{Binding Path=EditCommand}" HorizontalAlignment = "Left" Margin = "15,5,0,0" VerticalAlignment = "Top" Width = "206" />
         </Grid>
     </Grid>
 </UserControl>
