@@ -11,7 +11,7 @@ namespace Library.Logic.ViewModels
     public class EditUserViewModel : BaseViewModel, IDataErrorInfo
     {
         private UserRepository _userRepository;
-        private readonly UserViewModel _userViewModel;
+        private readonly UserListViewModel _userListViewModel;
         private User user;
         private int id;
         private string name;
@@ -78,8 +78,8 @@ namespace Library.Logic.ViewModels
         public EditUserViewModel()
         {
             EditCommand = new RelayCommand(Edit, ()=> _canExecute);
-            _userViewModel = new UserViewModel();
-            _userRepository = _userViewModel.UserRepository;
+            _userListViewModel = new UserListViewModel();
+            _userRepository = _userListViewModel.UserRepository;
         }
 
         public int Id
@@ -127,15 +127,21 @@ namespace Library.Logic.ViewModels
         {
             User = new User
             {
+                Id = Id,
                 Name = Name,
                 Surname = Surname,
                 AmountOfBooksRented = AmountOfBooksRented
             };
 
-            Task.Factory.StartNew(() => _userRepository.EditUser(User))
-                .ContinueWith((t1) => _userRepository = new UserRepository());
+            //Task.Factory.StartNew(() => _userRepository.EditUser(User))
+             //   .ContinueWith((t1) => _userRepository = new UserRepository());
 
-            RaisePropertyChanged(nameof(_userViewModel.Users));
+             Task.Run(() =>
+             {
+                 _userRepository.EditUser(User);
+             });
+
+            RaisePropertyChanged(nameof(_userListViewModel.Users));
         }
     }
 }

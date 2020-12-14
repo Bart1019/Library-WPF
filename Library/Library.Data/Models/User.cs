@@ -1,76 +1,21 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Library.Data
 {
-    public class User : INotifyPropertyChanged
+    public class User
     {
-        private int _id;
-        private string _name;
-        private string _surname;
-        private int _amountOfBooksRented;
-
         [Key]
-        public int Id
-        {
-            get => _id;
-            set
-            {
-                if( _id == value) return;
-                _id = value;
-                RaisePropertyChanged("Id");
-            }
-        }
-        public string Name 
-        { 
-            get => _name;
-
-            set 
-            {
-                if (_name == value) return;
-                _name = value; 
-                RaisePropertyChanged("Name");
-                RaisePropertyChanged("FullName");
-            } 
-        }
-        public string Surname
-        {
-            get => _surname;
-
-            set
-            {
-                if (_surname == value) return;
-                _surname = value;
-                RaisePropertyChanged("Surname");
-                RaisePropertyChanged("FullName");
-            }
-        }
-
-        public int AmountOfBooksRented
-        {
-            get => _amountOfBooksRented;
-
-            set
-            {
-                if (_amountOfBooksRented == value) return;
-                _amountOfBooksRented = value;
-                RaisePropertyChanged("AmountOfBooksRented");
-            }
-        }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public int AmountOfBooksRented { get; set; }
 
         public string FullName
         {
             get
             {
-                return _name + " " + _surname;
+                return Name + " " + Surname;
             }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void RaisePropertyChanged(string property)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
     }
 }

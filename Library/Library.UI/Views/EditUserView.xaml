@@ -33,8 +33,8 @@
 
             <Label Content = "Id:" Grid.Column = "0" HorizontalAlignment = "Left" Margin = "3" Grid.Row = "1" VerticalAlignment = "Center" />
 
-            <TextBox x:Name = "IdTextBox" Grid.Column = "1" HorizontalAlignment = "Left" Height = "23" Margin = "3" Grid.Row = "1" IsReadOnly="True"
-            Text = "{Binding ElementName=UserListBox, Path=SelectedItem.Id, ValidatesOnDataErrors = True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment = "Center" Width = "120"/>
+            <TextBox x:Name = "IdTextBox" Grid.Column = "1" HorizontalAlignment = "Left" Height = "23" Margin = "3" Grid.Row = "1"
+            Text = "{Binding Path=Id, ValidatesOnDataErrors = True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment = "Center" Width = "120"/>
 
             <Label Content = "Name:" Grid.Column = "0" HorizontalAlignment = "Left" Margin = "3" Grid.Row = "2" VerticalAlignment = "Center" />
 
@@ -46,7 +46,7 @@
             <TextBox x:Name = "SurnameTextBox" Grid.Column = "1" HorizontalAlignment = "Left" Height = "23" Margin = "3" Grid.Row = "3" 
             Text = "{Binding Path=Surname, ValidatesOnDataErrors = True, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding ErrorCollection[Surname]}" VerticalAlignment = "Center" Width = "120" />
 
-            <Label Content = "Amount of rented books:" Grid.Column = "0" HorizontalAlignment = "Left" Margin = "3" Grid.Row = "4" VerticalAlignment = "Center" />
+            <Label Content = "Books rented:" Grid.Column = "0" HorizontalAlignment = "Left" Margin = "3" Grid.Row = "4" VerticalAlignment = "Center" />
 
             <TextBox x:Name = "BooksTextBox" Grid.Column = "1" HorizontalAlignment = "Left" Height = "23" Margin = "3" Grid.Row = "4" 
             Text = "{Binding Path=AmountOfBooksRented, ValidatesOnDataErrors = True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment = "Center" Width = "120" />

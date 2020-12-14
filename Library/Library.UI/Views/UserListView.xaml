@@ -38,7 +38,7 @@
 
             <TextBlock Margin="10 0 0 0" Grid.Column="2" Grid.Row="1" Text="{Binding ElementName=UserListBox, Path=SelectedItem.Id, StringFormat=Id: {0}}"/>
             <TextBlock Margin="10 20 0 0" Grid.Column="2" Grid.Row="1" Text="{Binding ElementName=UserListBox, Path=SelectedItem.Name, StringFormat= Name: {0}}"/>
-            <TextBlock Margin="10 40 0 0" Grid.Column="2" Grid.Row="1" Text="{Binding ElementName=UserListBox, Path=SelectedItem.Surname, StringFormat=Surname Name: {0}}"/>
+            <TextBlock Margin="10 40 0 0" Grid.Column="2" Grid.Row="1" Text="{Binding ElementName=UserListBox, Path=SelectedItem.Surname, StringFormat=Surname: {0}}"/>
             <TextBlock Margin="10 60 0 0" Grid.Column="2" Grid.Row="1" Text="{Binding ElementName=UserListBox, Path=SelectedItem.AmountOfBooksRented, StringFormat=Books Rented: {0}}"/>
 
             <ContentControl Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="3" Content="{Binding SelectedViewModel}"/>

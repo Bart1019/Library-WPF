@@ -8,11 +8,11 @@ namespace Library.Logic.Commands
 {
     public class UpdateUserViewCommand : ICommand
     {
-        private readonly UserViewModel _viewModel;
+        private readonly UserListViewModel _listViewModel;
 
-        public UpdateUserViewCommand(UserViewModel viewModel)
+        public UpdateUserViewCommand(UserListViewModel listViewModel)
         {
-            _viewModel = viewModel;
+            _listViewModel = listViewModel;
         }
 
         public event EventHandler CanExecuteChanged;
@@ -26,11 +26,11 @@ namespace Library.Logic.Commands
         {
             if (parameter.ToString() == "Add")
             {
-                _viewModel.SelectedViewModel = new AddUserViewModel();
+                _listViewModel.SelectedViewModel = new AddUserViewModel();
             }
             else if (parameter.ToString() == "Edit")
             {
-                _viewModel.SelectedViewModel = new EditUserViewModel();
+                _listViewModel.SelectedViewModel = new EditUserViewModel();
             }
         }
     }

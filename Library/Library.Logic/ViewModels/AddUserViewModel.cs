@@ -13,7 +13,7 @@ namespace Library.Logic.ViewModels
     public class AddUserViewModel : BaseViewModel, IDataErrorInfo
     {
         private UserRepository _userRepository;
-        private readonly UserViewModel _userViewModel;
+        private readonly UserListViewModel _userListViewModel;
         private ObservableCollection<User> _users;
         private string name;
         private string surname;
@@ -68,9 +68,9 @@ namespace Library.Logic.ViewModels
         public AddUserViewModel()
         {
             AddCommand = new RelayCommand(Add, ()=> _canExecute);
-            _userViewModel = new UserViewModel();
-            _userRepository = _userViewModel.UserRepository;
-            _users = _userViewModel.Users;
+            _userListViewModel = new UserListViewModel();
+            _userRepository = _userListViewModel.UserRepository;
+            _users = _userListViewModel.Users;
         }
 
         public string Name
@@ -113,7 +113,7 @@ namespace Library.Logic.ViewModels
             };
 
             Task.Factory.StartNew(() => _userRepository.AddUser(user))
-                .ContinueWith((t1) => _users = _userViewModel.Users);
+                .ContinueWith((t1) => _users = _userListViewModel.Users);
 
             RaisePropertyChanged(nameof(_users));
         }

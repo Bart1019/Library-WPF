@@ -9,7 +9,7 @@ using Library.Logic.Commands;
 
 namespace Library.Logic.ViewModels
 {
-    public class UserViewModel : BaseViewModel
+    public class UserListViewModel : BaseViewModel
     {
         private User _selectedUser;
         private BaseViewModel _selectedViewModel;
@@ -22,11 +22,11 @@ namespace Library.Logic.ViewModels
         public RelayCommand DeleteCommand { get; set; }
         public ICommand UpdateViewCommand { get; set; }
 
-        public UserViewModel()
+        public UserListViewModel()
         {
-            Task.Run(() => { Users = new ObservableCollection<User>(UserRepository.GetAllUsers()); });
+            Task.Run(() => { Users = new ObservableCollection<User>(UserRepository.GetAllUsers());});
             UpdateViewCommand = new UpdateUserViewCommand(this);
-            LoadDataCommand = new RelayCommand(() => UserRepository = _userRepository);
+            LoadDataCommand = new RelayCommand(() => UserRepository = new UserRepository());
             DeleteCommand = new RelayCommand(Delete, CanDelete);
            
         }
