@@ -141,7 +141,7 @@ namespace Library.Logic.ViewModels
                  _userRepository.EditUser(User);
              });
 
-            RaisePropertyChanged(nameof(_userListViewModel.Users));
+            RaisePropertyChanged(nameof(User));
         }
     }
 }

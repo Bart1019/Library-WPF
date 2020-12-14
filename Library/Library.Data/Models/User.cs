@@ -9,13 +9,6 @@ namespace Library.Data
         public string Name { get; set; }
         public string Surname { get; set; }
         public int AmountOfBooksRented { get; set; }
-
-        public string FullName
-        {
-            get
-            {
-                return Name + " " + Surname;
-            }
-        }
+        public string FullName => Name + " " + Surname;
     }
 }
