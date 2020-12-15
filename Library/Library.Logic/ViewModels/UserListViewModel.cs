@@ -191,7 +191,6 @@ namespace Library.Logic.ViewModels
         }
         #endregion
 
-
         private bool CanDelete()
         {
             return SelectedUser != null;

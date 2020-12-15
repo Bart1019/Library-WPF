@@ -9,11 +9,18 @@
              xmlns:v="clr-namespace:Library.UI.Views"
              xmlns:vm="clr-namespace:Library.Logic.ViewModels;assembly=Library.Logic"
              xmlns:data1="clr-namespace:Library.Data;assembly=Library.Data"
+             xmlns:System="clr-namespace:System;assembly=System.Runtime"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="450">
 
     <UserControl.Resources>
         <vm:BookListViewModel x:Key="BookListViewModel"/>
+        <ObjectDataProvider x:Key="dataFromEnum" MethodName="GetValues"
+                            ObjectType="{x:Type System:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="data1:BookEnum"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
     </UserControl.Resources>
 
     <StackPanel DataContext="{StaticResource BookListViewModel}" Orientation="Vertical" Background="White">
@@ -45,9 +52,9 @@
             <TextBlock Margin="10 40 0 0" Grid.Column="2" Grid.Row="1" Text="{Binding ElementName=BookListBox, Path=SelectedItem.Author, StringFormat= Author: {0}}"/>
             <TextBlock Margin="10 60 0 0" Grid.Column="2" Grid.Row="1" Text="{Binding ElementName=BookListBox, Path=SelectedItem.BookGenre, StringFormat= Genre: {0}}"/>
 
-            <Button Grid.Row="2"  Height="30" Width ="100" Content="Add User" Margin="10 10 0 0" HorizontalAlignment="Left" Grid.Column="1" Command="{Binding AddCommand}" CommandParameter="AddUser"/>
-            <Button Grid.Row="2" Height="30" Width ="100" Content="Edit User" Margin="138 10 0 0"  HorizontalAlignment="Left" Grid.Column="1" Command="{Binding EditCommand}" CommandParameter="EditUser" />
-            <Button Grid.Row="2" Height="30" Width ="100" Content="Delete User" Margin="10 10 0 0" HorizontalAlignment="Left" Grid.Column="2" Command="{Binding DeleteCommand}"/>
+            <Button Grid.Row="2"  Height="30" Width ="100" Content="Add Book" Margin="10 10 0 0" HorizontalAlignment="Left" Grid.Column="1" Command="{Binding AddCommand}" CommandParameter="AddUser"/>
+            <Button Grid.Row="2" Height="30" Width ="100" Content="Edit Book" Margin="138 10 0 0"  HorizontalAlignment="Left" Grid.Column="1" Command="{Binding EditCommand}" CommandParameter="EditUser" />
+            <Button Grid.Row="2" Height="30" Width ="100" Content="Delete Book" Margin="10 10 0 0" HorizontalAlignment="Left" Grid.Column="2" Command="{Binding DeleteCommand}"/>
         </Grid>
         <Grid>
             <Grid.RowDefinitions>
@@ -76,18 +83,18 @@
 
                 <TextBlock Grid.Column="1" Margin="0 7 0 0" Grid.Row="1" Text="{Binding Path=SelectedBook.Title, UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBox Grid.Column = "2" HorizontalAlignment = "Left" Height = "23" Margin = "3" Grid.Row = "1" 
-                Text = "{Binding Path=Title, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding ErrorCollection[Name]}" VerticalAlignment = "Center" Width = "120" />
+                Text = "{Binding Path=Title, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding ErrorCollection[Title]}" VerticalAlignment = "Center" Width = "120" />
 
                 <Label Content = "Author:" Grid.Column = "0" HorizontalAlignment = "Left" Margin = "3" Grid.Row = "2" VerticalAlignment = "Center" />
 
                 <TextBlock Grid.Column="1" Margin="0 7 0 0" Grid.Row="2" Text="{Binding Path=SelectedBook.Author, UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBox Grid.Column = "2" HorizontalAlignment = "Left" Height = "23" Margin = "3" Grid.Row = "2" 
-                         Text = "{Binding Path=Author, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding ErrorCollection[Surname]}" VerticalAlignment = "Center" Width = "120" />
+                         Text = "{Binding Path=Author, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding ErrorCollection[Author]}" VerticalAlignment = "Center" Width = "120" />
 
                 <Label Content = "BookGenre:" Grid.Column = "0" HorizontalAlignment = "Left" Margin = "3" Grid.Row = "3" VerticalAlignment = "Center" />
 
                 <TextBlock Grid.Column="1" Margin="0 7 0 0" Grid.Row="3" Text="{Binding Path=SelectedBook.BookGenre, UpdateSourceTrigger=PropertyChanged}"/>
-                <ComboBox Grid.Column = "2" HorizontalAlignment = "Left" Height = "23" Margin = "3" Grid.Row = "3" 
+                <ComboBox Grid.Column = "2" HorizontalAlignment = "Left" Height = "23" Margin = "3" Grid.Row = "3" ItemsSource="{Binding Source={StaticResource dataFromEnum}}" SelectedItem="{Binding Path=SelectedBook.BookGenre}"
                          Text = "{Binding Path=BookGenre, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment = "Center" Width = "120" />
 
             </Grid>
