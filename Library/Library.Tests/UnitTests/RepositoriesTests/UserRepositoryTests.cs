@@ -11,7 +11,7 @@ namespace Library.DataTests
         {
             var dataGenerator = new DataGenerator();
             dataContext = dataGenerator.GenerateData();
-            //userRepository = new UserRepository(dataContext);
+            //userRepository = new BookCatalogRepository(dataContext);
         }
 
         private readonly UserRepository userRepository;

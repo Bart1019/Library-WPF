@@ -15,11 +15,5 @@
         <DataTemplate DataType="{x:Type viewmodels:EventListViewModel}">
             <views:EventListView/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type viewmodels:AddUserViewModel}">
-            <views:AddUserView/>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type viewmodels:EditUserViewModel}">
-            <views:EditUserView/>
-        </DataTemplate>
     </Application.Resources>
 </Application>
