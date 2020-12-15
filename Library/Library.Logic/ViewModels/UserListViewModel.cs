@@ -13,7 +13,7 @@ namespace Library.Logic.ViewModels
     public class UserListViewModel : BaseViewModel, IDataErrorInfo
     {
         #region private
-        private User _selectedUser = new User();
+        private User _selectedUser;
         private UserRepository _userRepository = new UserRepository();
         private ObservableCollection<User> _users;
         private string _name;
@@ -37,10 +37,10 @@ namespace Library.Logic.ViewModels
             {
                 Users = new ObservableCollection<User>(UserRepository.GetAllUsers());
             });
-            AddCommand = new RelayCommand(Add, () => _canExecute);
+            AddCommand = new RelayCommand(Add, CanAdd);
             LoadDataCommand = new RelayCommand(() => UserRepository = new UserRepository()); 
-            DeleteCommand = new RelayCommand(Delete, CanDelete);
-            EditCommand = new RelayCommand(Edit, () => _canExecute);
+            DeleteCommand = new RelayCommand(Delete, CanExecute);
+            EditCommand = new RelayCommand(Edit, CanExecute);
         }
 
         #region errors
@@ -57,17 +57,17 @@ namespace Library.Logic.ViewModels
 
                 switch (columnName)
                 {
-                    case "Title":
+                    case "Name":
                         if (string.IsNullOrWhiteSpace(Name))
                         {
-                            result = "Title cannot be empty";
+                            result = "Name cannot be empty";
 
                         }
                         break;
-                    case "Author":
+                    case "Surname":
                         if (string.IsNullOrWhiteSpace(Surname))
                         {
-                            result = "Author cannot be empty";
+                            result = "Surname cannot be empty";
                         }
                         break;
                 }
@@ -106,6 +106,7 @@ namespace Library.Logic.ViewModels
                 _selectedUser = value;
                 RaisePropertyChanged(nameof(SelectedUser));
                 DeleteCommand.RaiseCanExecuteChanged();
+                EditCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -191,9 +192,19 @@ namespace Library.Logic.ViewModels
         }
         #endregion
 
-        private bool CanDelete()
+        private bool CanExecute()
         {
             return SelectedUser != null;
+        }
+
+        private bool CanAdd()
+        {
+            if (Name == null && Surname == null)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

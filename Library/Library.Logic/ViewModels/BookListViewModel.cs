@@ -13,7 +13,7 @@ namespace Library.Logic.ViewModels
     public class BookListViewModel : BaseViewModel, IDataErrorInfo
     {
         #region private
-        private Book _selectedBook = new Book();
+        private Book _selectedBook;
         private BooksCatalogRepository _bookRepository = new BooksCatalogRepository();
         private ObservableCollection<Book> _books;
         private string _title;
@@ -37,10 +37,10 @@ namespace Library.Logic.ViewModels
             {
                 Books = new ObservableCollection<Book>(BookRepository.GetAllBooks());
             });
-            AddCommand = new RelayCommand(Add, () => _canExecute);
+            AddCommand = new RelayCommand(Add, CanAdd);
             LoadDataCommand = new RelayCommand(() => BookRepository = new BooksCatalogRepository());
-            DeleteCommand = new RelayCommand(Delete, CanDelete);
-            EditCommand = new RelayCommand(Edit, () => _canExecute);
+            DeleteCommand = new RelayCommand(Delete, CanExecute);
+            EditCommand = new RelayCommand(Edit, CanExecute);
         }
 
         #region errors
@@ -106,6 +106,7 @@ namespace Library.Logic.ViewModels
                 _selectedBook = value;
                 RaisePropertyChanged(nameof(SelectedBook));
                 DeleteCommand.RaiseCanExecuteChanged();
+                EditCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -191,9 +192,14 @@ namespace Library.Logic.ViewModels
         }
         #endregion
 
-        private bool CanDelete()
+        private bool CanExecute()
         {
             return SelectedBook != null;
+        }
+
+        private bool CanAdd()
+        {
+            return Title != null || Author != null;
         }
     }
 }
