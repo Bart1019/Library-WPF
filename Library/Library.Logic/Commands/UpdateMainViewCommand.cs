@@ -30,7 +30,7 @@ namespace Library.Logic.Commands
             }
             else if (parameter.ToString() == "Books")
             {
-                _viewModel.SelectedViewModel = new BookCatalogViewModel();
+                _viewModel.SelectedViewModel = new BookListViewModel();
             }
             else if (parameter.ToString() == "Events")
             {

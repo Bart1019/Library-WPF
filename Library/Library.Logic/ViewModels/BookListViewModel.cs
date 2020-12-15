@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Library.Logic.ViewModels
 {
-    public class BookCatalogViewModel : BaseViewModel
+    public class BookListViewModel : BaseViewModel
     {
     }
 }

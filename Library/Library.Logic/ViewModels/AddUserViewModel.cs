@@ -60,7 +60,7 @@ namespace Library.Logic.ViewModels
                     ErrorCollection.Add(columnName, result);
                 }
 
-                OnPropertyChanged(nameof(ErrorCollection));
+                RaisePropertyChanged(nameof(ErrorCollection));
                 return result;
             }
         }
@@ -79,7 +79,7 @@ namespace Library.Logic.ViewModels
             set
             {
                 this.name = value;
-                OnPropertyChanged(nameof(Name));
+                RaisePropertyChanged(nameof(Name));
             }
         }
 
@@ -89,7 +89,7 @@ namespace Library.Logic.ViewModels
             set
             {
                 this.surname = value;
-                OnPropertyChanged(nameof(Surname));
+                RaisePropertyChanged(nameof(Surname));
             }
         }
 
@@ -99,7 +99,7 @@ namespace Library.Logic.ViewModels
             set
             {
                 this.amountOfBooksRented = value;
-                OnPropertyChanged(nameof(AmountOfBooksRented));
+                RaisePropertyChanged(nameof(AmountOfBooksRented));
             }
         }
 

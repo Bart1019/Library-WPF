@@ -16,7 +16,7 @@ namespace Library.Logic.ViewModels
             set
             {
                 _selectedViewModel = value;
-                OnPropertyChanged(nameof(SelectedViewModel));
+                RaisePropertyChanged(nameof(SelectedViewModel));
             }
         }
 

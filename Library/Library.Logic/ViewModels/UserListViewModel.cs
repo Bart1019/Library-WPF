@@ -35,7 +35,7 @@ namespace Library.Logic.ViewModels
             set
             {
                 _users = value;
-                RaisePropertyChanged();
+                RaisePropertyChanged(nameof(Users));
             }
         }
 
@@ -45,7 +45,7 @@ namespace Library.Logic.ViewModels
             set
             {
                 _selectedUser = value;
-                RaisePropertyChanged();
+                RaisePropertyChanged(nameof(SelectedUser));
                 DeleteCommand.RaiseCanExecuteChanged();
             }
         }
@@ -66,7 +66,7 @@ namespace Library.Logic.ViewModels
             set
             {
                 _selectedViewModel = value;
-                OnPropertyChanged(nameof(SelectedViewModel));
+                RaisePropertyChanged(nameof(SelectedViewModel));
             }
         }
 

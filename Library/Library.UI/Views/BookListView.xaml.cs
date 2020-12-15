@@ -14,11 +14,11 @@ using System.Windows.Shapes;
 namespace Library.UI.Views
 {
     /// <summary>
-    /// Interaction logic for BookCatalogView.xaml
+    /// Interaction logic for BookListView.xaml
     /// </summary>
-    public partial class BookCatalogView : UserControl
+    public partial class BookListView : UserControl
     {
-        public BookCatalogView()
+        public BookListView()
         {
             InitializeComponent();
         }

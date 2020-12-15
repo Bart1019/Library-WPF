@@ -9,8 +9,8 @@
         <DataTemplate DataType="{x:Type viewmodels:UserListViewModel}">
                 <views:UserListView/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type viewmodels:BookCatalogViewModel}">
-                <views:BookCatalogView/>
+        <DataTemplate DataType="{x:Type viewmodels:BookListViewModel}">
+                <views:BookListView/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewmodels:EventListViewModel}">
             <views:EventListView/>
