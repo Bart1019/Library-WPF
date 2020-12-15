@@ -8,8 +8,9 @@
              xmlns:data="clr-namespace:Library.Data.Models;assembly=Library.Data"
              xmlns:v="clr-namespace:Library.UI.Views"
              xmlns:data1="clr-namespace:Library.Data;assembly=Library.Data"
+             xmlns:vm="clr-namespace:Library.Logic.ViewModels;assembly=Library.Logic"
              mc:Ignorable="d" 
-             d:DesignHeight="530" d:DesignWidth="800">
+             d:DesignHeight="530" d:DesignWidth="600">
 
     <UserControl.Resources>
         <DataTemplate x:Key="UserTemplate">
@@ -19,7 +20,7 @@
         </DataTemplate>
     </UserControl.Resources>
     
-    <StackPanel Orientation="Vertical">
+    <StackPanel Orientation="Vertical" Background="White">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="35"/>
