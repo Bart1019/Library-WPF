@@ -6,10 +6,9 @@ namespace Library.Data
 {
     public class BooksStateRepository : IBooksStateRepository
     {
-        private readonly DataContext _dataContext;
         private readonly LibraryDbContext _dbContext;
 
-        public BooksStateRepository(DataContext dataContext, LibraryDbContext dbContext)
+        public BooksStateRepository(LibraryDbContext dbContext)
         {
             _dbContext = dbContext;
         }

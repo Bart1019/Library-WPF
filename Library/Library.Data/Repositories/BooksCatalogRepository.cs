@@ -5,12 +5,12 @@ namespace Library.Data
 {
     public class BooksCatalogRepository : IBooksCatalogRepository
     {
-        private readonly LibraryDbContext _dbContext = new LibraryDbContext();
+        private readonly LibraryDbContext _dbContext;
 
-        //public BooksCatalogRepository(LibraryDbContext dbContext)
-        //{
-        //    _dbContext = dbContext;
-        //}
+        public BooksCatalogRepository(LibraryDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
 
         public IEnumerable<Book> GetAllBooks()
         {

@@ -5,7 +5,12 @@ namespace Library.Data
 {
     public class UserRepository : IUserRepository
     {
-        private readonly LibraryDbContext _dbContext = new LibraryDbContext();
+        private readonly LibraryDbContext _dbContext;
+
+        public UserRepository(LibraryDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
 
         public IEnumerable<User> GetAllUsers()
         {

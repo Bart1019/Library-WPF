@@ -9,13 +9,10 @@ namespace Library.DataTests
     {
         public UserRepositoryTests()
         {
-            var dataGenerator = new DataGenerator();
-            dataContext = dataGenerator.GenerateData();
-            //userRepository = new BookCatalogRepository(dataContext);
+            userRepository = new UserRepository(new LibraryDbContext());
         }
 
         private readonly UserRepository userRepository;
-        private readonly DataContext dataContext;
 
         [Theory]
         [InlineData(1)]

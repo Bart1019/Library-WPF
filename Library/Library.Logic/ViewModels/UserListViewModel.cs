@@ -14,16 +14,14 @@ namespace Library.Logic.ViewModels
     {
         #region private
         private User _selectedUser;
-        private UserRepository _userRepository = new UserRepository();
+        private UserRepository _userRepository = new UserRepository(new LibraryDbContext());
         private ObservableCollection<User> _users;
         private string _name;
         private string _surname;
         private int _amountOfBooksRented;
-        private bool _canExecute = true;
         #endregion
 
         #region properties
-        public RelayCommand LoadDataCommand { get; set; }
         public RelayCommand DeleteCommand { get; set; }
         public RelayCommand AddCommand { get; set; }
         public RelayCommand EditCommand { get; set; }
@@ -38,7 +36,6 @@ namespace Library.Logic.ViewModels
                 Users = new ObservableCollection<User>(UserRepository.GetAllUsers());
             });
             AddCommand = new RelayCommand(Add, ()=> CanAdd);
-            LoadDataCommand = new RelayCommand(() => UserRepository = new UserRepository()); 
             DeleteCommand = new RelayCommand(Delete, CanExecute);
             EditCommand = new RelayCommand(Edit, CanExecute);
         }

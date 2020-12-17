@@ -14,7 +14,7 @@ namespace Library.Logic.ViewModels
     {
         #region private
         private Book _selectedBook;
-        private BooksCatalogRepository _bookRepository = new BooksCatalogRepository();
+        private BooksCatalogRepository _bookRepository = new BooksCatalogRepository(new LibraryDbContext());
         private ObservableCollection<Book> _books;
         private string _title;
         private string _author;
@@ -22,7 +22,6 @@ namespace Library.Logic.ViewModels
         #endregion
 
         #region properties
-        public RelayCommand LoadDataCommand { get; set; }
         public RelayCommand DeleteCommand { get; set; }
         public RelayCommand AddCommand { get; set; }
         public RelayCommand EditCommand { get; set; }
@@ -36,7 +35,6 @@ namespace Library.Logic.ViewModels
                 Books = new ObservableCollection<Book>(BookRepository.GetAllBooks());
             });
             AddCommand = new RelayCommand(Add, ()=> CanAdd);
-            LoadDataCommand = new RelayCommand(() => BookRepository = new BooksCatalogRepository());
             DeleteCommand = new RelayCommand(Delete, CanExecute);
             EditCommand = new RelayCommand(Edit, CanExecute);
         }
