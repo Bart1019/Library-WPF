@@ -19,10 +19,17 @@ namespace Library.LogicTests
             bookEventService = new BookEventService(bookEventRepositoryMock.Object, bookStateRepositoryMock.Object,
                 userRepositoryMock.Object, booksCatalogRepositoryMock.Object);
 
-            bookEvents = new List<BookEvent>
+            bookRentalEvents = new List<BookEvent>
             {
                 new RentalEvent {EventDate = default, RentalUser = default, BookInLibrary = default},
                 new RentalEvent {EventDate = default, RentalUser = default, BookInLibrary = default},
+                new RentalEvent {EventDate = default, RentalUser = default}
+            };
+
+            bookReturnEvents = new List<BookEvent>
+            {
+                new ReturnEvent {EventDate = default, RentalUser = default, BookInLibrary = default},
+                new ReturnEvent {EventDate = default, RentalUser = default, BookInLibrary = default},
                 new ReturnEvent {EventDate = default, RentalUser = default}
             };
 
@@ -39,27 +46,11 @@ namespace Library.LogicTests
                 }
             };
 
-            rentalUser = new User
-            {
-                Id = 1,
-                Name = "naaa",
-                Surname = "saaa",
-                AmountOfBooksRented = 0
-            };
-
-            returnedUser = new User
-            {
-                Id = 2,
-                Name = "naaa",
-                Surname = "saaa",
-                AmountOfBooksRented = 13
-            };
-
             availableAmountOfParticularBook = random.Next();
 
             bookStateRepositoryMock.Setup(x => x.GetAmountOfAvailableBooksById(It.IsAny<int>()))
                 .Returns(availableAmountOfParticularBook);
-           // bookStateRepositoryMock.Setup(x => x.GetAllAvailableBooks()).Returns(_bookState.AllBooks.Books);
+            bookStateRepositoryMock.Setup(x => x.GetAllAvailableBooks()).Returns(_bookState.AllBooks.Books);
         }
 
         private readonly Mock<IBookEventRepository> bookEventRepositoryMock;
@@ -67,79 +58,36 @@ namespace Library.LogicTests
         private readonly Mock<IUserRepository> userRepositoryMock;
         private readonly Mock<IBooksCatalogRepository> booksCatalogRepositoryMock;
         private readonly BookEventService bookEventService;
-        private readonly List<BookEvent> bookEvents;
-        private readonly User rentalUser;
-        private readonly User returnedUser;
+        private readonly List<BookEvent> bookRentalEvents;
+        private readonly List<BookEvent> bookReturnEvents;
         private readonly BookState _bookState = new BookState();
         private readonly Random random = new Random();
         private int availableAmountOfParticularBook;
 
         [Fact]
-        public void ShouldCreateNewRental()
+        public void ShouldGetAllRentalsEvents()
         {
             //Arrange
-            var rentDate = new DateTime(2020, 11, 13);
-            var expectedAmountOfAvailableBooks = availableAmountOfParticularBook - 1;
-            var expectedRentalEvent = new RentalEvent
-            {
-                RentalUser = rentalUser,
-                BookInLibrary = _bookState,
-                EventDate = rentDate
-            };
-
-            userRepositoryMock.Setup(x => x.GetUserById(It.IsAny<int>())).Returns(rentalUser);
-            bookStateRepositoryMock.Setup(x => x.UpdateBooksAmount(It.IsAny<int>(), It.IsAny<int>()))
-                .Returns(--availableAmountOfParticularBook);
+            bookEventRepositoryMock.Setup(x => x.GetAllBookRentalEvents()).Returns(bookRentalEvents);
 
             //Act
-            //var resultedRentalEvent =
-              //  bookEventService.RentBook(rentalUser.Id, _bookState.AllBooks.Books[0].Id, rentDate);
+            var resultedBookEvents = bookEventService.GetAllRentals();
 
             //Assert
-            Assert.Equal(1, rentalUser.AmountOfBooksRented);
-            Assert.Equal(expectedAmountOfAvailableBooks, availableAmountOfParticularBook);
-           // Assert.Equal(expectedRentalEvent.ToString(), resultedRentalEvent.ToString());
+            Assert.Equal(resultedBookEvents, bookRentalEvents);
         }
 
         [Fact]
-        public void ShouldGetAllBookEvents()
+        public void ShouldGetAllReturnEvents()
         {
             //Arrange
-           // bookEventRepositoryMock.Setup(x => x.GetAllBookEvents()).Returns(bookEvents);
+            bookEventRepositoryMock.Setup(x => x.GetAllBookReturnEvents()).Returns(bookReturnEvents);
 
             //Act
-            //var resultedBookEvents = bookEventService.GetAllBookEvents();
+            var resultedBookEvents = bookEventService.GetAllReturns();
 
             //Assert
-           // Assert.Equal(resultedBookEvents, bookEvents);
-        }
-
-        [Fact]
-        public void ShouldSuccessfullyGiveBookBack()
-        {
-            //Arrange
-            var returnDate = new DateTime(2020, 11, 17);
-            var expectedAmountOfAvailableBooks = availableAmountOfParticularBook + 1;
-            var expectedReturnEvent = new ReturnEvent
-            {
-                RentalUser = returnedUser,
-                EventDate = returnDate
-            };
-
-            userRepositoryMock.Setup(x => x.GetUserById(It.IsAny<int>())).Returns(returnedUser);
-            bookStateRepositoryMock.Setup(x => x.UpdateBooksAmount(It.IsAny<int>(), It.IsAny<int>()))
-                .Returns(++availableAmountOfParticularBook);
-           // booksCatalogRepositoryMock.Setup(x => x.GetBookById(It.IsAny<int>()))
-             //   .Returns(_bookState.AllBooks.Books[0]);
-
-            //Act
-          //  var resultedRentedEvent =
-            //    bookEventService.ReturnBook(returnedUser.Id, _bookState.AllBooks.Books[0].Id, returnDate);
-
-            //Assert
-            Assert.Equal(12, returnedUser.AmountOfBooksRented);
-            Assert.Equal(expectedAmountOfAvailableBooks, availableAmountOfParticularBook);
-            //Assert.Equal(expectedReturnEvent.ToString(), resultedRentedEvent.ToString());
+            Assert.Equal(resultedBookEvents, bookReturnEvents);
         }
     }
 }
