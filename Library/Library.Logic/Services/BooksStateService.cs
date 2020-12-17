@@ -4,7 +4,7 @@ using Library.Data;
 
 namespace Library.Logic
 {
-    public class BooksStateService
+    public class BooksStateService : IBookStateService
     {
         private readonly IBooksStateRepository booksStateRepository;
 

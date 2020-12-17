@@ -4,7 +4,7 @@ using Library.Data;
 
 namespace Library.Logic
 {
-    public class BooksCatalogService
+    public class BooksCatalogService : IBookCatalogService
     {
         private readonly IBooksCatalogRepository booksCatalogRepository;
 

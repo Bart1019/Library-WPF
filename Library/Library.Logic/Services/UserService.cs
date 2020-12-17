@@ -4,7 +4,7 @@ using Library.Data;
 
 namespace Library.Logic
 {
-    public class UserService
+    public class UserService : IUserService
     {
         private readonly IUserRepository userRepository;
 

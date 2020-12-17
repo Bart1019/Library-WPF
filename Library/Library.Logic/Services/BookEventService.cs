@@ -5,7 +5,7 @@ using Library.Data;
 
 namespace Library.Logic
 {
-    public class BookEventService
+    public class BookEventService : IBookEventService
     {
         private readonly BookState availableLibraryBook = new BookState();
         private readonly IBookEventRepository bookEventRepository;
