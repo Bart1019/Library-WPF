@@ -19,7 +19,6 @@ namespace Library.Logic.ViewModels
         private string _title;
         private string _author;
         private BookEnum _bookGenre;
-        private bool _canExecute = true;
         #endregion
 
         #region properties
@@ -30,14 +29,13 @@ namespace Library.Logic.ViewModels
         public Dictionary<string, string> ErrorCollection { get; private set; } = new Dictionary<string, string>();
         #endregion
 
-
         public BookListViewModel()
         {
             Task.Run(() =>
             {
                 Books = new ObservableCollection<Book>(BookRepository.GetAllBooks());
             });
-            AddCommand = new RelayCommand(Add, CanAdd);
+            AddCommand = new RelayCommand(Add, ()=> CanAdd);
             LoadDataCommand = new RelayCommand(() => BookRepository = new BooksCatalogRepository());
             DeleteCommand = new RelayCommand(Delete, CanExecute);
             EditCommand = new RelayCommand(Edit, CanExecute);
@@ -127,6 +125,7 @@ namespace Library.Logic.ViewModels
             {
                 _title = value;
                 RaisePropertyChanged(nameof(Title));
+                AddCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -137,6 +136,7 @@ namespace Library.Logic.ViewModels
             {
                 _author = value;
                 RaisePropertyChanged(nameof(Author));
+                AddCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -197,9 +197,9 @@ namespace Library.Logic.ViewModels
             return SelectedBook != null;
         }
 
-        private bool CanAdd()
+        private bool CanAdd
         {
-            return Title != null || Author != null;
+            get { return !(((string.IsNullOrEmpty(this.Title)) || (string.IsNullOrEmpty(this.Author)))); }
         }
     }
 }

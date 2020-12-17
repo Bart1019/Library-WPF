@@ -37,7 +37,7 @@ namespace Library.Logic.ViewModels
             {
                 Users = new ObservableCollection<User>(UserRepository.GetAllUsers());
             });
-            AddCommand = new RelayCommand(Add, CanAdd);
+            AddCommand = new RelayCommand(Add, ()=> CanAdd);
             LoadDataCommand = new RelayCommand(() => UserRepository = new UserRepository()); 
             DeleteCommand = new RelayCommand(Delete, CanExecute);
             EditCommand = new RelayCommand(Edit, CanExecute);
@@ -127,6 +127,7 @@ namespace Library.Logic.ViewModels
             {
                 _name = value;
                 RaisePropertyChanged(nameof(Name));
+                AddCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -137,6 +138,7 @@ namespace Library.Logic.ViewModels
             {
                 _surname = value;
                 RaisePropertyChanged(nameof(Surname));
+                AddCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -197,14 +199,9 @@ namespace Library.Logic.ViewModels
             return SelectedUser != null;
         }
 
-        private bool CanAdd()
+        private bool CanAdd
         {
-            if (Name == null && Surname == null)
-            {
-                return false;
-            }
-
-            return true;
+            get { return !(((string.IsNullOrEmpty(this.Name)) || (string.IsNullOrEmpty(this.Surname)))); }
         }
     }
 }
