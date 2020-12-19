@@ -14,11 +14,11 @@ namespace Library.Data
             base.OnConfiguring(optionsBuilder);
         }
 
-        public DbSet<Book> Books { get; set; }
-        public DbSet<User> Users { get; set; }
-        public DbSet<BookCatalog> BookCatalogs { get; set; }
-        public DbSet<BookState> BookStates { get; set; }
-        public DbSet<RentalEvent> RentalEvents { get; set; }
-        public DbSet<ReturnEvent> ReturnEvents { get; set; }
+        public virtual DbSet<Book> Books { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<BookCatalog> BookCatalogs { get; set; }
+        public virtual DbSet<BookState> BookStates { get; set; }
+        public virtual DbSet<RentalEvent> RentalEvents { get; set; }
+        public virtual DbSet<ReturnEvent> ReturnEvents { get; set; }
     }
 }

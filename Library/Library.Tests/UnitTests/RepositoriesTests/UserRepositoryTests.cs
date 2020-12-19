@@ -1,47 +1,74 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Library.Data;
+using Microsoft.EntityFrameworkCore;
+using Moq;
 using Xunit;
 
 namespace Library.DataTests
 {
     public class UserRepositoryTests
     {
+        private IQueryable<User> _users;
+        private readonly Mock<LibraryDbContext> _libraryDbContextMock;
+        private readonly Mock<DbSet<User>> _mockSet;
+        private readonly UserRepository _userRepository;
+        
         public UserRepositoryTests()
         {
-            userRepository = new UserRepository(new LibraryDbContext());
+            _users = new List<User>
+            {
+                new User{ Id = 0, Name = "aaa"},
+                new User{ Id = 1 ,Name = "bbb"},
+                new User{ Id = 2 ,Name = "ccc"},
+            }.AsQueryable();
+
+            _mockSet = new Mock<DbSet<User>>();
+            _mockSet.As<IQueryable<User>>().Setup(m => m.Provider).Returns(_users.Provider);
+            _mockSet.As<IQueryable<User>>().Setup(m => m.Expression).Returns(_users.Expression);
+            _mockSet.As<IQueryable<User>>().Setup(m => m.ElementType).Returns(_users.ElementType);
+            _mockSet.As<IQueryable<User>>().Setup(m => m.GetEnumerator()).Returns(_users.GetEnumerator());
+
+            _libraryDbContextMock = new Mock<LibraryDbContext>();
+            _libraryDbContextMock.Setup(x => x.Users).Returns(_mockSet.Object);
+
+            _userRepository = new UserRepository(_libraryDbContextMock.Object);
         }
 
-        private readonly UserRepository userRepository;
+        [Fact]
+        public void ShouldReturnAllUsers()
+        {
+            //Arrange
+
+            //Act
+            var resultedUsers = _userRepository.GetAllUsers();
+
+            //Assert
+            Assert.Equal(3, resultedUsers.Count());
+        }
 
         [Theory]
+        [InlineData(0)]
         [InlineData(1)]
-        [InlineData(3)]
-        [InlineData(6)]
+        [InlineData(2)]
         public void ShouldReturnUserById(int id)
         {
             //Arrange
-            var expectedUsers = new List<User>
-            {
-                new User {Id = 1, Name = "aaa", Surname = "aaaa", AmountOfBooksRented = 1},
-                new User {Id = 3, Name = "ccc", Surname = "ccc", AmountOfBooksRented = 3},
-                new User {Id = 6, Name = "fff", Surname = "fff", AmountOfBooksRented = 6}
-            };
 
             //Act
-            var returnedUser = userRepository.GetUserById(id);
+            var resultedUser = _userRepository.GetUserById(id);
 
             //Assert
             switch (id)
             {
+                case 0:
+                    Assert.Equal("aaa", resultedUser.Name);
+                    break;
                 case 1:
-                    Assert.Equal(expectedUsers[0].Id, returnedUser.Id);
+                    Assert.Equal("bbb", resultedUser.Name);
                     break;
-                case 3:
-                    Assert.Equal(expectedUsers[1].Id, returnedUser.Id);
-                    break;
-                case 6:
-                    Assert.Equal(expectedUsers[2].Id, returnedUser.Id);
+                case 2:
+                    Assert.Equal("ccc", resultedUser.Name);
                     break;
             }
         }
@@ -59,11 +86,10 @@ namespace Library.DataTests
             };
 
             //Act
-            userRepository.AddUser(newUser);
-            var returnedUsers = userRepository.GetAllUsers().ToList();
+            _userRepository.AddUser(newUser);
 
             //Assert
-            Assert.True(returnedUsers.Count.Equals(7));
+           _libraryDbContextMock.Verify(x=>x.SaveChanges(), Times.Once);
         }
 
         [Fact]
@@ -72,18 +98,17 @@ namespace Library.DataTests
             //Arrange
 
             //Act
-            userRepository.DeleteUser(1);
-            var returnedUsers = userRepository.GetAllUsers().ToList();
+            _userRepository.DeleteUser(1);
 
             //Assert
-            Assert.True(returnedUsers.Count.Equals(5));
+            _libraryDbContextMock.Verify(x => x.SaveChanges(), Times.Once);
         }
 
         [Fact]
         public void ShouldEditUser()
         {
             //Arrange
-            var expectedUser = new User
+            var editedUser = new User
             {
                 Id = 1,
                 Name = "fff",
@@ -92,26 +117,10 @@ namespace Library.DataTests
             };
 
             //Act
-            userRepository.EditUser(expectedUser);
-            var returnedUser = userRepository.GetUserById(1);
+            _userRepository.EditUser(editedUser);
 
             //Assert
-            Assert.Equal(expectedUser.Id, returnedUser.Id);
-            Assert.Equal(expectedUser.Name, returnedUser.Name);
-            Assert.Equal(expectedUser.Surname, returnedUser.Surname);
-            Assert.Equal(expectedUser.AmountOfBooksRented, returnedUser.AmountOfBooksRented);
-        }
-
-        [Fact]
-        public void ShouldReturnAllUsers()
-        {
-            //Arrange
-
-            //Act
-            var returnedUsers = userRepository.GetAllUsers().ToList();
-
-            //Assert
-            Assert.True(returnedUsers.Count.Equals(6));
+            _libraryDbContextMock.Verify(x => x.SaveChanges(), Times.Once);
         }
     }
 }
