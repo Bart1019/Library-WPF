@@ -32,6 +32,10 @@ namespace Library.UI.Commands
             {
                 _viewModel.SelectedViewModel = new BookListViewModel();
             }
+            else
+            {
+                _viewModel.SelectedViewModel = new MainViewModel();
+            }
         }
     }
 

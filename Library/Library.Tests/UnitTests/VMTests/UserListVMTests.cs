@@ -8,12 +8,12 @@ using Xunit;
 
 namespace Library.VmTests
 {
-    public class UserListVMTests
+    public class UserListVmTests
     {
         private readonly UserListViewModel _userListViewModel;
         private bool canBeExecuted = true;
 
-        public UserListVMTests()
+        public UserListVmTests()
         {
             _userListViewModel = new UserListViewModel
             {
