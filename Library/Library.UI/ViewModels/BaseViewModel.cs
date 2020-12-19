@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace Library.Logic.ViewModels
+namespace Library.UI.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {

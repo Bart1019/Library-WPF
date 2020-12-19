@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
 
-namespace Library.Logic.Commands
+namespace Library.UI.Commands
 {
     public class RelayCommand : ICommand
     {

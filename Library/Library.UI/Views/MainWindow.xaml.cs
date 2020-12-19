@@ -1,5 +1,5 @@
 ﻿using System.Windows;
-using Library.Logic.ViewModels;
+using Library.UI.ViewModels;
 
 namespace Library.UI
 {

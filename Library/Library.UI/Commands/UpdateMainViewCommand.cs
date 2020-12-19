@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
-using Library.Logic.ViewModels;
+using Library.UI.ViewModels;
 
-namespace Library.Logic.Commands
+namespace Library.UI.Commands
 {
-    class UpdateMainViewCommand : ICommand
+    public class UpdateMainViewCommand : ICommand
     {
         private readonly MainViewModel _viewModel;
 

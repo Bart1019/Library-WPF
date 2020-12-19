@@ -6,9 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Library.Data;
-using Library.Logic.Commands;
+using Library.Logic;
+using Library.UI.Commands;
 
-namespace Library.Logic.ViewModels
+namespace Library.UI.ViewModels
 {
     public class BookListViewModel : BaseViewModel, IDataErrorInfo
     {

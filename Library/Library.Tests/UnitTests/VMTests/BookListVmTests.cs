@@ -8,23 +8,23 @@ using Xunit;
 
 namespace Library.VmTests
 {
-    public class UserListVMTests
+    public class BookListVmTests
     {
-        private readonly UserListViewModel _userListViewModel;
+        private readonly BookListViewModel _bookListViewModel;
         private bool canBeExecuted = true;
 
-        public UserListVMTests()
+        public BookListVmTests()
         {
-            _userListViewModel = new UserListViewModel
+            _bookListViewModel = new BookListViewModel
             {
-                Users = new ObservableCollection<User>
+                Books = new ObservableCollection<Book>
                 {
-                    new User {Id = 1, Name = "aaa", Surname = "aaa"},
-                    new User {Id = 1},
-                    new User {Id = 1, Name = "ccc", Surname = "ccc"},
-                    new User {Id = 1, Name = "ddd", Surname = "ddd"},
-                    new User {Id = 1, Name = "eee", Surname = "eee"},
-                    new User {Id = 1, Name = "fff", Surname = "fff"},
+                   new Book {Id = 1, Author = "aaa", Title = "aaa"},
+                   new Book {Id = 2},
+                   new Book {Id = 3, Author = "ccc", Title = "ccc"},
+                   new Book {Id = 4, Author = "ddd", Title = "ddd"},
+                   new Book {Id = 5, Author = "eee", Title = "eee"},
+                   new Book {Id = 6, Author = "fff", Title = "fff"},
                 }
             };
         }
@@ -33,9 +33,9 @@ namespace Library.VmTests
         public void VmShouldInitializeCommandsAndUserGridVm()
         {
             //Arrange
-            var addCommand = _userListViewModel.AddCommand;
-            var editCommand = _userListViewModel.EditCommand;
-            var deleteCommand = _userListViewModel.DeleteCommand;
+            var addCommand = _bookListViewModel.AddCommand;
+            var editCommand = _bookListViewModel.EditCommand;
+            var deleteCommand = _bookListViewModel.DeleteCommand;
 
             //Act
 
@@ -49,28 +49,28 @@ namespace Library.VmTests
         public void ShouldReturnProperUser()
         {
             //Arrange
-            var user = new User
+            var user = new Book
             {
-                Name = "aaa",
-                Surname = "aaa"
+                Title = "aaa",
+                Author = "aaa"
             };
 
             //Act
-            var users = _userListViewModel.Users;
+            var books = _bookListViewModel.Books;
 
             //Assert
-            Assert.Equal(user.Name, users[0].Name);
+            Assert.Equal(user.Author, books[0].Author);
         }
 
         [Fact]
         public void DeleteCmdShouldNotBeExecuted()
         {
             //Arrange
-            _userListViewModel.SelectedUser = null;
-            var deleteCommand = _userListViewModel.DeleteCommand;
+            _bookListViewModel.SelectedBook = null;
+            var deleteCommand = _bookListViewModel.DeleteCommand;
 
             //Act
-            if (_userListViewModel.SelectedUser == null)
+            if (_bookListViewModel.SelectedBook == null)
                 canBeExecuted = false;
 
             //Assert
@@ -81,11 +81,11 @@ namespace Library.VmTests
         public void DeleteCmdShouldBeExecuted()
         {
             //Arrange
-            _userListViewModel.SelectedUser = _userListViewModel.Users[0];
-            var deleteCommand = _userListViewModel.DeleteCommand;
+            _bookListViewModel.SelectedBook = _bookListViewModel.Books[0];
+            var deleteCommand = _bookListViewModel.DeleteCommand;
 
             //Act
-            if (_userListViewModel.SelectedUser != null)
+            if (_bookListViewModel.SelectedBook != null)
                 canBeExecuted = true;
 
             //Assert
@@ -96,11 +96,11 @@ namespace Library.VmTests
         public void EditCmdShouldNotBeExecuted()
         {
             //Arrange
-            _userListViewModel.SelectedUser = null;
-            var editCommand = _userListViewModel.EditCommand;
+            _bookListViewModel.SelectedBook = null;
+            var editCommand = _bookListViewModel.EditCommand;
 
             //Act
-            if (_userListViewModel.SelectedUser == null)
+            if (_bookListViewModel.SelectedBook == null)
                 canBeExecuted = false;
 
             //Assert
@@ -111,11 +111,11 @@ namespace Library.VmTests
         public void EditCmdShouldBeExecuted()
         {
             //Arrange
-            _userListViewModel.SelectedUser = _userListViewModel.Users[0];
-            var editCommand = _userListViewModel.EditCommand;
+            _bookListViewModel.SelectedBook = _bookListViewModel.Books[0];
+            var editCommand = _bookListViewModel.EditCommand;
 
             //Act
-            if (_userListViewModel.SelectedUser != null)
+            if (_bookListViewModel.SelectedBook != null)
                 canBeExecuted = true;
 
             //Assert
@@ -126,26 +126,27 @@ namespace Library.VmTests
         public void AddCmdShouldNotBeExecuted()
         {
             //Arrange
-            _userListViewModel.SelectedUser = _userListViewModel.Users[1];
-            var addCommand = _userListViewModel.AddCommand;
+            _bookListViewModel.SelectedBook = _bookListViewModel.Books[1];
+            var addCommand = _bookListViewModel.AddCommand;
 
             //Act
-            if (_userListViewModel.SelectedUser.Name == null && _userListViewModel.SelectedUser.Surname == null)
+            if (_bookListViewModel.SelectedBook.Author == null && _bookListViewModel.SelectedBook.Title == null)
                 canBeExecuted = false;
 
             //Assert
             Assert.False(canBeExecuted);
+
         }
 
         [Fact]
         public void AddCmdShouldBeExecuted()
         {
             //Arrange
-            _userListViewModel.SelectedUser = _userListViewModel.Users[0];
-            var addCommand = _userListViewModel.AddCommand;
+            _bookListViewModel.SelectedBook = _bookListViewModel.Books[0];
+            var addCommand = _bookListViewModel.AddCommand;
 
             //Act
-            if (_userListViewModel.SelectedUser.Name != null && _userListViewModel.SelectedUser.Surname != null)
+            if (_bookListViewModel.SelectedBook.Author != null && _bookListViewModel.SelectedBook.Title != null)
                 canBeExecuted = true;
 
             //Assert

@@ -6,9 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Library.Data;
-using Library.Logic.Commands;
+using Library.Logic;
+using Library.UI.Commands;
 
-namespace Library.Logic.ViewModels
+namespace Library.UI.ViewModels
 {
     public class UserListViewModel : BaseViewModel, IDataErrorInfo
     {
@@ -191,12 +192,12 @@ namespace Library.Logic.ViewModels
         }
         #endregion
 
-        private bool CanExecute()
+        public bool CanExecute()
         {
             return SelectedUser != null;
         }
 
-        private bool CanAdd
+        public bool CanAdd
         {
             get { return !(((string.IsNullOrEmpty(this.Name)) || (string.IsNullOrEmpty(this.Surname)))); }
         }

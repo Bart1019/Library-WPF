@@ -4,16 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Library.UI.Views"
-             xmlns:viewModel ="clr-namespace:Library.Logic.ViewModels;assembly=Library.Logic"
              xmlns:data="clr-namespace:Library.Data.Models;assembly=Library.Data"
              xmlns:v="clr-namespace:Library.UI.Views"
-             xmlns:vm="clr-namespace:Library.Logic.ViewModels;assembly=Library.Logic"
              xmlns:data1="clr-namespace:Library.Data;assembly=Library.Data"
+             xmlns:viewModels="clr-namespace:Library.UI.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="450">
 
     <UserControl.Resources>
-        <vm:UserListViewModel x:Key="UserListViewModel"/>
+        <viewModels:UserListViewModel x:Key="UserListViewModel"/>
     </UserControl.Resources>
 
     <StackPanel DataContext="{StaticResource UserListViewModel}" Orientation="Vertical" Background="White">
