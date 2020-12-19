@@ -28,10 +28,6 @@ namespace Library.Logic.Commands
             {
                 _viewModel.SelectedViewModel = new UserListViewModel();
             }
-            else if (parameter.ToString() == "Events")
-            {
-                _viewModel.SelectedViewModel = new EventListViewModel();
-            }
             else if (parameter.ToString() == "Books")
             {
                 _viewModel.SelectedViewModel = new BookListViewModel();

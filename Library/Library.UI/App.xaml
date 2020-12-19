@@ -12,8 +12,5 @@
         <DataTemplate DataType="{x:Type viewmodels:BookListViewModel}">
                 <views:BookListView/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type viewmodels:EventListViewModel}">
-            <views:EventListView/>
-        </DataTemplate>
     </Application.Resources>
 </Application>

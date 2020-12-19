@@ -25,9 +25,6 @@
             <Button Margin="5" FontSize="15" Width="110" Command="{Binding UpdateViewCommand}" CommandParameter="Users">
                 Manage Users
             </Button>
-            <Button Margin="5" FontSize="15" Width="130" Command="{Binding UpdateViewCommand}" CommandParameter="Events">
-                Manage Rentals
-            </Button>
             <Button Margin="5" FontSize="15" Width="110" Command="{Binding UpdateViewCommand}" CommandParameter="Books">
                 Manage Books
             </Button>

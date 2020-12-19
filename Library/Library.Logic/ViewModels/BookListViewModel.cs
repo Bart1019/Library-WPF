@@ -14,7 +14,7 @@ namespace Library.Logic.ViewModels
     {
         #region private
         private Book _selectedBook;
-        private BooksCatalogRepository _bookRepository = new BooksCatalogRepository(new LibraryDbContext());
+        private BooksCatalogService _bookService = new BooksCatalogService(new LibraryDbContext());
         private ObservableCollection<Book> _books;
         private string _title;
         private string _author;
@@ -32,7 +32,7 @@ namespace Library.Logic.ViewModels
         {
             Task.Run(() =>
             {
-                Books = new ObservableCollection<Book>(BookRepository.GetAllBooks());
+                Books = new ObservableCollection<Book>(BookService.GetAllBooks());
             });
             AddCommand = new RelayCommand(Add, ()=> CanAdd);
             DeleteCommand = new RelayCommand(Delete, CanExecute);
@@ -106,12 +106,12 @@ namespace Library.Logic.ViewModels
             }
         }
 
-        public BooksCatalogRepository BookRepository
+        public BooksCatalogService BookService
         {
-            get { return _bookRepository; }
+            get { return _bookService; }
             set
             {
-                _bookRepository = value;
+                _bookService = value;
                 Books = new ObservableCollection<Book>(value.GetAllBooks());
             }
         }
@@ -152,8 +152,8 @@ namespace Library.Logic.ViewModels
         #region commands
         public void Delete()
         {
-            Task.Factory.StartNew(() => _bookRepository.DeleteBook(SelectedBook.Id))
-                .ContinueWith((t1) => BookRepository = _bookRepository);
+            Task.Factory.StartNew(() => _bookService.DeleteBook(SelectedBook.Id))
+                .ContinueWith((t1) => BookService = _bookService);
 
             RaisePropertyChanged(nameof(Books));
         }
@@ -167,8 +167,8 @@ namespace Library.Logic.ViewModels
                 BookGenre = BookGenre
             };
 
-            Task.Factory.StartNew(() => _bookRepository.AddBook(book))
-                .ContinueWith((t1) => BookRepository = _bookRepository);
+            Task.Factory.StartNew(() => _bookService.AddBook(book))
+                .ContinueWith((t1) => BookService = _bookService);
 
             RaisePropertyChanged(nameof(Books));
         }
@@ -183,8 +183,8 @@ namespace Library.Logic.ViewModels
                 BookGenre = BookGenre
             };
 
-            Task.Factory.StartNew(() => _bookRepository.EditBook(book))
-                .ContinueWith((t1) => BookRepository = _bookRepository);
+            Task.Factory.StartNew(() => _bookService.EditBook(book))
+                .ContinueWith((t1) => BookService = _bookService);
 
             RaisePropertyChanged(nameof(Books));
         }

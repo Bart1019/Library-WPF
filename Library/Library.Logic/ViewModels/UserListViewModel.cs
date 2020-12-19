@@ -14,7 +14,7 @@ namespace Library.Logic.ViewModels
     {
         #region private
         private User _selectedUser;
-        private UserRepository _userRepository = new UserRepository(new LibraryDbContext());
+        private UserService _userService = new UserService(new LibraryDbContext());
         private ObservableCollection<User> _users;
         private string _name;
         private string _surname;
@@ -33,7 +33,7 @@ namespace Library.Logic.ViewModels
         {
             Task.Run(() =>
             {
-                Users = new ObservableCollection<User>(UserRepository.GetAllUsers());
+                Users = new ObservableCollection<User>(UserService.GetAllUsers());
             });
             AddCommand = new RelayCommand(Add, ()=> CanAdd);
             DeleteCommand = new RelayCommand(Delete, CanExecute);
@@ -107,12 +107,12 @@ namespace Library.Logic.ViewModels
             }
         }
 
-        public UserRepository UserRepository
+        public UserService UserService
         {
-            get { return _userRepository; }
+            get { return _userService; }
             set
             {
-                _userRepository = value;
+                _userService = value;
                 Users = new ObservableCollection<User>(value.GetAllUsers());
             }
         }
@@ -153,8 +153,8 @@ namespace Library.Logic.ViewModels
         #region commands
         public void Delete()
         {
-            Task.Factory.StartNew(() => _userRepository.DeleteUser(SelectedUser.Id))
-                .ContinueWith((t1) => UserRepository = _userRepository);
+            Task.Factory.StartNew(() => _userService.DeleteUser(SelectedUser.Id))
+                .ContinueWith((t1) => UserService = _userService);
 
             RaisePropertyChanged(nameof(Users));
         }
@@ -168,8 +168,8 @@ namespace Library.Logic.ViewModels
                 AmountOfBooksRented = AmountOfBooksRented
             };
 
-            Task.Factory.StartNew(() => _userRepository.AddUser(user))
-                .ContinueWith((t1) => UserRepository = _userRepository);
+            Task.Factory.StartNew(() => _userService.AddUser(user))
+                .ContinueWith((t1) => UserService = _userService);
 
             RaisePropertyChanged(nameof(Users));
         }
@@ -184,8 +184,8 @@ namespace Library.Logic.ViewModels
                 AmountOfBooksRented = AmountOfBooksRented
             };
 
-            Task.Factory.StartNew(() => _userRepository.EditUser(user))
-                .ContinueWith((t1) => UserRepository = _userRepository);
+            Task.Factory.StartNew(() => _userService.EditUser(user))
+                .ContinueWith((t1) => UserService = _userService);
 
             RaisePropertyChanged(nameof(Users));
         }
